@@ -18,7 +18,7 @@ import {
 
 export default function AcademicAutomationsSite() {
   React.useEffect(() => {
-    // Inject Rubik from Google Fonts. If the site is internal (Figma-like design system), swap to the local font.
+    // Inject Rubik from Google Fonts if available. If not, fall back to system fonts.
     const id = 'rubik-font-stylesheet';
     if (!document.getElementById(id)) {
       const link = document.createElement('link');
@@ -27,16 +27,27 @@ export default function AcademicAutomationsSite() {
       link.href = 'https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap';
       document.head.appendChild(link);
     }
+
+    // Inject a tiny helper style so we can apply Rubik only to headings.
+    const styleId = 'rubik-heading-style';
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement('style');
+      style.id = styleId;
+      style.innerHTML = `
+        .rubik { font-family: 'Rubik', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+      `;
+      document.head.appendChild(style);
+    }
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 antialiased" style={{ fontFamily: "'Rubik', 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" }}>
+    <div className="min-h-screen bg-white text-gray-900 antialiased">
       {/* Top navigation: thin + minimal so it fades into the page */}
       <header className="fixed inset-x-0 top-0 z-50 bg-white/60 backdrop-blur border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <BookOpen className="w-6 h-6 text-slate-700" />
-            <span className="text-sm font-medium tracking-tight">AcademicAutomations</span>
+            <span className="text-sm font-medium tracking-tight rubik">AcademicAutomations</span>
           </div>
           <nav className="flex items-center gap-4">
             <a href="#features" className="text-sm text-slate-600 hover:text-slate-900">Features</a>
@@ -55,26 +66,26 @@ export default function AcademicAutomationsSite() {
       </header>
 
       <main>
-        {/* Hero with generous whitespace */}
-        <section className="relative pt-28 pb-12">
+        {/* Hero with generous whitespace, slightly reduced sizes for readability */}
+        <section className="relative pt-28 pb-16">
           <div className="max-w-5xl mx-auto px-6">
-            <div className="flex flex-col items-start gap-8">
+            <div className="flex flex-col items-start gap-6">
               <div className="w-full">
-                <p className="text-sm font-semibold uppercase text-slate-500 tracking-wide mb-4">For middle schools</p>
+                <p className="text-sm font-semibold uppercase text-slate-500 tracking-wide mb-3">For middle schools</p>
 
-                <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+                <h1 className="text-3xl md:text-4xl font-extrabold leading-tight mb-4 rubik">
                   Remove the friction from school administration —
                   <span className="block text-gradient bg-clip-text text-transparent bg-gradient-to-r from-sky-600 to-violet-600">intelligent automation that pays for itself.</span>
                 </h1>
 
-                <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                <p className="text-base text-slate-600 mb-6 leading-relaxed">
                   Clean workflows, fewer repetitive tasks, and clear ROI. We design automation to reduce time spent on scheduling, reporting and communications — so staff focus on students.
                 </p>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   <a
                     href="#book"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-md border font-medium text-sm hover:bg-slate-50"
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-md border font-medium text-sm hover:bg-slate-50"
                   >
                     Book a discovery call
                     <ChevronRight className="w-4 h-4" />
@@ -82,21 +93,21 @@ export default function AcademicAutomationsSite() {
 
                   <a
                     href="#roi"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-slate-900 text-white text-sm font-medium hover:opacity-95"
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-slate-900 text-white text-sm font-medium hover:opacity-95"
                   >
                     View ROI examples
                   </a>
                 </div>
               </div>
 
-              {/* Centered stat card below the hero text (slightly lower) */}
-              <div className="w-full flex justify-center">
+              {/* Centered stat card below the hero text (slightly lower) and centralized */}
+              <div className="w-full flex justify-center mt-4">
                 <div className="w-full max-w-md bg-white border border-gray-100 rounded-2xl shadow-sm p-6 text-center">
-                  <div className="mb-3 text-sm text-slate-500">Typical middle school admin spend</div>
-                  <div className="text-2xl font-bold text-sky-600">$180,000 / year</div>
+                  <div className="mb-2 text-sm text-slate-500 rubik">Typical middle school admin spend</div>
+                  <div className="text-2xl font-bold text-sky-600 rubik">$180,000 / year</div>
 
-                  <div className="mt-5 mb-3 text-sm text-slate-500">Estimated savings</div>
-                  <div className="text-2xl font-bold text-green-600">$117,000</div>
+                  <div className="mt-4 mb-2 text-sm text-slate-500 rubik">Estimated savings</div>
+                  <div className="text-2xl font-bold text-green-600 rubik">$117,000</div>
 
                   <div className="h-[6px] bg-slate-100 rounded-full overflow-hidden mt-5">
                     <div className="h-full rounded-full" style={{ width: '65%', background: 'linear-gradient(90deg,#06b6d4,#7c3aed)' }} />
@@ -125,7 +136,7 @@ export default function AcademicAutomationsSite() {
         <section id="features" className="py-16 bg-slate-50">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl font-semibold">Automation that respects school workflows</h2>
+              <h2 className="text-3xl font-semibold rubik">Automation that respects school workflows</h2>
               <p className="text-slate-600 mt-3">Purpose-built automations for scheduling, reporting, communications and compliance — designed to integrate with the systems schools already use.</p>
             </div>
 
@@ -142,7 +153,7 @@ export default function AcademicAutomationsSite() {
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               <div>
-                <h3 className="text-2xl font-semibold mb-6">Current annual costs</h3>
+                <h3 className="text-2xl font-semibold rubik mb-6">Current annual costs</h3>
                 <div className="rounded-2xl border border-slate-100 overflow-hidden">
                   <div className="grid grid-cols-2 gap-0">
                     <Row label="Administrative Staff Time" value="$120,000" tone="red" />
@@ -157,7 +168,7 @@ export default function AcademicAutomationsSite() {
               </div>
 
               <div>
-                <h3 className="text-2xl font-semibold mb-6">With AcademicAutomations</h3>
+                <h3 className="text-2xl font-semibold rubik mb-6">With AcademicAutomations</h3>
                 <div className="rounded-2xl border border-slate-100 overflow-hidden">
                   <div className="grid grid-cols-2 gap-0">
                     <Row label="Automated Systems" value="$45,000" tone="green" />
@@ -202,7 +213,7 @@ export default function AcademicAutomationsSite() {
         {/* Final CTA: subtle, narrow buttons, not cartoon-like */}
         <section id="contact" className="py-20 bg-slate-900">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-3xl font-semibold text-white mb-4">Ready to quantify your school's savings?</h2>
+            <h2 className="text-3xl font-semibold text-white mb-4 rubik">Ready to quantify your school's savings?</h2>
             <p className="text-slate-300 mb-8">Book a short audit — we’ll show you a clear ROI projection tailored to your school.</p>
 
             <div className="inline-flex rounded-lg ring-1 ring-white/10 overflow-hidden">
@@ -253,7 +264,7 @@ function FeatureCard({ icon, title, copy, stat }) {
     <div className="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-center gap-4 mb-3">
         <div className="w-12 h-12 grid place-items-center rounded-xl bg-slate-50">{icon}</div>
-        <div className="font-semibold">{title}</div>
+        <div className="font-semibold rubik">{title}</div>
       </div>
       <p className="text-sm text-slate-600 mb-4">{copy}</p>
       <div className="text-xs text-slate-500 flex items-center gap-2">
