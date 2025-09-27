@@ -64,7 +64,7 @@ export default function AcademicAutomationsSite() {
                       href="#book"
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-md border font-medium text-sm hover:bg-slate-50"
                     >
-                      Book a strategy call
+                      Book a discovery call
                       <ChevronRight className="w-4 h-4" />
                     </a>
 
