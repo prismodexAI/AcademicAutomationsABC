@@ -18,7 +18,7 @@ import {
 
 export default function AcademicAutomationsSite() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 antialiased">
+    <div className="min-h-screen bg-white text-gray-900 antialiased font-[Rubik]">
       {/* Top navigation: thin + minimal so it fades into the page */}
       <header className="fixed inset-x-0 top-0 z-50 bg-white/60 backdrop-blur border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
@@ -47,6 +47,7 @@ export default function AcademicAutomationsSite() {
         <section className="relative pt-28 pb-20">
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              {/* Left side: Text first */}
               <div className="lg:col-span-7">
                 <div className="max-w-2xl">
                   <p className="text-sm font-semibold uppercase text-slate-500 tracking-wide mb-6">For middle schools</p>
@@ -59,7 +60,7 @@ export default function AcademicAutomationsSite() {
                     Clean workflows, fewer repetitive tasks, and clear ROI. We design automation to reduce time spent on scheduling, reporting and communications — so staff focus on students.
                   </p>
 
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-4 mb-10">
                     <a
                       href="#book"
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-md border font-medium text-sm hover:bg-slate-50"
@@ -78,13 +79,13 @@ export default function AcademicAutomationsSite() {
                 </div>
               </div>
 
-              {/* Visual/stat card — subtle, centered with lots of empty space around */}
+              {/* Right side: Stat card */}
               <div className="lg:col-span-5 flex justify-center lg:justify-end">
                 <div className="w-full max-w-md bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <div className="text-xs text-slate-500">Typical middle school admin spend</div>
-                      <div className="text-2xl font-bold mt-1">$180,000 / year</div>
+                      <div className="text-2xl font-bold mt-1 text-sky-600">$180,000 / year</div>
                     </div>
                     <div className="text-right">
                       <div className="text-xs text-slate-500">Estimated savings</div>
@@ -94,7 +95,7 @@ export default function AcademicAutomationsSite() {
                   <div className="h-[6px] bg-slate-100 rounded-full overflow-hidden">
                     <div className="h-full rounded-full" style={{ width: '65%', background: 'linear-gradient(90deg,#06b6d4,#7c3aed)' }} />
                   </div>
-                  <p className="text-xs text-slate-500 mt-3">Potential reduction: <span className="font-medium">65%</span> — automation across scheduling, reporting and communications.</p>
+                  <p className="text-xs text-slate-500 mt-3">Potential reduction: <span className="font-medium text-violet-600">65%</span> — automation across scheduling, reporting and communications.</p>
                 </div>
               </div>
 
@@ -102,13 +103,13 @@ export default function AcademicAutomationsSite() {
           </div>
         </section>
 
-        {/* Metrics / quick-stat strip */}
+        {/* Metrics / quick-stat strip with color emphasis */}
         <section className="py-10 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <StatCard icon={<DollarSign className="w-5 h-5" />} title="$180k" subtitle="Avg annual admin spend" />
-              <StatCard icon={<Clock className="w-5 h-5" />} title="40%" subtitle="Time on repetitive tasks" />
-              <StatCard icon={<TrendingUp className="w-5 h-5" />} title="65%" subtitle="Potential cost reduction" />
+              <StatCard icon={<DollarSign className="w-5 h-5 text-sky-600" />} title="$180k" subtitle="Avg annual admin spend" />
+              <StatCard icon={<Clock className="w-5 h-5 text-violet-600" />} title="40%" subtitle="Time on repetitive tasks" />
+              <StatCard icon={<TrendingUp className="w-5 h-5 text-green-600" />} title="65%" subtitle="Potential cost reduction" />
             </div>
           </div>
         </section>
@@ -122,9 +123,9 @@ export default function AcademicAutomationsSite() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <FeatureCard icon={<Calendar className="w-6 h-6" />} title="Smart Scheduling" copy="Reduce timetable conflicts, automate parent-teacher bookings and free up staff time." stat="~15 hrs/week saved" />
-              <FeatureCard icon={<FileText className="w-6 h-6" />} title="Intelligent Reporting" copy="Auto-generate attendance, compliance and performance summaries in minutes." stat="90% faster reports" />
-              <FeatureCard icon={<Users className="w-6 h-6" />} title="Communication Hub" copy="Consistent messages to parents, staff and emergency contacts with templates and scheduling." stat="70% fewer admin calls" />
+              <FeatureCard icon={<Calendar className="w-6 h-6 text-sky-600" />} title="Smart Scheduling" copy="Reduce timetable conflicts, automate parent-teacher bookings and free up staff time." stat="~15 hrs/week saved" />
+              <FeatureCard icon={<FileText className="w-6 h-6 text-violet-600" />} title="Intelligent Reporting" copy="Auto-generate attendance, compliance and performance summaries in minutes." stat="90% faster reports" />
+              <FeatureCard icon={<Users className="w-6 h-6 text-green-600" />} title="Communication Hub" copy="Consistent messages to parents, staff and emergency contacts with templates and scheduling." stat="70% fewer admin calls" />
             </div>
           </div>
         </section>
