@@ -25,7 +25,7 @@ function App() {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-3">
               <BookOpen className="h-8 w-8 text-blue-200" />
-              <h1 className="text-3xl font-bold">Schools Automate</h1>
+              <h1 className="text-3xl font-bold">Academic Automations</h1>
             </div>
             <div className="text-center md:text-right">
               <p className="text-lg font-medium text-blue-100">Smart AI + Workflow Automation</p>
