@@ -1,363 +1,364 @@
 import React from 'react';
-import {
-  ChevronRight,
-  Clock,
-  DollarSign,
-  BookOpen,
-  Users,
-  TrendingUp,
-  CheckCircle,
-  Calendar,
-  FileText,
+import { 
+  Check, 
+  Recycle, 
+  Brain, 
+  Users, 
+  Calendar, 
+  Mail, 
+  Lightbulb, 
+  Monitor, 
   BarChart3,
+  ArrowRight,
+  BookOpen,
+  Target,
+  Clock,
+  TrendingUp
 } from 'lucide-react';
 
-// Single-file, preview-ready React component for an "Apple-style" minimal SaaS site.
-// Tailwind CSS expected in the project.
-// Updated to explicitly answer the main visitor questions: Who are you?, What's in it for me?, Do you solve my problem?, Can I trust you?, What should I do next?, Practical details (cost, timeline, support).
-
-export default function AcademicAutomationsSite() {
-  React.useEffect(() => {
-    const id = 'rubik-font-stylesheet';
-    if (!document.getElementById(id)) {
-      const link = document.createElement('link');
-      link.id = id;
-      link.rel = 'stylesheet';
-      link.href = 'https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap';
-      document.head.appendChild(link);
-    }
-
-    const styleId = 'rubik-heading-style';
-    if (!document.getElementById(styleId)) {
-      const style = document.createElement('style');
-      style.id = styleId;
-      style.innerHTML = `
-        .rubik { font-family: 'Rubik', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
-      `;
-      document.head.appendChild(style);
-    }
-  }, []);
-
+function App() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 antialiased">
-      {/* Thin nav */}
-      <header className="fixed inset-x-0 top-0 z-50 bg-white/60 backdrop-blur border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <BookOpen className="w-6 h-6 text-slate-700" />
-            <span className="text-sm font-medium tracking-tight rubik">AcademicAutomations</span>
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="bg-gradient-to-r from-blue-900 to-blue-800 text-white">
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="flex items-center space-x-3">
+              <BookOpen className="h-8 w-8 text-blue-200" />
+              <h1 className="text-3xl font-bold">Schools Automate</h1>
+            </div>
+            <div className="text-center md:text-right">
+              <p className="text-lg font-medium text-blue-100">Smart AI + Workflow Automation</p>
+              <p className="text-sm text-blue-200">for UK Schools</p>
+            </div>
           </div>
-          <nav className="flex items-center gap-4">
-            <a href="#features" className="text-sm text-slate-600 hover:text-slate-900">Features</a>
-            <a href="#roi" className="text-sm text-slate-600 hover:text-slate-900">ROI</a>
-            <a href="#trust" className="text-sm text-slate-600 hover:text-slate-900">Trusted</a>
-            <a href="#faq" className="text-sm text-slate-600 hover:text-slate-900">FAQ</a>
-            <a
-              href="#book"
-              className="ml-2 inline-flex items-center gap-2 px-3 py-1.5 border rounded-lg text-sm font-medium text-slate-800 hover:bg-slate-50"
-              aria-label="Book a call"
-            >
-              Book a call
-              <ChevronRight className="w-4 h-4" />
-            </a>
-          </nav>
         </div>
       </header>
 
-      <main>
-        {/* HERO: direct answers above the fold */}
-        <section className="relative pt-28 pb-16">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="flex flex-col items-start gap-6">
-              <div className="w-full">
-                <p className="text-sm font-semibold uppercase text-slate-500 tracking-wide mb-3">For middle schools</p>
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-blue-50 to-indigo-50 py-20">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              Smart School 
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"> Automation</span>
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-700 mb-6 font-medium">
+              AI + Workflow Solutions That Save Time, Cut Costs & Reduce Staff Workload
+            </p>
+            <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100 max-w-4xl mx-auto">
+              <p className="text-lg text-gray-600 leading-relaxed">
+                We help UK schools automate admin, streamline communication, and save money using powerful 
+                n8n + AI-driven workflows — <strong className="text-blue-700">without new logins or extra software.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                <h1 className="text-3xl md:text-4xl font-extrabold leading-tight mb-4 rubik">
-                  Remove the friction from school administration —
-                  <span className="block text-gradient bg-clip-text text-transparent bg-gradient-to-r from-sky-600 to-violet-600">intelligent automation that pays for itself.</span>
-                </h1>
-
-                {/* Quick value bullets that answer "what's in it for me?" */}
-                <p className="text-base text-slate-600 mb-6 leading-relaxed">
-                  Clean workflows, fewer repetitive tasks, and clear ROI. We design automation to reduce time spent on scheduling, reporting and communications — so staff focus on students.
-                </p>
-
-                <ul className="flex flex-col sm:flex-row gap-3 mb-6">
-                  <li className="inline-flex items-center gap-2 text-sm text-slate-700"><CheckCircle className="w-4 h-4 text-green-600" /> Save staff hours</li>
-                  <li className="inline-flex items-center gap-2 text-sm text-slate-700"><CheckCircle className="w-4 h-4 text-green-600" /> Faster compliance reporting</li>
-                  <li className="inline-flex items-center gap-2 text-sm text-slate-700"><CheckCircle className="w-4 h-4 text-green-600" /> Lower annual overheads</li>
-                </ul>
-
-                <div className="flex items-center gap-3">
-                  <a
-                    href="#book"
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-md border font-medium text-sm hover:bg-slate-50"
-                  >
-                    Book a discovery call
-                    <ChevronRight className="w-4 h-4" />
-                  </a>
-
-                  <a
-                    href="#roi"
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-slate-900 text-white text-sm font-medium hover:opacity-95"
-                  >
-                    View ROI examples
-                  </a>
-
-                  {/* A small inline answer to the "how much?" question */}
-                  <div className="ml-3 text-sm text-slate-500">Custom pricing — typical engagements: <span className="font-medium text-slate-800">book to receive a tailored quote</span></div>
+      {/* What We Automate */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center mb-4">
+              <Check className="h-8 w-8 text-green-600 mr-3" />
+              <h3 className="text-4xl font-bold text-gray-900">What We Automate</h3>
+            </div>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Automation Workflows */}
+            <div className="group bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="flex items-center mb-6">
+                <div className="bg-blue-100 p-3 rounded-full mr-4 group-hover:bg-blue-200 transition-colors">
+                  <Recycle className="h-6 w-6 text-blue-600" />
                 </div>
+                <h4 className="text-2xl font-semibold text-gray-900">Automation Workflows</h4>
               </div>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Attendance alerts to parents & SLT</span>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Staff absence & AI cover suggestions</span>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Behaviour reporting & escalation</span>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Homework summaries via email (replace Satchel One)</span>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>SharePoint, Forms & Teams integration</span>
+                </li>
+              </ul>
+            </div>
 
-              {/* Centered stat card below the hero text */}
-              <div className="w-full flex justify-center mt-4">
-                <div className="w-full max-w-md bg-white border border-gray-100 rounded-2xl shadow-sm p-6 text-center">
-                  <div className="mb-2 text-sm text-slate-500 rubik">Typical middle school admin spend</div>
-                  <div className="text-2xl font-bold text-sky-600 rubik">$180,000 / year</div>
-
-                  <div className="mt-4 mb-2 text-sm text-slate-500 rubik">Estimated savings</div>
-                  <div className="text-2xl font-bold text-green-600 rubik">$117,000</div>
-
-                  <div className="h-[6px] bg-slate-100 rounded-full overflow-hidden mt-5">
-                    <div className="h-full rounded-full" style={{ width: '65%', background: 'linear-gradient(90deg,#06b6d4,#7c3aed)' }} />
-                  </div>
-
-                  <p className="text-xs text-slate-500 mt-3">Potential reduction: <span className="font-medium text-violet-600">65%</span> — automation across scheduling, reporting and communications.</p>
+            {/* AI-Powered Insights */}
+            <div className="group bg-gradient-to-br from-indigo-50 to-white p-8 rounded-2xl shadow-lg border border-indigo-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="flex items-center mb-6">
+                <div className="bg-indigo-100 p-3 rounded-full mr-4 group-hover:bg-indigo-200 transition-colors">
+                  <Brain className="h-6 w-6 text-indigo-600" />
                 </div>
+                <h4 className="text-2xl font-semibold text-gray-900">AI-Powered Insights</h4>
               </div>
-
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-indigo-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Weekly summaries of key trends (e.g. attendance in Yr9)</span>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-indigo-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Flag at-risk students automatically</span>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-indigo-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Generate meeting-ready summaries every Friday</span>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-indigo-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Draft staff messages and reminders</span>
+                </li>
+              </ul>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Quick stats strip */}
-        <section className="py-10 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <StatCard icon={<DollarSign className="w-5 h-5 text-sky-600" />} title="$180k" subtitle="Avg annual admin spend" />
-              <StatCard icon={<Clock className="w-5 h-5 text-violet-600" />} title="40%" subtitle="Time on repetitive tasks" />
-              <StatCard icon={<TrendingUp className="w-5 h-5 text-green-600" />} title="65%" subtitle="Potential cost reduction" />
+      {/* ROI Highlights */}
+      <section className="bg-gradient-to-br from-blue-900 to-blue-800 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center mb-4">
+              <Users className="h-8 w-8 text-blue-200 mr-3" />
+              <h3 className="text-4xl font-bold">Real Savings. Real Impact.</h3>
             </div>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              Here's how much UK schools typically save with just a few smart workflows.
+            </p>
           </div>
-        </section>
 
-        {/* Features + "How it works" to answer "Do you solve my specific problem?" */}
-        <section id="features" className="py-16 bg-slate-50">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl font-semibold rubik">Automation that respects school workflows</h2>
-              <p className="text-slate-600 mt-3">Purpose-built automations for scheduling, reporting, communications and compliance — designed to integrate with the systems schools already use.</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <FeatureCard icon={<Calendar className="w-6 h-6 text-sky-600" />} title="Smart Scheduling" copy="Reduce timetable conflicts, automate parent-teacher bookings and free up staff time." stat="~15 hrs/week saved" />
-              <FeatureCard icon={<FileText className="w-6 h-6 text-violet-600" />} title="Intelligent Reporting" copy="Auto-generate attendance, compliance and performance summaries in minutes." stat="90% faster reports" />
-              <FeatureCard icon={<Users className="w-6 h-6 text-green-600" />} title="Communication Hub" copy="Consistent messages to parents, staff and emergency contacts with templates and scheduling." stat="70% fewer admin calls" />
-            </div>
-
-            <div className="max-w-3xl mx-auto bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-              <h4 className="text-xl font-semibold rubik mb-3">How it works — 3 steps</h4>
-              <ol className="list-decimal list-inside text-sm text-slate-700 space-y-2">
-                <li><strong>Audit:</strong> Short call to map your systems and priorities.</li>
-                <li><strong>Build:</strong> We deliver automations that plug into your existing tools.</li>
-                <li><strong>Handover & optimise:</strong> Training, monitoring and fast iteration.</li>
-              </ol>
-            </div>
-          </div>
-        </section>
-
-        {/* ROI breakdown */}
-        <section id="roi" className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              <div>
-                <h3 className="text-2xl font-semibold rubik mb-6">Current annual costs</h3>
-                <div className="rounded-2xl border border-slate-100 overflow-hidden">
-                  <div className="grid grid-cols-2 gap-0">
-                    <Row label="Administrative Staff Time" value="$120,000" tone="red" />
-                    <Row label="Software Subscriptions" value="$35,000" tone="red" />
-                    <Row label="Manual Process Overhead" value="$25,000" tone="red" />
-                    <div className="col-span-2 bg-slate-50 p-4 flex justify-between font-semibold">
-                      <div>Total annual cost</div>
-                      <div className="text-red-600">$180,000</div>
-                    </div>
-                  </div>
-                </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {/* ROI Cards */}
+            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              <div className="flex items-center mb-4">
+                <Users className="h-6 w-6 text-blue-600 mr-2" />
+                <h4 className="font-bold text-xl">Replace Satchel One</h4>
               </div>
+              <p className="text-gray-600 mb-3 text-sm">Use Teams + Forms instead</p>
+              <p className="font-bold text-2xl text-green-600">£1,400–£2,000/year saved</p>
+            </div>
 
-              <div>
-                <h3 className="text-2xl font-semibold rubik mb-6">With AcademicAutomations</h3>
-                <div className="rounded-2xl border border-slate-100 overflow-hidden">
-                  <div className="grid grid-cols-2 gap-0">
-                    <Row label="Automated Systems" value="$45,000" tone="green" />
-                    <Row label="Reduced Staff Overhead" value="$18,000" tone="green" />
-                    <Row label="Implementation & Training" value="$0" tone="green" />
-                    <div className="col-span-2 bg-slate-50 p-4 flex justify-between font-semibold">
-                      <div>Total annual cost</div>
-                      <div className="text-green-600">$63,000</div>
-                    </div>
-                    <div className="col-span-2 p-6 bg-gradient-to-r from-green-50 to-blue-50 text-center">
-                      <div className="text-2xl font-bold text-green-600">$117,000</div>
-                      <div className="text-sm text-slate-600">Estimated annual savings</div>
-                    </div>
-                  </div>
-                </div>
+            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              <div className="flex items-center mb-4">
+                <Calendar className="h-6 w-6 text-blue-600 mr-2" />
+                <h4 className="font-bold text-xl">Staff Absence + Cover</h4>
               </div>
+              <p className="text-gray-600 mb-3 text-sm">Auto-alerts, AI-suggested cover</p>
+              <p className="font-bold text-lg text-green-600">2 hrs/week</p>
+              <p className="font-bold text-2xl text-green-600">£1,500–£2,000/year</p>
             </div>
 
-            <div className="mt-10 text-sm text-slate-500">Note: numbers represent typical middle school examples. We provide bespoke audits and accurate ROI projections during a short strategy call.</div>
-          </div>
-        </section>
-
-        {/* Trust & Testimonials to answer "Can I trust you?" */}
-        <section id="trust" className="py-12 bg-gradient-to-r from-slate-50 to-white">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="rounded-2xl border border-slate-100 p-6 flex flex-col md:flex-row items-center gap-6">
-              <div className="flex-1">
-                <div className="text-sm text-slate-600">Trusted by</div>
-                <div className="flex items-center gap-6 mt-3">
-                  <div className="text-slate-800 font-medium">200+ middle schools</div>
-                  <div className="text-slate-500 text-sm">Average CSAT 4.7/5</div>
-                </div>
-
-                <div className="mt-4 text-sm text-slate-600">Case study: <span className="font-medium">Greenfield Middle</span> reduced admin time by 38% in 3 months.</div>
+            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              <div className="flex items-center mb-4">
+                <Brain className="h-6 w-6 text-blue-600 mr-2" />
+                <h4 className="font-bold text-xl">AI Weekly Reports</h4>
               </div>
+              <p className="text-gray-600 mb-3 text-sm">SLT-ready behaviour/attendance data</p>
+              <p className="font-bold text-lg text-green-600">3 hrs/week</p>
+              <p className="font-bold text-2xl text-green-600">£2,500–£4,000/year</p>
+            </div>
 
-              <div className="flex items-center gap-3">
-                <a href="#book" className="inline-flex items-center gap-2 px-3 py-2 border rounded-md text-sm hover:bg-slate-50">See case studies</a>
-                <a href="#book" className="inline-flex items-center gap-2 px-3 py-2 bg-slate-900 text-white rounded-md text-sm">Book a call</a>
+            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              <div className="flex items-center mb-4">
+                <Mail className="h-6 w-6 text-blue-600 mr-2" />
+                <h4 className="font-bold text-xl">Parent Reminders</h4>
               </div>
+              <p className="text-gray-600 mb-3 text-sm">Auto-send detentions & events</p>
+              <p className="font-bold text-lg text-green-600">1 hr/week</p>
+              <p className="font-bold text-2xl text-green-600">£750–£1,250/year</p>
             </div>
 
-            {/* Small testimonial */}
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-              <blockquote className="p-4 bg-white border rounded-lg">
-                <div className="text-sm text-slate-700">"The team delivered fast, clear results — our reporting is now automatic."</div>
-                <div className="mt-3 text-xs text-slate-500">— Headteacher, Oakridge School</div>
-              </blockquote>
-
-              <blockquote className="p-4 bg-white border rounded-lg">
-                <div className="text-sm text-slate-700">"Better parent communications and fewer calls to the office."</div>
-                <div className="mt-3 text-xs text-slate-500">— Office Manager, Willowbrook</div>
-              </blockquote>
-
-              <div className="p-4 bg-white border rounded-lg flex flex-col justify-center items-start">
-                <div className="text-sm text-slate-700">Average CSAT</div>
-                <div className="text-2xl font-bold text-sky-600 mt-2">4.7 / 5</div>
+            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              <div className="flex items-center mb-4">
+                <Lightbulb className="h-6 w-6 text-blue-600 mr-2" />
+                <h4 className="font-bold text-xl">Behaviour Escalation</h4>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ to answer practical/support questions */}
-        <section id="faq" className="py-16 bg-slate-50">
-          <div className="max-w-4xl mx-auto px-6">
-            <h3 className="text-2xl font-semibold rubik mb-6">Frequently asked questions</h3>
-            <FAQ />
-          </div>
-        </section>
-
-        {/* Final CTA with clear next steps + guarantee */}
-        <section id="contact" className="py-20 bg-slate-900">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-3xl font-semibold text-white mb-4 rubik">Ready to quantify your school's savings?</h2>
-            <p className="text-slate-300 mb-8">Book a short audit — we’ll show you a clear ROI projection tailored to your school.</p>
-
-            <div className="inline-flex rounded-lg ring-1 ring-white/10 overflow-hidden">
-              <a href="#book" className="px-4 py-2 text-sm text-white/90 hover:bg-white/5">Schedule audit</a>
-              <span className="border-l border-white/10" />
-              <a href="#contact" className="px-4 py-2 text-sm text-white/90 hover:bg-white/5">Request case studies</a>
+              <p className="text-gray-600 mb-3 text-sm">Threshold alerts & weekly reports</p>
+              <p className="font-bold text-lg text-green-600">2 hrs/week</p>
+              <p className="font-bold text-2xl text-green-600">£1,500+/year</p>
             </div>
 
-            <div className="mt-6 text-xs text-slate-300">30-minute consultation • No commitment • Custom ROI analysis included</div>
-            <div className="mt-3 text-xs text-slate-400">Satisfaction guarantee: <span className="font-medium">If you're not satisfied in 30 days we'll help you unwind the automations free of charge.</span></div>
-
-            <div className="mt-8 text-xs text-slate-400">Questions? Email <a href="mailto:hello@academicautomations.example" className="underline">hello@academicautomations.example</a> or call <span className="font-medium">020 7123 0000</span></div>
-          </div>
-        </section>
-
-      </main>
-
-      <footer className="bg-white border-t border-slate-100 py-8">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <BookOpen className="w-5 h-5 text-slate-700" />
-            <div>
-              <div className="text-sm font-medium">AcademicAutomations</div>
-              <div className="text-xs text-slate-500">Transforming education through intelligent automation</div>
+            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              <div className="flex items-center mb-4">
+                <Monitor className="h-6 w-6 text-blue-600 mr-2" />
+                <h4 className="font-bold text-xl">Onboarding / Offboarding</h4>
+              </div>
+              <p className="text-gray-600 mb-3 text-sm">Accounts, access & folders</p>
+              <p className="font-bold text-lg text-green-600">1 hr/person</p>
+              <p className="font-bold text-2xl text-green-600">£800–£1,200/year</p>
             </div>
           </div>
-          <div className="text-xs text-slate-500">© {new Date().getFullYear()} AcademicAutomations</div>
+
+          {/* Total ROI Summary */}
+          <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-8 rounded-2xl shadow-2xl text-center max-w-4xl mx-auto">
+            <div className="flex items-center justify-center mb-4">
+              <BarChart3 className="h-8 w-8 text-white mr-3" />
+              <h4 className="text-3xl font-bold text-white">Typical School ROI</h4>
+            </div>
+            <p className="text-4xl font-bold text-white mb-2">£4,000–£12,000/year saved</p>
+            <p className="text-xl text-green-100 mb-2">150–500 hours/year of staff time freed</p>
+            <p className="text-lg text-green-200 italic">
+              That's 6–12 weeks of full-time admin time — every year.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="bg-gray-50 py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center mb-4">
+              <Target className="h-8 w-8 text-blue-600 mr-3" />
+              <h3 className="text-4xl font-bold text-gray-900">Packages & Pricing</h3>
+            </div>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {/* Starter Package */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+              <div className="text-center mb-6">
+                <Clock className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <h4 className="text-2xl font-bold text-gray-900 mb-2">Starter</h4>
+                <p className="text-gray-600 mb-4">3 workflows + 1-hour monthly support</p>
+                <p className="text-3xl font-bold text-blue-600">£1,500<span className="text-lg text-gray-500">/year</span></p>
+              </div>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>3 automation workflows</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>1-hour monthly support</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Email support</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Pro Package - Featured */}
+            <div className="bg-white p-8 rounded-2xl shadow-xl border-2 border-blue-500 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">Most Popular</span>
+              </div>
+              <div className="text-center mb-6">
+                <TrendingUp className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <h4 className="text-2xl font-bold text-gray-900 mb-2">Pro</h4>
+                <p className="text-gray-600 mb-4">10 workflows + AI summaries + integrations</p>
+                <p className="text-3xl font-bold text-blue-600">£4,000<span className="text-lg text-gray-500">/year</span></p>
+              </div>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>10 automation workflows</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>AI-powered insights</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Full integrations</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Priority support</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Custom Package */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+              <div className="text-center mb-6">
+                <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <h4 className="text-2xl font-bold text-gray-900 mb-2">Custom</h4>
+                <p className="text-gray-600 mb-4">Full automation + training + support</p>
+                <p className="text-3xl font-bold text-blue-600">£8,000–£10,000<span className="text-lg text-gray-500">/year</span></p>
+              </div>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Unlimited workflows</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Staff training included</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Custom integrations</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>24/7 support</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="text-center mt-12">
+            <p className="text-gray-600 text-lg">
+              <strong>Try one workflow free</strong> — then upgrade as you grow.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white py-20">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="mb-8">
+            <BookOpen className="h-16 w-16 text-blue-200 mx-auto mb-6" />
+            <h3 className="text-4xl font-bold mb-6">Let's Automate Your School</h3>
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+              We'll build your first workflow free. No contracts. Just value.
+            </p>
+          </div>
+          
+          <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
+            <a 
+              href="mailto:hello@schoolsautomate.com" 
+              className="inline-flex items-center bg-white text-blue-900 px-8 py-4 font-bold text-lg rounded-full shadow-lg hover:bg-gray-100 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1"
+            >
+              Contact Us
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-8">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <div className="flex items-center justify-center mb-4">
+            <BookOpen className="h-6 w-6 text-blue-400 mr-2" />
+            <p className="text-gray-300">
+              © 2025 Schools Automate. Built with care for UK schools.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
   );
 }
 
-// ----- Helper components ----- //
-
-function StatCard({ icon, title, subtitle }) {
-  return (
-    <div className="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-start gap-4">
-      <div className="w-10 h-10 rounded-lg bg-slate-50 grid place-items-center">{icon}</div>
-      <div>
-        <div className="text-lg font-semibold">{title}</div>
-        <div className="text-sm text-slate-500">{subtitle}</div>
-      </div>
-    </div>
-  );
-}
-
-function FeatureCard({ icon, title, copy, stat }) {
-  return (
-    <div className="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-      <div className="flex items-center gap-4 mb-3">
-        <div className="w-12 h-12 grid place-items-center rounded-xl bg-slate-50">{icon}</div>
-        <div className="font-semibold rubik">{title}</div>
-      </div>
-      <p className="text-sm text-slate-600 mb-4">{copy}</p>
-      <div className="text-xs text-slate-500 flex items-center gap-2">
-        <CheckCircle className="w-4 h-4 text-green-600" />
-        <div className="font-medium">{stat}</div>
-      </div>
-    </div>
-  );
-}
-
-function Row({ label, value, tone = 'neutral' }) {
-  const toneClass = tone === 'green' ? 'text-green-600' : tone === 'red' ? 'text-red-600' : 'text-slate-700';
-  return (
-    <div className="p-4 flex justify-between items-center border-b border-slate-100">
-      <div className="text-sm text-slate-700">{label}</div>
-      <div className={`text-sm font-medium ${toneClass}`}>{value}</div>
-    </div>
-  );
-}
-
-function FAQ() {
-  const faqs = [
-    { q: 'How much does this cost?', a: 'We offer bespoke pricing. Typical engagements are priced after a short audit — book a call to receive a tailored quote.' },
-    { q: 'How long does implementation take?', a: 'Most schools see initial automations delivered within 2–6 weeks depending on systems and scope.' },
-    { q: 'Do you integrate with our MIS / existing tools?', a: 'Yes. We prioritise integrations and will map your systems during the audit.' },
-    { q: 'What support is included?', a: 'Implementation, training and 30 days of optimisation are included. Ongoing support available via subscription.' },
-  ];
-
-  const [openIndex, setOpenIndex] = React.useState(null);
-  return (
-    <div className="space-y-3">
-      {faqs.map((f, i) => (
-        <div key={i} className="bg-white border rounded-lg p-4">
-          <button
-            className="w-full text-left flex items-center justify-between"
-            onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            aria-expanded={openIndex === i}
-          >
-            <div className="text-sm font-medium">{f.q}</div>
-            <ChevronRight className={`w-4 h-4 transition-transform ${openIndex === i ? 'rotate-90' : ''}`} />
-          </button>
-          {openIndex === i && <div className="mt-3 text-sm text-slate-600">{f.a}</div>}
-        </div>
-      ))}
-    </div>
-  );
-}
+export default App;
