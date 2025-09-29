@@ -28,7 +28,7 @@ function App() {
               <h1 className="text-3xl font-bold">Academic Automations</h1>
             </div>
             <div className="text-center md:text-right">
-              <p className="text-lg font-medium text-blue-100">Empowering your school to leverage the use of AI automation, bridging the digital divide by connecting old systems to new solutions.</p>
+              <p className="text-lg font-medium text-blue-100">Smart AI + Workflow Automation</p>
               <p className="text-sm text-blue-200">for UK Schools</p>
             </div>
           </div>
@@ -44,12 +44,15 @@ function App() {
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"> Automation</span>
             </h2>
             <p className="text-xl md:text-2xl text-gray-700 mb-6 font-medium">
-              AI + Workflow Solutions That Save Time, Cut Costs & Reduce Staff Workload
+               Empowering your school to leverage the use of AI automation, bridging the digital divide by connecting old systems to new solutions.
             </p>
             <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100 max-w-4xl mx-auto">
               <p className="text-lg text-gray-600 leading-relaxed">
-                We help UK schools automate admin, streamline communication, and save money using powerful 
-                n8n + AI-driven workflows — <strong className="text-blue-700">without new logins or extra software.</strong>
+               Our goal is to reduce overhead costs by deploying systems that automate monotonous
+                tasks, allowing your staff to delegate their time towards more Important matters. 
+<br />
+<strong className="text-blue-700">Teaching and genuine human interaction.</strong>
+                
               </p>
             </div>
           </div>
