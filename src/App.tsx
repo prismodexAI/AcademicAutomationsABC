@@ -28,7 +28,7 @@ function App() {
               <h1 className="text-3xl font-bold">Academic Automations</h1>
             </div>
             <div className="text-center md:text-right">
-              <p className="text-lg font-medium text-blue-100">Smart AI + Workflow Automation</p>
+              <p className="text-lg font-medium text-blue-100">Empowering your school to leverage the use of AI automation, bridging the digital divide by connecting old systems to new solutions.</p>
               <p className="text-sm text-blue-200">for UK Schools</p>
             </div>
           </div>
