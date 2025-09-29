@@ -65,7 +65,7 @@ function App() {
           <div className="text-center mb-16">
             <div className="flex items-center justify-center mb-4">
               <Check className="h-8 w-8 text-green-600 mr-3" />
-              <h3 className="text-4xl font-bold text-gray-900">What We Automate</h3>
+              <h3 className="text-4xl font-bold text-gray-900">Why is this Important?</h3>
             </div>
           </div>
           
