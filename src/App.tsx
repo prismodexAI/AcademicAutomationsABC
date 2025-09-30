@@ -64,68 +64,77 @@ function App() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center mb-4">
-              <Check className="h-8 w-8 text-green-600 mr-3" />
-              <h3 className="text-4xl font-bold text-gray-900">Why is this Important?</h3>
+              <div className="bg-orange-100 p-2 rounded-full mr-3">
+                <span className="text-2xl font-bold text-orange-600">!</span>
+              </div>
+              <h3 className="text-4xl font-bold text-gray-900">How can we help?</h3>
             </div>
+            <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+              We focus on your ROI by prioritising high impact solutions above all else. Providing up to <strong className="text-blue-700">10X</strong> value on time and money saved.
+            </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Automation Workflows */}
+            {/* Pain Points */}
             <div className="group bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="flex items-center mb-6">
-                <div className="bg-blue-100 p-3 rounded-full mr-4 group-hover:bg-blue-200 transition-colors">
-                  <Recycle className="h-6 w-6 text-blue-600" />
+                <div className="bg-red-100 p-3 rounded-full mr-4 group-hover:bg-red-200 transition-colors">
+                  <Clock className="h-6 w-6 text-red-600" />
                 </div>
-                <h4 className="text-2xl font-semibold text-gray-900">Automation Workflows</h4>
+                <h4 className="text-2xl font-semibold text-gray-900">Time consuming tasks</h4>
               </div>
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Attendance alerts to parents & SLT</span>
+                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Manual updates to student & staff absence forms</span>
                 </li>
                 <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Staff absence & AI cover suggestions</span>
+                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Repetitive data entry for behaviour incidents</span>
                 </li>
                 <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Behaviour reporting & escalation</span>
+                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Repetitive data entry for behaviour incidents</span>
                 </li>
                 <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Homework summaries via email (replace Satchel One)</span>
+                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Weekly admin burden creating reports for SLT meetings</span>
                 </li>
                 <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>SharePoint, Forms & Teams integration</span>
+                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Staff overwhelmed by multiple disconnected systems</span>
                 </li>
               </ul>
             </div>
 
-            {/* AI-Powered Insights */}
+            {/* Benefits & Strengths */}
             <div className="group bg-gradient-to-br from-indigo-50 to-white p-8 rounded-2xl shadow-lg border border-indigo-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="flex items-center mb-6">
-                <div className="bg-indigo-100 p-3 rounded-full mr-4 group-hover:bg-indigo-200 transition-colors">
-                  <Brain className="h-6 w-6 text-indigo-600" />
+                <div className="bg-green-100 p-3 rounded-full mr-4 group-hover:bg-green-200 transition-colors">
+                  <TrendingUp className="h-6 w-6 text-green-600" />
                 </div>
-                <h4 className="text-2xl font-semibold text-gray-900">AI-Powered Insights</h4>
+                <h4 className="text-2xl font-semibold text-gray-900">Time & Money Saved</h4>
               </div>
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-indigo-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Weekly summaries of key trends (e.g. attendance in Yr9)</span>
+                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span><strong>5+ hours/week</strong> saved on attendance management</span>
                 </li>
                 <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-indigo-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Flag at-risk students automatically</span>
+                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span><strong>£2,000+/year</strong> saved on cover teacher costs</span>
                 </li>
                 <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-indigo-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Generate meeting-ready summaries every Friday</span>
+                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span><strong>3+ hours/week</strong> freed from report generation</span>
                 </li>
                 <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-indigo-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Draft staff messages and reminders</span>
+                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span><strong>Early intervention</strong> prevents costly escalations</span>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span><strong>Staff wellbeing</strong> improved through reduced workload</span>
                 </li>
               </ul>
             </div>
@@ -139,7 +148,7 @@ function App() {
           <div className="text-center mb-16">
             <div className="flex items-center justify-center mb-4">
               <Users className="h-8 w-8 text-blue-200 mr-3" />
-              <h3 className="text-4xl font-bold">Real Savings. Real Impact.</h3>
+              <h3 className="text-4xl font-bold">What can you expect?</h3>
             </div>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto">
               Here's how much UK schools typically save with just a few smart workflows.
