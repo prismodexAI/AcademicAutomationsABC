@@ -16,24 +16,57 @@ import {
   TrendingUp
 } from 'lucide-react';
 
+/* --- New Header component (inserted) --- */
+function Header({
+  title = 'Academic Automations',
+  tagline = 'Smart AI + Workflow Automation • for UK Schools',
+  menuLinks = [
+    { label: 'How can we help?', href: '#how' },
+    { label: 'ROI', href: '#roi' },
+    { label: 'Packages', href: '#pricing' },
+  ],
+  ctaLabel = 'Contact us',
+  ctaHref = 'mailto:hello@schoolsautomate.com',
+}) {
+  return (
+    <header className="sticky top-0 z-40 backdrop-blur bg-white/60 border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50">
+            <BookOpen className="h-8 w-8 text-blue-700" />
+          </div>
+
+          <div>
+            <h1 className="text-xl md:text-2xl font-extrabold leading-tight">{title}</h1>
+            <p className="text-xs md:text-sm text-gray-500">{tagline}</p>
+          </div>
+        </div>
+
+        <nav className="hidden md:flex items-center gap-6 text-sm">
+          {menuLinks.map((link) => (
+            <a key={link.href} href={link.href} className="hover:text-blue-700 transition">
+              {link.label}
+            </a>
+          ))}
+
+          <a
+            href={ctaHref}
+            className="inline-flex items-center bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition-transform transform hover:-translate-y-0.5"
+          >
+            {ctaLabel}
+          </a>
+        </nav>
+      </div>
+    </header>
+  );
+}
+/* --- End Header component --- */
+
 function App() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-gradient-to-r from-blue-900 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-3">
-              <BookOpen className="h-8 w-8 text-blue-200" />
-              <h1 className="text-3xl font-bold">Academic Automations</h1>
-            </div>
-            <div className="text-center md:text-right">
-              <p className="text-lg font-medium text-blue-100">Smart AI + Workflow Automation</p>
-              <p className="text-sm text-blue-200">for UK Schools</p>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 to-indigo-50 py-20">
@@ -209,7 +242,7 @@ function App() {
             <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
               <div className="flex items-center mb-4">
                 <Monitor className="h-6 w-6 text-blue-600 mr-2" />
-                <h4 className="font-bold text-xl">Onboarding / Offboarding</h4>
+                <h4 className="text-2xl font-bold text-gray-900 mb-2">Onboarding / Offboarding</h4>
               </div>
               <p className="text-gray-600 mb-3 text-sm">Accounts, access & folders</p>
               <p className="font-bold text-lg text-green-600">1 hr/person</p>
