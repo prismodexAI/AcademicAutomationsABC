@@ -1,33 +1,48 @@
-import React from 'react';
-import { 
-  Check, 
-  Recycle, 
-  Brain, 
-  Users, 
-  Calendar, 
-  Mail, 
-  Lightbulb, 
-  Monitor, 
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import {
+  Check,
+  Brain,
+  Users,
+  Calendar,
+  Mail,
+  Lightbulb,
+  Monitor,
   BarChart3,
   ArrowRight,
   BookOpen,
   Target,
   Clock,
-  TrendingUp
+  TrendingUp,
 } from 'lucide-react';
+import BlogPage from './components/HowItWorks';
 
-/* --- New Header component (inserted) --- */
 function Header({
   title = 'Academic Automations',
   tagline = 'Smart AI + Workflow Automation • for UK Schools',
   menuLinks = [
     { label: 'How can we help?', href: '#how' },
-    { label: 'ROI', href: '#roi' },
+    { label: 'How it works', href: '#blog' },
     { label: 'Packages', href: '#pricing' },
   ],
-  ctaLabel = 'Contact us',
+  ctaLabel = "let's talk",
   ctaHref = 'mailto:hello@schoolsautomate.com',
+  onBlogClick,
+}: {
+  title?: string;
+  tagline?: string;
+  menuLinks?: { label: string; href: string }[];
+  ctaLabel?: string;
+  ctaHref?: string;
+  onBlogClick?: () => void;
 }) {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href === '#blog' && onBlogClick) {
+      e.preventDefault();
+      onBlogClick();
+    }
+  };
+
   return (
     <header className="sticky top-0 z-40 backdrop-blur bg-white/60 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -35,7 +50,6 @@ function Header({
           <div className="p-2 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50">
             <BookOpen className="h-8 w-8 text-blue-700" />
           </div>
-
           <div>
             <h1 className="text-xl md:text-2xl font-extrabold leading-tight">{title}</h1>
             <p className="text-xs md:text-sm text-gray-500">{tagline}</p>
@@ -44,7 +58,12 @@ function Header({
 
         <nav className="hidden md:flex items-center gap-6 text-sm">
           {menuLinks.map((link) => (
-            <a key={link.href} href={link.href} className="hover:text-blue-700 transition">
+            <a
+              key={link.href}
+              href={link.href}
+              className="hover:text-blue-700 transition"
+              onClick={(e) => handleLinkClick(e, link.href)}
+            >
               {link.label}
             </a>
           ))}
@@ -60,56 +79,225 @@ function Header({
     </header>
   );
 }
-/* --- End Header component --- */
 
-function App() {
+export default function App() {
+  const [currentPage, setCurrentPage] = useState<'home' | 'blog'>('home');
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [heroParallax, setHeroParallax] = useState(0);
+
+  useEffect(() => {
+    function onScroll() {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const current = window.scrollY;
+      const pct = total > 0 ? Math.min(100, (current / total) * 100) : 0;
+      setScrollProgress(pct);
+      setHeroParallax(Math.min(120, current * 0.12)); // gentle parallax
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  if (currentPage === 'blog') {
+    return <BlogPage onBack={() => setCurrentPage('home')} />;
+  }
+
+  const reveal = {
+    hidden: { opacity: 0, y: 16 },
+    visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: 0.06 * i, ease: 'easeOut' } }),
+  };
+
+  const cards = [
+    {
+      icon: <Users className="h-6 w-6 text-blue-600 mr-2" />,
+      title: 'Replace Satchel One',
+      sub: 'Use Teams + Forms instead',
+      value: '£1,400–£2,000/year saved',
+    },
+    {
+      icon: <Calendar className="h-6 w-6 text-blue-600 mr-2" />,
+      title: 'Staff Absence + Cover',
+      sub: 'Auto-alerts, AI-suggested cover',
+      value: '£1,500–£2,000/year',
+      small: '2 hrs/week',
+    },
+    {
+      icon: <Brain className="h-6 w-6 text-blue-600 mr-2" />,
+      title: 'AI Weekly Reports',
+      sub: 'SLT-ready behaviour/attendance data',
+      value: '£2,500–£4,000/year',
+      small: '3 hrs/week',
+    },
+    {
+      icon: <Mail className="h-6 w-6 text-blue-600 mr-2" />,
+      title: 'Parent Reminders',
+      sub: 'Auto-send detentions & events',
+      value: '£750–£1,250/year',
+      small: '1 hr/week',
+    },
+    {
+      icon: <Lightbulb className="h-6 w-6 text-blue-600 mr-2" />,
+      title: 'Behaviour Escalation',
+      sub: 'Threshold alerts & weekly reports',
+      value: '£1,500+/year',
+      small: '2 hrs/week',
+    },
+    {
+      icon: <Monitor className="h-6 w-6 text-blue-600 mr-2" />,
+      title: 'Onboarding / Offboarding',
+      sub: 'Accounts, access & folders',
+      value: '£800–£1,200/year',
+      small: '1 hr/person',
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <Header />
+    <div className="min-h-screen bg-white selection:bg-indigo-200 selection:text-indigo-900 text-gray-900">
+      {/* animated gradient CSS injected locally */}
+      <style>{`
+        /* Load Jost and default system font variable */
+        @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap');
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-50 py-20">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Smart School 
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"> Automation</span>
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-700 mb-6 font-medium">
-               Empowering your school to leverage the use of AI automation, bridging the digital divide by connecting old systems to new solutions.
-            </p>
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100 max-w-4xl mx-auto">
-              <p className="text-lg text-gray-600 leading-relaxed">
-               Our goal is to reduce overhead costs by deploying systems that automate monotonous
-                tasks, allowing your staff to delegate their time towards more Important matters. 
-<br />
-<strong className="text-blue-700">Teaching and genuine human interaction.</strong>
-                
-              </p>
-            </div>
+        :root {
+          --system-font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        /* Default: make site copy use Jost */
+        /* Using a broad selector so headings/links can be explicitly reverted below */
+        body, body * {
+          font-family: 'Jost', var(--system-font);
+        }
+
+        /*
+          Exceptions:
+          - Keep headings/subtitles in the original system UI (h1..h6)
+          - Keep large text utility classes (Tailwind sizes used as titles/subtitles)
+          - Keep all anchors/links using the system font (nav, CTAs, mailto, etc.)
+        */
+        h1, h2, h3, h4, h5, h6,
+        .text-6xl, .text-5xl, .text-4xl, .text-3xl, .text-2xl, .text-xl, .text-lg,
+        a, nav a {
+          font-family: var(--system-font) !important;
+        }
+
+        /* Preserve gradient title behaviour */
+        .gradient-realm {
+          background-image: linear-gradient(90deg, #4f46e5 0%, #7c3aed 25%, #6366f1 50%, #7f5af0 75%, #5b21b6 100%);
+          background-size: 200% 200%;
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          animation: gradientShift 6s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
+        .title-wrap { position: relative; display: inline-block; line-height: 1; }
+      `}</style>
+
+      {/* reading progress bar */}
+      <div className="fixed left-0 right-0 top-0 h-1 z-50 bg-transparent">
+        <div
+          aria-hidden
+          className="h-1 bg-gradient-to-r from-indigo-500 to-emerald-400 shadow-sm"
+          style={{ width: `${scrollProgress}%`, transition: 'width 120ms linear' }}
+        />
+      </div>
+
+      <Header onBlogClick={() => setCurrentPage('blog')} />
+
+      {/* HERO */}
+      <section className="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-[85vh] flex items-center justify-center overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <div className="max-w-5xl mx-auto">
+            {/* Title area — both parts use smooth fades; "for schools" drops out of the first */}
+            <motion.h2
+              className="text-6xl md:text-8xl font-bold text-gray-900 mb-8 leading-tight flex flex-col items-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              {/* AI Automation — soft left->right fade (same style as 'for schools') but keep gradient realm */}
+              <div className="title-wrap">
+                <motion.span
+                  className="gradient-realm"
+                  style={{ display: 'inline-block' }}
+                  initial={{ opacity: 0, x: -20, scale: 0.95 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                >
+                  AI Automation
+                </motion.span>
+              </div>
+
+              {/* "for schools" — gently drops from the title with a little overlap, smooth */}
+              <motion.span
+                className="text-4xl md:text-5xl mt-3 md:mt-2 text-gray-900"
+                initial={{ opacity: 0, y: -25, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 1.0, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                for UK schools
+              </motion.span>
+            </motion.h2>
+
+            {/* subtitle appears right after the title finishes its animation */}
+            <motion.p
+              className="text-lg md:text-xl text-gray-700 mb-8 font-medium max-w-4xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 15, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 1.4, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              Empowering your school to leverage the use of AI automation, bridging the digital divide by connecting <strong>old</strong> systems to <strong>new</strong> solutions.
+            </motion.p>
+
+            {/* NOTE: removed the hero "quick summary bubble" per your request */}
           </div>
         </div>
       </section>
 
       {/* What We Automate */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <div className="flex items-center justify-center mb-4">
+            <motion.div
+              className="flex items-center justify-center mb-4"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
               <div className="bg-orange-100 p-2 rounded-full mr-3">
                 <span className="text-2xl font-bold text-orange-600">!</span>
               </div>
               <h3 className="text-4xl font-bold text-gray-900">How can we help?</h3>
-            </div>
-            <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-              We focus on your ROI by prioritising high impact solutions above all else. Providing up to <strong className="text-blue-700">10X</strong> value on time and money saved.
-            </p>
+            </motion.div>
+
+            {/* Moved hero bubble copy here — with the bold + coloured words preserved */}
+            <motion.p
+              className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.06 }}
+            >
+              Our goal is to reduce overhead costs by deploying systems that automate monotonous tasks, allowing your staff to delegate their time towards more important matters.
+              <br />
+              <strong className="text-blue-700">Teaching and genuine human interaction.</strong>
+            </motion.p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Pain Points */}
-            <div className="group bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <motion.div
+              className="group bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={reveal}
+            >
               <div className="flex items-center mb-6">
                 <div className="bg-red-100 p-3 rounded-full mr-4 group-hover:bg-red-200 transition-colors">
                   <Clock className="h-6 w-6 text-red-600" />
@@ -127,10 +315,6 @@ function App() {
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Repetitive data entry for behaviour incidents</span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
                   <span>Weekly admin burden creating reports for SLT meetings</span>
                 </li>
                 <li className="flex items-start">
@@ -138,10 +322,15 @@ function App() {
                   <span>Staff overwhelmed by multiple disconnected systems</span>
                 </li>
               </ul>
-            </div>
+            </motion.div>
 
-            {/* Benefits & Strengths */}
-            <div className="group bg-gradient-to-br from-indigo-50 to-white p-8 rounded-2xl shadow-lg border border-indigo-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <motion.div
+              className="group bg-gradient-to-br from-indigo-50 to-white p-8 rounded-2xl shadow-lg border border-indigo-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={reveal}
+            >
               <div className="flex items-center mb-6">
                 <div className="bg-green-100 p-3 rounded-full mr-4 group-hover:bg-green-200 transition-colors">
                   <TrendingUp className="h-6 w-6 text-green-600" />
@@ -165,12 +354,8 @@ function App() {
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                   <span><strong>Early intervention</strong> prevents costly escalations</span>
                 </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>Staff wellbeing</strong> improved through reduced workload</span>
-                </li>
               </ul>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -178,7 +363,7 @@ function App() {
       {/* ROI Highlights */}
       <section className="bg-gradient-to-br from-blue-900 to-blue-800 text-white py-20">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
+          <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center mb-4">
               <Users className="h-8 w-8 text-blue-200 mr-3" />
               <h3 className="text-4xl font-bold">What can you expect?</h3>
@@ -186,72 +371,27 @@ function App() {
             <p className="text-xl text-blue-100 max-w-3xl mx-auto">
               Here's how much UK schools typically save with just a few smart workflows.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {/* ROI Cards */}
-            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center mb-4">
-                <Users className="h-6 w-6 text-blue-600 mr-2" />
-                <h4 className="font-bold text-xl">Replace Satchel One</h4>
-              </div>
-              <p className="text-gray-600 mb-3 text-sm">Use Teams + Forms instead</p>
-              <p className="font-bold text-2xl text-green-600">£1,400–£2,000/year saved</p>
-            </div>
-
-            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center mb-4">
-                <Calendar className="h-6 w-6 text-blue-600 mr-2" />
-                <h4 className="font-bold text-xl">Staff Absence + Cover</h4>
-              </div>
-              <p className="text-gray-600 mb-3 text-sm">Auto-alerts, AI-suggested cover</p>
-              <p className="font-bold text-lg text-green-600">2 hrs/week</p>
-              <p className="font-bold text-2xl text-green-600">£1,500–£2,000/year</p>
-            </div>
-
-            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center mb-4">
-                <Brain className="h-6 w-6 text-blue-600 mr-2" />
-                <h4 className="font-bold text-xl">AI Weekly Reports</h4>
-              </div>
-              <p className="text-gray-600 mb-3 text-sm">SLT-ready behaviour/attendance data</p>
-              <p className="font-bold text-lg text-green-600">3 hrs/week</p>
-              <p className="font-bold text-2xl text-green-600">£2,500–£4,000/year</p>
-            </div>
-
-            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center mb-4">
-                <Mail className="h-6 w-6 text-blue-600 mr-2" />
-                <h4 className="font-bold text-xl">Parent Reminders</h4>
-              </div>
-              <p className="text-gray-600 mb-3 text-sm">Auto-send detentions & events</p>
-              <p className="font-bold text-lg text-green-600">1 hr/week</p>
-              <p className="font-bold text-2xl text-green-600">£750–£1,250/year</p>
-            </div>
-
-            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center mb-4">
-                <Lightbulb className="h-6 w-6 text-blue-600 mr-2" />
-                <h4 className="font-bold text-xl">Behaviour Escalation</h4>
-              </div>
-              <p className="text-gray-600 mb-3 text-sm">Threshold alerts & weekly reports</p>
-              <p className="font-bold text-lg text-green-600">2 hrs/week</p>
-              <p className="font-bold text-2xl text-green-600">£1,500+/year</p>
-            </div>
-
-            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center mb-4">
-                <Monitor className="h-6 w-6 text-blue-600 mr-2" />
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">Onboarding / Offboarding</h4>
-              </div>
-              <p className="text-gray-600 mb-3 text-sm">Accounts, access & folders</p>
-              <p className="font-bold text-lg text-green-600">1 hr/person</p>
-              <p className="font-bold text-2xl text-green-600">£800–£1,200/year</p>
-            </div>
+            {cards.map((c, i) => (
+              <motion.div
+                key={i}
+                className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-10% 0px' }}
+                transition={{ delay: 0.08 * i }}
+              >
+                <div className="flex items-center mb-4">{c.icon}<h4 className="font-bold text-xl">{c.title}</h4></div>
+                <p className="text-gray-600 mb-3 text-sm">{c.sub}</p>
+                {c.small && <p className="font-bold text-lg text-green-600">{c.small}</p>}
+                <p className="font-bold text-2xl text-green-600">{c.value}</p>
+              </motion.div>
+            ))}
           </div>
 
-          {/* Total ROI Summary */}
-          <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-8 rounded-2xl shadow-2xl text-center max-w-4xl mx-auto">
+          <motion.div className="bg-gradient-to-r from-green-600 to-emerald-600 p-8 rounded-2xl shadow-2xl text-center max-w-4xl mx-auto" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center mb-4">
               <BarChart3 className="h-8 w-8 text-white mr-3" />
               <h4 className="text-3xl font-bold text-white">Typical School ROI</h4>
@@ -261,23 +401,22 @@ function App() {
             <p className="text-lg text-green-200 italic">
               That's 6–12 weeks of full-time admin time — every year.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Pricing */}
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
+          <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center mb-4">
               <Target className="h-8 w-8 text-blue-600 mr-3" />
               <h3 className="text-4xl font-bold text-gray-900">Packages & Pricing</h3>
             </div>
-          </div>
-          
+          </motion.div>
+
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Starter Package */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+            <motion.div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <div className="text-center mb-6">
                 <Clock className="h-12 w-12 text-blue-600 mx-auto mb-4" />
                 <h4 className="text-2xl font-bold text-gray-900 mb-2">Starter</h4>
@@ -298,10 +437,9 @@ function App() {
                   <span>Email support</span>
                 </li>
               </ul>
-            </div>
+            </motion.div>
 
-            {/* Pro Package - Featured */}
-            <div className="bg-white p-8 rounded-2xl shadow-xl border-2 border-blue-500 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative">
+            <motion.div className="bg-white p-8 rounded-2xl shadow-xl border-2 border-blue-500 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">Most Popular</span>
               </div>
@@ -329,10 +467,9 @@ function App() {
                   <span>Priority support</span>
                 </li>
               </ul>
-            </div>
+            </motion.div>
 
-            {/* Custom Package */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+            <motion.div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <div className="text-center mb-6">
                 <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
                 <h4 className="text-2xl font-bold text-gray-900 mb-2">Custom</h4>
@@ -357,9 +494,9 @@ function App() {
                   <span>24/7 support</span>
                 </li>
               </ul>
-            </div>
+            </motion.div>
           </div>
-          
+
           <div className="text-center mt-12">
             <p className="text-gray-600 text-lg">
               <strong>Try one workflow free</strong> — then upgrade as you grow.
@@ -368,42 +505,50 @@ function App() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA */}
       <section className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="mb-8">
+          <motion.div initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <BookOpen className="h-16 w-16 text-blue-200 mx-auto mb-6" />
             <h3 className="text-4xl font-bold mb-6">Let's Automate Your School</h3>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              We'll build your first workflow free. No contracts. Just value.
+              Start with one free automation deployed on your school's system. See the impact first, then scale when you're ready.
             </p>
-          </div>
-          
+          </motion.div>
+
           <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
-            <a 
-              href="mailto:hello@schoolsautomate.com" 
+            <motion.a
+              href="mailto:hello@schoolsautomate.com"
               className="inline-flex items-center bg-white text-blue-900 px-8 py-4 font-bold text-lg rounded-full shadow-lg hover:bg-gray-100 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1"
+              initial={{ scale: 0.98, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
             >
-              Contact Us
+              let's talk
               <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
+            </motion.a>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-gray-900 text-white py-8">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex items-center justify-center mb-4">
             <BookOpen className="h-6 w-6 text-blue-400 mr-2" />
-            <p className="text-gray-300">
-              © 2025 Schools Automate. Built with care for UK schools.
-            </p>
+            <p className="text-gray-300">© 2025 Schools Automate. Built with care for UK schools.</p>
           </div>
         </div>
       </footer>
+
+      {/* Floating CTA */}
+      <a
+        href="mailto:hello@schoolsautomate.com"
+        className="fixed right-6 bottom-6 z-40 inline-flex items-center gap-3 rounded-full px-4 py-2 shadow-2xl bg-gradient-to-r from-indigo-600 to-blue-500 text-white hover:translate-y-[-2px] transition-transform focus:outline-none focus:ring-2 focus:ring-indigo-200"
+        aria-label="Book a 15 minute call"
+      >
+        <Clock className="h-4 w-4" />
+        <span className="font-medium">let's talk</span>
+      </a>
     </div>
   );
 }
-
-export default App;
