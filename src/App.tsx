@@ -51,7 +51,8 @@ function Header({
             <BookOpen className="h-8 w-8 text-blue-700" />
           </div>
           <div>
-            <h1 className="text-xl md:text-2xl font-extrabold leading-tight">{title}</h1>
+            {/* brand uses Poppins */}
+            <h1 className="text-xl md:text-2xl font-extrabold leading-tight brand">{title}</h1>
             <p className="text-xs md:text-sm text-gray-500">{tagline}</p>
           </div>
         </div>
@@ -153,34 +154,26 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white selection:bg-indigo-200 selection:text-indigo-900 text-gray-900">
-      {/* animated gradient CSS injected locally */}
+      {/* load fonts + animated gradient CSS */}
       <style>{`
-        /* Load Jost and default system font variable */
-        @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap');
+        /* load both Poppins (brand/hero) and Jost (body) */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Jost:wght@300;400;500;600;700;800&display=swap');
 
         :root {
           --system-font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
         }
 
-        /* Default: make site copy use Jost */
-        /* Using a broad selector so headings/links can be explicitly reverted below */
+        /* Default site font: Jost (keeps UI clean) */
         body, body * {
           font-family: 'Jost', var(--system-font);
         }
 
-        /*
-          Exceptions:
-          - Keep headings/subtitles in the original system UI (h1..h6)
-          - Keep large text utility classes (Tailwind sizes used as titles/subtitles)
-          - Keep all anchors/links using the system font (nav, CTAs, mailto, etc.)
-        */
-        h1, h2, h3, h4, h5, h6,
-        .text-6xl, .text-5xl, .text-4xl, .text-3xl, .text-2xl, .text-xl, .text-lg,
-        a, nav a {
-          font-family: var(--system-font) !important;
+        /* Brand and hero should use Poppins per your request */
+        .brand, .hero-title, .hero-subtitle {
+          font-family: 'Poppins', var(--system-font) !important;
         }
 
-        /* Preserve gradient title behaviour */
+        /* animated shifting blue-purple gradient used for title text */
         .gradient-realm {
           background-image: linear-gradient(90deg, #4f46e5 0%, #7c3aed 25%, #6366f1 50%, #7f5af0 75%, #5b21b6 100%);
           background-size: 200% 200%;
@@ -214,19 +207,19 @@ export default function App() {
       <section className="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-[85vh] flex items-center justify-center overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="max-w-5xl mx-auto">
-            {/* Title area — both parts use smooth fades; "for schools" drops out of the first */}
+            {/* Title area — both parts use smooth fades; brand uses Poppins */}
             <motion.h2
               className="text-6xl md:text-8xl font-bold text-gray-900 mb-8 leading-tight flex flex-col items-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
             >
-              {/* AI Automation — soft left->right fade (same style as 'for schools') but keep gradient realm */}
+              {/* AI Automation — uses Poppins and animated realm */}
               <div className="title-wrap">
                 <motion.span
-                  className="gradient-realm"
+                  className="gradient-realm hero-title"
                   style={{ display: 'inline-block' }}
-                  initial={{ opacity: 0, x: -20, scale: 0.95 }}
+                  initial={{ opacity: 0, x: -20, scale: 0.96 }}
                   animate={{ opacity: 1, x: 0, scale: 1 }}
                   transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
@@ -234,9 +227,9 @@ export default function App() {
                 </motion.span>
               </div>
 
-              {/* "for schools" — gently drops from the title with a little overlap, smooth */}
+              {/* "for UK schools" — gently drops in from the top, also uses Poppins */}
               <motion.span
-                className="text-4xl md:text-5xl mt-3 md:mt-2 text-gray-900"
+                className="text-4xl md:text-5xl mt-3 md:mt-2 text-gray-900 hero-subtitle"
                 initial={{ opacity: 0, y: -25, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: 1.0, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -245,7 +238,7 @@ export default function App() {
               </motion.span>
             </motion.h2>
 
-            {/* subtitle appears right after the title finishes its animation */}
+            {/* subtitle (Jost body) */}
             <motion.p
               className="text-lg md:text-xl text-gray-700 mb-8 font-medium max-w-4xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 15, scale: 0.95 }}
@@ -254,8 +247,6 @@ export default function App() {
             >
               Empowering your school to leverage the use of AI automation, bridging the digital divide by connecting <strong>old</strong> systems to <strong>new</strong> solutions.
             </motion.p>
-
-            {/* NOTE: removed the hero "quick summary bubble" per your request */}
           </div>
         </div>
       </section>
@@ -276,7 +267,7 @@ export default function App() {
               <h3 className="text-4xl font-bold text-gray-900">How can we help?</h3>
             </motion.div>
 
-            {/* Moved hero bubble copy here — with the bold + coloured words preserved */}
+            {/* moved hero bubble copy here (kept bold/blue words) */}
             <motion.p
               className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto"
               initial={{ opacity: 0 }}
