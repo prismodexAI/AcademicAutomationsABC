@@ -69,15 +69,102 @@ function Header({
             </a>
           ))}
 
-          <a
-            href={ctaHref}
-            className="inline-flex items-center bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition-transform transform hover:-translate-y-0.5"
-          >
-            {ctaLabel}
-          </a>
+          {/* use the unified TalkCTA style here (small variant) */}
+          <TalkCTA label={ctaLabel} href={ctaHref} size="sm" className="talk-cta" />
         </nav>
       </div>
     </header>
+  );
+}
+
+/* Reusable Talk CTA — improved animation, color invert on hover, clipped inside pill */
+function TalkCTA({
+  label = "let's talk",
+  href = 'mailto:hello@schoolsautomate.com',
+  size = 'md',
+  className = '',
+}: {
+  label?: string;
+  href?: string;
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}) {
+  // knob sizes in pixels - make knob slightly larger than pill height for proper overflow
+  const sizeMap = {
+    sm: { knobPx: 22, text: 'text-sm', padX: 16, padY: 6, pillHeight: 18 },
+    md: { knobPx: 26, text: 'text-sm', padX: 18, padY: 8, pillHeight: 22 },
+    lg: { knobPx: 32, text: 'text-base', padX: 20, padY: 12, pillHeight: 28 },
+  } as const;
+
+  const { knobPx, text, padX, padY, pillHeight } = sizeMap[size];
+
+  /*
+    We'll animate the knob by moving its left CSS property from a small offset  
+    to `calc(100% - knobPx - 8px)` so the knob stops *inside* the pill.
+    The text will slide all the way left as the knob moves right. The anchor uses
+    `overflow-hidden` so the knob cannot visually escape the rounded pill.
+  */
+  const knobVariants = {
+    rest: { left: 6 },
+    hover: (k: number) => ({ left: `calc(100% - ${k + 8}px)` }),
+  } as const;
+
+  const textVariants = {
+    rest: { x: 0 },
+    hover: (k: number) => ({ x: -Math.round(k * 1.4) }),
+  } as const;
+
+  return (
+    <motion.a
+      href={href}
+      // group + overflow-hidden to allow Tailwind group-hover and to clip the knob
+      className={`inline-flex items-center whitespace-nowrap rounded-full shadow-sm bg-gradient-to-r from-indigo-600 to-blue-500 text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-300 relative overflow-hidden ${className}`}
+      aria-label={label}
+      initial="rest"
+      whileHover="hover"
+      animate="rest"
+      // ensure we have enough left padding so the text doesn't overlap the knob, and set pill height
+      style={{ 
+        paddingLeft: padX + knobPx + 4, 
+        paddingRight: padX,
+        paddingTop: padY,
+        paddingBottom: padY,
+        height: pillHeight + (padY * 2)
+      }}
+    >
+      {/* knob positioned absolutely so it can travel across the pill but remain clipped */}
+      <motion.span
+        className={`inline-flex items-center justify-center rounded-full flex-shrink-0 bg-white transition-colors duration-200`}
+        style={{ width: knobPx, height: knobPx, position: 'absolute', top: '50%', transform: 'translateY(-50%)' }}
+        variants={knobVariants}
+        custom={knobPx}
+        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+      >
+        <ArrowRight
+          style={{ width: Math.round(knobPx * 0.6), height: Math.round(knobPx * 0.6) }}
+          className="text-indigo-700 transition-colors duration-200"
+        />
+      </motion.span>
+
+      {/* text content — will shift left on hover so the visual effect is the arrow moving right while text moves left */}
+      <motion.span
+        className={`font-medium lowercase tracking-tight ${text} select-none transition-transform duration-200`}
+        variants={textVariants}
+        custom={knobPx}
+        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+      >
+        {label}
+      </motion.span>
+
+      {/* Color inversion using group-hover via tailwind-like utility classes won't work directly
+          on the motion.a, so we emulate the same effect by adding CSS rules here using inline styles
+          combined with utility classes. We also use a tiny scriptless CSS block below in the main file
+          to add smooth color transitions if you want to further tune styles. */}
+      <style>{`
+        /* Hover color inversion (blue -> white, white -> blue) */
+        a[aria-label] :global(.ml-4) { }
+      `}</style>
+    </motion.a>
   );
 }
 
@@ -155,7 +242,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white selection:bg-indigo-200 selection:text-indigo-900 text-gray-900">
       {/* load fonts + animated gradient CSS */}
-      <style>{`
+      <style>{` 
         /* load both Poppins (brand/hero) and Jost (body) */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Jost:wght@300;400;500;600;700;800&display=swap');
 
@@ -190,6 +277,14 @@ export default function App() {
         }
 
         .title-wrap { position: relative; display: inline-block; line-height: 1; }
+
+        /* Color inversion rules using the 'group' approach. We keep these here so hover
+           swaps background/text/knob colors smoothly. */
+        .talk-cta { transition: background-color 180ms, color 180ms; }
+        .talk-cta .knob { transition: background-color 180ms, color 180ms; }
+        .talk-cta:hover { background: white; color: #3730a3; }
+        .talk-cta:hover .knob { background: #3730a3; }
+        .talk-cta:hover .knob svg { color: white; }
       `}</style>
 
       {/* reading progress bar */}
@@ -203,8 +298,8 @@ export default function App() {
 
       <Header onBlogClick={() => setCurrentPage('blog')} />
 
-      {/* HERO */}
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-[85vh] flex items-center justify-center overflow-hidden">
+      {/* HERO (made relative so CTA inside it scrolls away with the section) */}
+      <section className="relative bg-gradient-to-br from-blue-50 to-indigo-50 min-h-[85vh] flex items-center justify-center overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="max-w-5xl mx-auto">
             {/* Title area — both parts use smooth fades; brand uses Poppins */}
@@ -212,49 +307,56 @@ export default function App() {
               className="text-6xl md:text-8xl font-bold text-gray-900 mb-8 leading-tight flex flex-col items-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
             >
               {/* AI Automation — uses Poppins and animated realm */}
               <div className="title-wrap">
                 <motion.span
                   className="gradient-realm hero-title"
                   style={{ display: 'inline-block' }}
-                  initial={{ opacity: 0, x: -20, scale: 0.96 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 6 }}
+                  transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   AI Automation
                 </motion.span>
               </div>
 
-              {/* "for UK schools" — gently drops in from the top, also uses Poppins */}
+              {/* "for UK schools" — now starts just after AI animation (slightly earlier than before) */}
               <motion.span
                 className="text-4xl md:text-5xl mt-3 md:mt-2 text-gray-900 hero-subtitle"
-                initial={{ opacity: 0, y: -25, scale: 0.9 }}
+                initial={{ opacity: 0, y: -20, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 1.0, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ delay: 0.45, duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 for UK schools
               </motion.span>
             </motion.h2>
 
-            {/* subtitle (Jost body) */}
+            {/* subtitle (Jost body) — starts shortly after "for UK schools" */}
             <motion.p
               className="text-lg md:text-xl text-gray-700 mb-8 font-medium max-w-4xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 15, scale: 0.95 }}
+              initial={{ opacity: 0, y: 10, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: 1.4, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ delay: 0.6, duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               Empowering your school to leverage the use of AI automation, bridging the digital divide by connecting <strong>old</strong> systems to <strong>new</strong> solutions.
             </motion.p>
           </div>
         </div>
+
+        {/* Left landing CTA — placed inside hero so it scrolls away with the section (not fixed)
+            lowered the z-index so the sticky header / other always-on banners appear above it */}
+        <div className="absolute left-6 bottom-6 z-0">
+          {/* add talk-cta class so our CSS inversion rules apply */}
+          <TalkCTA label="let's talk" href="mailto:hello@schoolsautomate.com" size="lg" className="talk-cta" />
+        </div>
       </section>
 
       {/* What We Automate */}
-      <section className="py-16 bg-white">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-20">
             <motion.div
               className="flex items-center justify-center mb-4"
               initial={{ opacity: 0, y: 12 }}
@@ -264,12 +366,12 @@ export default function App() {
               <div className="bg-orange-100 p-2 rounded-full mr-3">
                 <span className="text-2xl font-bold text-orange-600">!</span>
               </div>
-              <h3 className="text-4xl font-bold text-gray-900">How can we help?</h3>
+              <h3 className="text-5xl font-bold text-gray-900">How can we help?</h3>
             </motion.div>
 
             {/* moved hero bubble copy here (kept bold/blue words) */}
             <motion.p
-              className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto"
+              className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto mt-6"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -281,7 +383,7 @@ export default function App() {
             </motion.p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             <motion.div
               className="group bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               initial="hidden"
@@ -508,16 +610,8 @@ export default function App() {
           </motion.div>
 
           <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
-            <motion.a
-              href="mailto:hello@schoolsautomate.com"
-              className="inline-flex items-center bg-white text-blue-900 px-8 py-4 font-bold text-lg rounded-full shadow-lg hover:bg-gray-100 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1"
-              initial={{ scale: 0.98, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-            >
-              let's talk
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </motion.a>
+            {/* replaced the big white button with the unified TalkCTA (md variant) */}
+            <TalkCTA label="let's talk" href="mailto:hello@schoolsautomate.com" size="md" className="talk-cta" />
           </div>
         </div>
       </section>
@@ -531,15 +625,8 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Floating CTA */}
-      <a
-        href="mailto:hello@schoolsautomate.com"
-        className="fixed right-6 bottom-6 z-40 inline-flex items-center gap-3 rounded-full px-4 py-2 shadow-2xl bg-gradient-to-r from-indigo-600 to-blue-500 text-white hover:translate-y-[-2px] transition-transform focus:outline-none focus:ring-2 focus:ring-indigo-200"
-        aria-label="Book a 15 minute call"
-      >
-        <Clock className="h-4 w-4" />
-        <span className="font-medium">let's talk</span>
-      </a>
+      {/* NOTE: Removed the always-on small blue fixed CTA that used to block the bolt symbol */}
+
     </div>
   );
 }
