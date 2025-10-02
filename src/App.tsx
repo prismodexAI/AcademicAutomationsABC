@@ -374,9 +374,12 @@ function App() {
         </motion.div>
       </div>
     </div>
+  </div>
+</section>
+
+      <Testimonials />
+    </div>
   );
 }
 
 export default App;
-  </div>
-</section>
