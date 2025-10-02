@@ -508,17 +508,18 @@ export default function App() {
             </div>
           </motion.div>
 
-          <div className="flex justify-center items-center space-x-8 md:space-x-16 max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-center items-center space-y-12 md:space-y-0 md:space-x-12 max-w-6xl mx-auto mb-12">
             {/* Step 1 */}
             <motion.div 
-              className="flex flex-col items-center text-center group cursor-pointer"
+              className="flex flex-col items-center text-center group cursor-pointer max-w-xs"
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
+              <h4 className="text-xl font-bold text-gray-900 mb-4">Input</h4>
               <motion.div 
-                className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-2xl md:text-3xl font-bold shadow-lg mb-4 group-hover:shadow-xl transition-all duration-300"
+                className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-3xl md:text-4xl font-bold shadow-lg mb-6 group-hover:shadow-xl transition-all duration-300"
                 whileHover={{ 
                   scale: 1.1, 
                   y: -4,
@@ -528,32 +529,33 @@ export default function App() {
               >
                 1
               </motion.div>
-              <p className="text-sm md:text-base text-gray-600 font-medium max-w-32 md:max-w-40">
+              <p className="text-base text-gray-700 leading-relaxed text-center">
                 Upload unorganised Sheet or data
               </p>
             </motion.div>
 
             {/* Arrow 1 */}
             <motion.div 
-              className="hidden md:block"
+              className="hidden md:block transform rotate-0 md:rotate-0"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <ArrowRight className="h-6 w-6 text-gray-400" />
+              <ArrowRight className="h-8 w-8 text-gray-400" />
             </motion.div>
 
             {/* Step 2 */}
             <motion.div 
-              className="flex flex-col items-center text-center group cursor-pointer"
+              className="flex flex-col items-center text-center group cursor-pointer max-w-xs"
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
+              <h4 className="text-xl font-bold text-gray-900 mb-4">Process</h4>
               <motion.div 
-                className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-2xl md:text-3xl font-bold shadow-lg mb-4 group-hover:shadow-xl transition-all duration-300"
+                className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-3xl md:text-4xl font-bold shadow-lg mb-6 group-hover:shadow-xl transition-all duration-300"
                 whileHover={{ 
                   scale: 1.1, 
                   y: -4,
@@ -563,32 +565,33 @@ export default function App() {
               >
                 2
               </motion.div>
-              <p className="text-sm md:text-base text-gray-600 font-medium max-w-32 md:max-w-40">
-                Process
+              <p className="text-base text-gray-700 leading-relaxed text-center">
+                We handle behind the scenes processes
               </p>
             </motion.div>
 
             {/* Arrow 2 */}
             <motion.div 
-              className="hidden md:block"
+              className="hidden md:block transform rotate-0 md:rotate-0"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
             >
-              <ArrowRight className="h-6 w-6 text-gray-400" />
+              <ArrowRight className="h-8 w-8 text-gray-400" />
             </motion.div>
 
             {/* Step 3 */}
             <motion.div 
-              className="flex flex-col items-center text-center group cursor-pointer"
+              className="flex flex-col items-center text-center group cursor-pointer max-w-xs"
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
+              <h4 className="text-xl font-bold text-gray-900 mb-4">Output</h4>
               <motion.div 
-                className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white text-2xl md:text-3xl font-bold shadow-lg mb-4 group-hover:shadow-xl transition-all duration-300"
+                className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white text-3xl md:text-4xl font-bold shadow-lg mb-6 group-hover:shadow-xl transition-all duration-300"
                 whileHover={{ 
                   scale: 1.1, 
                   y: -4,
@@ -598,11 +601,24 @@ export default function App() {
               >
                 3
               </motion.div>
-              <p className="text-sm md:text-base text-gray-600 font-medium max-w-32 md:max-w-40">
-                Output
+              <p className="text-base text-gray-700 leading-relaxed text-center">
+                Fully organised structured sheet data, weekly reports and insights driven by weekly, monthly and annual data.
               </p>
             </motion.div>
           </div>
+
+          {/* Centered Book Symbol */}
+          <motion.div 
+            className="flex justify-center"
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+          >
+            <div className="p-4 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 shadow-lg">
+              <BookOpen className="h-12 w-12 text-gray-600" />
+            </div>
+          </motion.div>
         </div>
       </section>
 
