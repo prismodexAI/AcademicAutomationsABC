@@ -14,6 +14,8 @@ import {
   Target,
   Clock,
   TrendingUp,
+  ChevronDown,
+  HelpCircle,
 } from 'lucide-react';
 import BlogPage from './components/HowItWorks';
 
@@ -165,6 +167,81 @@ function TalkCTA({
         a[aria-label] :global(.ml-4) { }
       `}</style>
     </motion.a>
+  );
+}
+
+function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "How much does this cost?",
+      answer: "Prices vary by scope, starting at £5,000. We guarantee ROI by prioritising savings and efficiency."
+    },
+    {
+      question: "How long does it take?",
+      answer: "Once agreements are signed, the full bespoke build and installation are delivered in under 4 weeks."
+    },
+    {
+      question: "Will there be support when things go wrong?",
+      answer: "Yes. With an annual agreement, we provide 24-hour support for urgent fixes and future-proofing, plus 72-hour responses for email requests. This ensures systems never lose functionality or purpose."
+    },
+    {
+      question: "Is there any risk?",
+      answer: "We work with full transparency. All deliverables are clearly scoped and agreed upon before work begins."
+    },
+    {
+      question: "How do we start?",
+      answer: "Book a free discovery call. In the first call, we consult with your staff to identify the highest-value admin tasks. After review, we provide a targeted plan and focused solution."
+    },
+    {
+      question: "How do we work?",
+      answer: "We work one-to-one with your team through a 5 step framework: consult, review, prototype, implement, and formal handover - with ongoing support available."
+    }
+  ];
+
+  return (
+    <div className="max-w-4xl mx-auto">
+      {faqs.map((faq, index) => (
+        <motion.div
+          key={index}
+          className="mb-4"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 * index }}
+        >
+          <button
+            onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            className="w-full bg-white p-6 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 text-left focus:outline-none focus:ring-2 focus:ring-blue-200"
+          >
+            <div className="flex items-center justify-between">
+              <h4 className="text-xl font-semibold text-gray-900 pr-4">{faq.question}</h4>
+              <motion.div
+                animate={{ rotate: openIndex === index ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ChevronDown className="h-6 w-6 text-blue-600 flex-shrink-0" />
+              </motion.div>
+            </div>
+          </button>
+          
+          <motion.div
+            initial={false}
+            animate={{
+              height: openIndex === index ? "auto" : 0,
+              opacity: openIndex === index ? 1 : 0
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <div className="bg-gray-50 mx-4 p-6 rounded-xl mt-2 border-l-4 border-blue-500">
+              <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+            </div>
+          </motion.div>
+        </motion.div>
+      ))}
+    </div>
   );
 }
 
@@ -498,102 +575,33 @@ export default function App() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="bg-gray-50 py-20">
+      {/* FAQ */}
+      <section id="pricing" className="bg-gray-50 py-20 relative">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center mb-4">
-              <Target className="h-8 w-8 text-blue-600 mr-3" />
-              <h3 className="text-4xl font-bold text-gray-900">Packages & Pricing</h3>
+              <HelpCircle className="h-8 w-8 text-blue-600 mr-3" />
+              <h3 className="text-4xl font-bold text-gray-900">Frequently Asked Questions</h3>
             </div>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <motion.div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <div className="text-center mb-6">
-                <Clock className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">Starter</h4>
-                <p className="text-gray-600 mb-4">3 workflows + 1-hour monthly support</p>
-                <p className="text-3xl font-bold text-blue-600">£1,500<span className="text-lg text-gray-500">/year</span></p>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>3 automation workflows</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>1-hour monthly support</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Email support</span>
-                </li>
-              </ul>
-            </motion.div>
+          <FAQSection />
 
-            <motion.div className="bg-white p-8 rounded-2xl shadow-xl border-2 border-blue-500 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">Most Popular</span>
-              </div>
-              <div className="text-center mb-6">
-                <TrendingUp className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">Pro</h4>
-                <p className="text-gray-600 mb-4">10 workflows + AI summaries + integrations</p>
-                <p className="text-3xl font-bold text-blue-600">£4,000<span className="text-lg text-gray-500">/year</span></p>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>10 automation workflows</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>AI-powered insights</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Full integrations</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Priority support</span>
-                </li>
-              </ul>
-            </motion.div>
-
-            <motion.div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <div className="text-center mb-6">
-                <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">Custom</h4>
-                <p className="text-gray-600 mb-4">Full automation + training + support</p>
-                <p className="text-3xl font-bold text-blue-600">£8,000–£10,000<span className="text-lg text-gray-500">/year</span></p>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Unlimited workflows</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Staff training included</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Custom integrations</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>24/7 support</span>
-                </li>
-              </ul>
-            </motion.div>
-          </div>
-
-          <div className="text-center mt-12">
-            <p className="text-gray-600 text-lg">
-              <strong>Try one workflow free</strong> — then upgrade as you grow.
-            </p>
+          {/* How it works button - positioned in bottom right, aligned with FAQ content */}
+          <div className="absolute bottom-24 right-6 max-w-7xl mx-auto">
+            <motion.button
+              onClick={() => setCurrentPage('blog')}
+              className="inline-flex items-center gap-2 px-4 py-6 bg-gray-100 text-gray-700 rounded-2xl shadow-lg hover:bg-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-gray-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="font-medium">learn more about how it works</span>
+              <ArrowRight className="h-4 w-4" />
+            </motion.button>
           </div>
         </div>
       </section>
@@ -620,7 +628,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex items-center justify-center mb-4">
             <BookOpen className="h-6 w-6 text-blue-400 mr-2" />
-            <p className="text-gray-300">© 2025 Schools Automate. Built with care for UK schools.</p>
+            <p className="text-gray-300">© 2025 Academic Automations. All rights reserved. Built with care</p>
           </div>
         </div>
       </footer>
