@@ -70,14 +70,14 @@ function Header({
           ))}
 
           {/* use the unified TalkCTA style here (small variant) */}
-          <TalkCTA label={ctaLabel} href={ctaHref} size="sm" className="talk-cta" />
+          <TalkCTA label={ctaLabel} href={ctaHref} size="sm" />
         </nav>
       </div>
     </header>
   );
 }
 
-/* Reusable Talk CTA — improved animation, color invert on hover, clipped inside pill */
+/* Reusable Talk CTA — knob-only (no surrounding bubble), scaled variants */
 function TalkCTA({
   label = "let's talk",
   href = 'mailto:hello@schoolsautomate.com',
@@ -89,81 +89,46 @@ function TalkCTA({
   size?: 'sm' | 'md' | 'lg';
   className?: string;
 }) {
-  // knob sizes in pixels - make knob slightly larger than pill height for proper overflow
+  // knob sizes in pixels (bigger than before so the arrow reads clearly)
   const sizeMap = {
-    sm: { knobPx: 22, text: 'text-sm', padX: 16, padY: 6, pillHeight: 18 },
-    md: { knobPx: 26, text: 'text-sm', padX: 18, padY: 8, pillHeight: 22 },
-    lg: { knobPx: 32, text: 'text-base', padX: 20, padY: 12, pillHeight: 28 },
+    sm: { knobPx: 18, text: 'text-sm', padX: 'px-3', padY: 'py-1.5', moveX: 40 },
+    md: { knobPx: 22, text: 'text-sm', padX: 'px-3', padY: 'py-2', moveX: 68 },
+    lg: { knobPx: 28, text: 'text-base', padX: 'px-4', padY: 'py-3', moveX: 96 },
   } as const;
 
-  const { knobPx, text, padX, padY, pillHeight } = sizeMap[size];
+  const { knobPx, text, padX, padY, moveX } = sizeMap[size];
 
-  /*
-    We'll animate the knob by moving its left CSS property from a small offset  
-    to `calc(100% - knobPx - 8px)` so the knob stops *inside* the pill.
-    The text will slide all the way left as the knob moves right. The anchor uses
-    `overflow-hidden` so the knob cannot visually escape the rounded pill.
-  */
+  // knob movement variants — knob will slide across the pill on hover (triggered by hovering the whole button)
   const knobVariants = {
-    rest: { left: 6 },
-    hover: (k: number) => ({ left: `calc(100% - ${k + 8}px)` }),
-  } as const;
-
-  const textVariants = {
     rest: { x: 0 },
-    hover: (k: number) => ({ x: -Math.round(k * 1.4) }),
+    hover: (mx: number) => ({ x: mx }),
   } as const;
 
   return (
     <motion.a
       href={href}
-      // group + overflow-hidden to allow Tailwind group-hover and to clip the knob
-      className={`inline-flex items-center whitespace-nowrap rounded-full shadow-sm bg-gradient-to-r from-indigo-600 to-blue-500 text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-300 relative overflow-hidden ${className}`}
+      className={`inline-flex items-center whitespace-nowrap rounded-full shadow-sm bg-gradient-to-r from-indigo-600 to-blue-500 text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-300 ${padX} ${padY} ${className}`}
       aria-label={label}
       initial="rest"
       whileHover="hover"
       animate="rest"
-      // ensure we have enough left padding so the text doesn't overlap the knob, and set pill height
-      style={{ 
-        paddingLeft: padX + knobPx + 4, 
-        paddingRight: padX,
-        paddingTop: padY,
-        paddingBottom: padY,
-        height: pillHeight + (padY * 2)
-      }}
     >
-      {/* knob positioned absolutely so it can travel across the pill but remain clipped */}
+      {/* knob-only (no outer track). this moves when the entire button is hovered */}
       <motion.span
-        className={`inline-flex items-center justify-center rounded-full flex-shrink-0 bg-white transition-colors duration-200`}
-        style={{ width: knobPx, height: knobPx, position: 'absolute', top: '50%', transform: 'translateY(-50%)' }}
+        className={`inline-flex items-center justify-center bg-white rounded-full flex-shrink-0`}
+        style={{ width: knobPx, height: knobPx }}
         variants={knobVariants}
-        custom={knobPx}
-        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+        custom={moveX}
+        transition={{ type: 'spring', stiffness: 320, damping: 28 }}
       >
+        {/* make arrow noticeably larger by using explicit px sizes */}
         <ArrowRight
-          style={{ width: Math.round(knobPx * 0.6), height: Math.round(knobPx * 0.6) }}
-          className="text-indigo-700 transition-colors duration-200"
+          style={{ width: Math.round(knobPx * 0.9), height: Math.round(knobPx * 0.9) }}
+          className="text-indigo-700"
         />
       </motion.span>
 
-      {/* text content — will shift left on hover so the visual effect is the arrow moving right while text moves left */}
-      <motion.span
-        className={`font-medium lowercase tracking-tight ${text} select-none transition-transform duration-200`}
-        variants={textVariants}
-        custom={knobPx}
-        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-      >
-        {label}
-      </motion.span>
-
-      {/* Color inversion using group-hover via tailwind-like utility classes won't work directly
-          on the motion.a, so we emulate the same effect by adding CSS rules here using inline styles
-          combined with utility classes. We also use a tiny scriptless CSS block below in the main file
-          to add smooth color transitions if you want to further tune styles. */}
-      <style>{`
-        /* Hover color inversion (blue -> white, white -> blue) */
-        a[aria-label] :global(.ml-4) { }
-      `}</style>
+      <span className={`ml-3 font-medium lowercase tracking-tight ${text} select-none`}>{label}</span>
     </motion.a>
   );
 }
@@ -278,13 +243,6 @@ export default function App() {
 
         .title-wrap { position: relative; display: inline-block; line-height: 1; }
 
-        /* Color inversion rules using the 'group' approach. We keep these here so hover
-           swaps background/text/knob colors smoothly. */
-        .talk-cta { transition: background-color 180ms, color 180ms; }
-        .talk-cta .knob { transition: background-color 180ms, color 180ms; }
-        .talk-cta:hover { background: white; color: #3730a3; }
-        .talk-cta:hover .knob { background: #3730a3; }
-        .talk-cta:hover .knob svg { color: white; }
       `}</style>
 
       {/* reading progress bar */}
@@ -345,18 +303,16 @@ export default function App() {
           </div>
         </div>
 
-        {/* Left landing CTA — placed inside hero so it scrolls away with the section (not fixed)
-            lowered the z-index so the sticky header / other always-on banners appear above it */}
-        <div className="absolute left-6 bottom-6 z-0">
-          {/* add talk-cta class so our CSS inversion rules apply */}
-          <TalkCTA label="let's talk" href="mailto:hello@schoolsautomate.com" size="lg" className="talk-cta" />
+        {/* Left landing CTA — placed inside hero so it scrolls away with the section (not fixed) */}
+        <div className="absolute left-6 bottom-6 z-40">
+          <TalkCTA label="let's talk" href="mailto:hello@schoolsautomate.com" size="lg" />
         </div>
       </section>
 
       {/* What We Automate */}
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-20">
+          <div className="text-center mb-16">
             <motion.div
               className="flex items-center justify-center mb-4"
               initial={{ opacity: 0, y: 12 }}
@@ -366,12 +322,12 @@ export default function App() {
               <div className="bg-orange-100 p-2 rounded-full mr-3">
                 <span className="text-2xl font-bold text-orange-600">!</span>
               </div>
-              <h3 className="text-5xl font-bold text-gray-900">How can we help?</h3>
+              <h3 className="text-4xl font-bold text-gray-900">How can we help?</h3>
             </motion.div>
 
             {/* moved hero bubble copy here (kept bold/blue words) */}
             <motion.p
-              className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto mt-6"
+              className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -383,7 +339,7 @@ export default function App() {
             </motion.p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <motion.div
               className="group bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               initial="hidden"
@@ -498,127 +454,103 @@ export default function App() {
         </div>
       </section>
 
-      {/* What this looks like */}
-      <section className="bg-gray-50 py-20" id="pricing">
+      {/* Pricing */}
+      <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center mb-4">
               <Target className="h-8 w-8 text-blue-600 mr-3" />
-              <h3 className="text-4xl font-bold text-gray-900">What this looks like</h3>
+              <h3 className="text-4xl font-bold text-gray-900">Packages & Pricing</h3>
             </div>
           </motion.div>
 
-          <div className="flex flex-col md:flex-row justify-center items-center space-y-12 md:space-y-0 md:space-x-12 max-w-6xl mx-auto mb-12">
-            {/* Step 1 */}
-            <motion.div 
-              className="flex flex-col items-center text-center group cursor-pointer max-w-xs"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <h4 className="text-xl font-bold text-gray-900 mb-4">Input</h4>
-              <motion.div 
-                className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-3xl md:text-4xl font-bold shadow-lg mb-6 group-hover:shadow-xl transition-all duration-300"
-                whileHover={{ 
-                  scale: 1.1, 
-                  y: -4,
-                  background: "linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)"
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                1
-              </motion.div>
-              <p className="text-base text-gray-700 leading-relaxed text-center">
-                Upload unorganised Sheet or data
-              </p>
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <motion.div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              <div className="text-center mb-6">
+                <Clock className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <h4 className="text-2xl font-bold text-gray-900 mb-2">Starter</h4>
+                <p className="text-gray-600 mb-4">3 workflows + 1-hour monthly support</p>
+                <p className="text-3xl font-bold text-blue-600">£1,500<span className="text-lg text-gray-500">/year</span></p>
+              </div>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>3 automation workflows</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>1-hour monthly support</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Email support</span>
+                </li>
+              </ul>
             </motion.div>
 
-            {/* Arrow 1 */}
-            <motion.div 
-              className="hidden md:block transform rotate-0 md:rotate-0"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <ArrowRight className="h-8 w-8 text-gray-400" />
+            <motion.div className="bg-white p-8 rounded-2xl shadow-xl border-2 border-blue-500 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">Most Popular</span>
+              </div>
+              <div className="text-center mb-6">
+                <TrendingUp className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <h4 className="text-2xl font-bold text-gray-900 mb-2">Pro</h4>
+                <p className="text-gray-600 mb-4">10 workflows + AI summaries + integrations</p>
+                <p className="text-3xl font-bold text-blue-600">£4,000<span className="text-lg text-gray-500">/year</span></p>
+              </div>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>10 automation workflows</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>AI-powered insights</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Full integrations</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Priority support</span>
+                </li>
+              </ul>
             </motion.div>
 
-            {/* Step 2 */}
-            <motion.div 
-              className="flex flex-col items-center text-center group cursor-pointer max-w-xs"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              <h4 className="text-xl font-bold text-gray-900 mb-4">Process</h4>
-              <motion.div 
-                className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-3xl md:text-4xl font-bold shadow-lg mb-6 group-hover:shadow-xl transition-all duration-300"
-                whileHover={{ 
-                  scale: 1.1, 
-                  y: -4,
-                  background: "linear-gradient(135deg, #10b981 0%, #0d9488 100%)"
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                2
-              </motion.div>
-              <p className="text-base text-gray-700 leading-relaxed text-center">
-                We handle behind the scenes processes
-              </p>
-            </motion.div>
-
-            {/* Arrow 2 */}
-            <motion.div 
-              className="hidden md:block transform rotate-0 md:rotate-0"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-            >
-              <ArrowRight className="h-8 w-8 text-gray-400" />
-            </motion.div>
-
-            {/* Step 3 */}
-            <motion.div 
-              className="flex flex-col items-center text-center group cursor-pointer max-w-xs"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <h4 className="text-xl font-bold text-gray-900 mb-4">Output</h4>
-              <motion.div 
-                className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white text-3xl md:text-4xl font-bold shadow-lg mb-6 group-hover:shadow-xl transition-all duration-300"
-                whileHover={{ 
-                  scale: 1.1, 
-                  y: -4,
-                  background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)"
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                3
-              </motion.div>
-              <p className="text-base text-gray-700 leading-relaxed text-center">
-                Fully organised structured sheet data, weekly reports and insights driven by weekly, monthly and annual data.
-              </p>
+            <motion.div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              <div className="text-center mb-6">
+                <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <h4 className="text-2xl font-bold text-gray-900 mb-2">Custom</h4>
+                <p className="text-gray-600 mb-4">Full automation + training + support</p>
+                <p className="text-3xl font-bold text-blue-600">£8,000–£10,000<span className="text-lg text-gray-500">/year</span></p>
+              </div>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Unlimited workflows</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Staff training included</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Custom integrations</span>
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>24/7 support</span>
+                </li>
+              </ul>
             </motion.div>
           </div>
 
-          {/* Centered Book Symbol */}
-          <motion.div 
-            className="flex justify-center"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-          >
-            <div className="p-4 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 shadow-lg">
-              <BookOpen className="h-12 w-12 text-gray-600" />
-            </div>
-          </motion.div>
+          <div className="text-center mt-12">
+            <p className="text-gray-600 text-lg">
+              <strong>Try one workflow free</strong> — then upgrade as you grow.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -635,7 +567,7 @@ export default function App() {
 
           <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
             {/* replaced the big white button with the unified TalkCTA (md variant) */}
-            <TalkCTA label="let's talk" href="mailto:hello@schoolsautomate.com" size="md" className="talk-cta" />
+            <TalkCTA label="let's talk" href="mailto:hello@schoolsautomate.com" size="md" />
           </div>
         </div>
       </section>
