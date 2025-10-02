@@ -591,13 +591,13 @@ export default function App() {
           <div className="absolute bottom-24 right-6 max-w-7xl mx-auto">
             <motion.button
               onClick={() => setCurrentPage('blog')}
-              className="inline-flex items-center gap-2 px-4 py-6 bg-gray-100 text-gray-700 rounded-2xl shadow-lg hover:bg-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-gray-300"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-gray-100 text-gray-700 rounded-xl shadow-lg hover:bg-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-gray-300 text-sm"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
             >
               <span className="font-medium">learn more about how it works</span>
               <ArrowRight className="h-4 w-4" />
@@ -628,7 +628,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex items-center justify-center mb-4">
             <BookOpen className="h-6 w-6 text-blue-400 mr-2" />
-            <p className="text-gray-300">© 2025 Academic Automations. All rights reserved. Built with care</p>
+            <p className="text-gray-300">© 2025 Academic Automations. All rights reserved. Built with care.</p>
           </div>
         </div>
       </footer>
