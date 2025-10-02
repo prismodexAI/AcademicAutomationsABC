@@ -498,102 +498,110 @@ export default function App() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="bg-gray-50 py-20">
+      {/* What this looks like */}
+      <section className="bg-gray-50 py-20" id="pricing">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center mb-4">
               <Target className="h-8 w-8 text-blue-600 mr-3" />
-              <h3 className="text-4xl font-bold text-gray-900">Packages & Pricing</h3>
+              <h3 className="text-4xl font-bold text-gray-900">What this looks like</h3>
             </div>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <motion.div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <div className="text-center mb-6">
-                <Clock className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">Starter</h4>
-                <p className="text-gray-600 mb-4">3 workflows + 1-hour monthly support</p>
-                <p className="text-3xl font-bold text-blue-600">£1,500<span className="text-lg text-gray-500">/year</span></p>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>3 automation workflows</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>1-hour monthly support</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Email support</span>
-                </li>
-              </ul>
+          <div className="flex justify-center items-center space-x-8 md:space-x-16 max-w-4xl mx-auto">
+            {/* Step 1 */}
+            <motion.div 
+              className="flex flex-col items-center text-center group cursor-pointer"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              <motion.div 
+                className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-2xl md:text-3xl font-bold shadow-lg mb-4 group-hover:shadow-xl transition-all duration-300"
+                whileHover={{ 
+                  scale: 1.1, 
+                  y: -4,
+                  background: "linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)"
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                1
+              </motion.div>
+              <p className="text-sm md:text-base text-gray-600 font-medium max-w-32 md:max-w-40">
+                Upload unorganised Sheet or data
+              </p>
             </motion.div>
 
-            <motion.div className="bg-white p-8 rounded-2xl shadow-xl border-2 border-blue-500 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">Most Popular</span>
-              </div>
-              <div className="text-center mb-6">
-                <TrendingUp className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">Pro</h4>
-                <p className="text-gray-600 mb-4">10 workflows + AI summaries + integrations</p>
-                <p className="text-3xl font-bold text-blue-600">£4,000<span className="text-lg text-gray-500">/year</span></p>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>10 automation workflows</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>AI-powered insights</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Full integrations</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Priority support</span>
-                </li>
-              </ul>
+            {/* Arrow 1 */}
+            <motion.div 
+              className="hidden md:block"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <ArrowRight className="h-6 w-6 text-gray-400" />
             </motion.div>
 
-            <motion.div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <div className="text-center mb-6">
-                <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">Custom</h4>
-                <p className="text-gray-600 mb-4">Full automation + training + support</p>
-                <p className="text-3xl font-bold text-blue-600">£8,000–£10,000<span className="text-lg text-gray-500">/year</span></p>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Unlimited workflows</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Staff training included</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Custom integrations</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>24/7 support</span>
-                </li>
-              </ul>
+            {/* Step 2 */}
+            <motion.div 
+              className="flex flex-col items-center text-center group cursor-pointer"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <motion.div 
+                className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-2xl md:text-3xl font-bold shadow-lg mb-4 group-hover:shadow-xl transition-all duration-300"
+                whileHover={{ 
+                  scale: 1.1, 
+                  y: -4,
+                  background: "linear-gradient(135deg, #10b981 0%, #0d9488 100%)"
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                2
+              </motion.div>
+              <p className="text-sm md:text-base text-gray-600 font-medium max-w-32 md:max-w-40">
+                Process
+              </p>
             </motion.div>
-          </div>
 
-          <div className="text-center mt-12">
-            <p className="text-gray-600 text-lg">
-              <strong>Try one workflow free</strong> — then upgrade as you grow.
-            </p>
+            {/* Arrow 2 */}
+            <motion.div 
+              className="hidden md:block"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+            >
+              <ArrowRight className="h-6 w-6 text-gray-400" />
+            </motion.div>
+
+            {/* Step 3 */}
+            <motion.div 
+              className="flex flex-col items-center text-center group cursor-pointer"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <motion.div 
+                className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white text-2xl md:text-3xl font-bold shadow-lg mb-4 group-hover:shadow-xl transition-all duration-300"
+                whileHover={{ 
+                  scale: 1.1, 
+                  y: -4,
+                  background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)"
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                3
+              </motion.div>
+              <p className="text-sm md:text-base text-gray-600 font-medium max-w-32 md:max-w-40">
+                Output
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
