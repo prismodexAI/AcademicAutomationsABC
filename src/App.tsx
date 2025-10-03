@@ -656,7 +656,11 @@ export default function App() {
       <section className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <BookOpen className="h-16 w-16 text-blue-200 mx-auto mb-6" />
+            <img 
+              src="/AcademicAutomations.com_Logo.svg" 
+              alt="Academic Automations Logo" 
+              className="w-16 h-16 mx-auto mb-6"
+            />
             <h3 className="text-4xl font-bold mb-6">Let's Automate Your School</h3>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
               Start with one free automation deployed on your school's system. See the impact first, then scale when you're ready.
