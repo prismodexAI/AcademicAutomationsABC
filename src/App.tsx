@@ -673,7 +673,11 @@ export default function App() {
       <footer className="bg-gray-900 text-white py-8">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex items-center justify-center mb-4">
-            <BookOpen className="h-6 w-6 text-blue-400 mr-2" />
+            <img 
+              src="/AcademicAutomations.com_Logo.svg" 
+              alt="Academic Automations Logo" 
+              className="w-20 h-20 object-contain mr-2"
+            />
             <p className="text-gray-300">© 2025 Academic Automations. All rights reserved. Built with care.</p>
           </div>
         </div>
