@@ -49,8 +49,12 @@ function Header({
     <header className="sticky top-0 z-40 backdrop-blur bg-white/60 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50">
-            <BookOpen className="h-8 w-8 text-blue-700" />
+          <div className="w-12 h-12 flex items-center justify-center">
+            <img 
+              src="/src/assets/bitmap12.svg" 
+              alt="Academic Automations Logo" 
+              className="w-10 h-10 object-contain"
+            />
           </div>
           <div>
             {/* brand uses Poppins */}
@@ -530,47 +534,89 @@ export default function App() {
         </div>
       </section>
 
-      {/* ROI Highlights */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-800 text-white py-20">
+      {/* ROI Highlights - toned down, context-first variant */}
+      <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4">
-          <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center mb-4">
-              <Users className="h-8 w-8 text-blue-200 mr-3" />
-              <h3 className="text-4xl font-bold">What can you expect?</h3>
+              <Users className="h-8 w-8 text-slate-600 mr-3" />
+              <h3 className="text-3xl font-semibold text-gray-900">What you might expect</h3>
             </div>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Here's how much UK schools typically save with just a few smart workflows.
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Get an idea of what kind of automations we would deploy.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {cards.map((c, i) => (
               <motion.div
                 key={i}
-                className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                className="bg-white text-gray-900 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-10% 0px' }}
                 transition={{ delay: 0.08 * i }}
               >
-                <div className="flex items-center mb-4">{c.icon}<h4 className="font-bold text-xl">{c.title}</h4></div>
-                <p className="text-gray-600 mb-3 text-sm">{c.sub}</p>
-                {c.small && <p className="font-bold text-lg text-green-600">{c.small}</p>}
-                <p className="font-bold text-2xl text-green-600">{c.value}</p>
+                <div className="flex items-center mb-4">{c.icon}<h4 className="font-semibold text-lg ml-2">{c.title}</h4></div>
+                <p className="text-sm text-gray-600 mb-3">{c.sub}</p>
+                {c.small && <p className="font-semibold text-sm text-green-700">{c.small}</p>}
+                <p className="font-semibold text-xl text-emerald-600">{c.value}</p>
               </motion.div>
             ))}
           </div>
 
-          <motion.div className="bg-gradient-to-r from-green-600 to-emerald-600 p-8 rounded-2xl shadow-2xl text-center max-w-4xl mx-auto" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <div className="flex items-center justify-center mb-4">
-              <BarChart3 className="h-8 w-8 text-white mr-3" />
-              <h4 className="text-3xl font-bold text-white">Typical School ROI</h4>
+          {/* Soft-card ROI summary */}
+          <motion.div
+            className="mx-auto max-w-4xl p-6 rounded-2xl bg-gradient-to-r from-slate-50 to-white border border-gray-100 shadow"
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-start gap-6">
+              <div className="flex-shrink-0">
+                <BarChart3 className="h-10 w-10 text-slate-500" />
+              </div>
+
+              <div className="flex-1">
+                <h4 className="text-lg font-semibold text-gray-900">Estimated school savings</h4>
+                <p className="text-sm text-gray-600 mt-1 max-w-xl">
+                  Conservative estimate for an average secondary school after deploying 3–5 targeted automations.
+                </p>
+
+                <div className="mt-6 grid sm:grid-cols-3 gap-4">
+                  <div className="p-4 bg-white rounded-xl border border-gray-100 text-center shadow-sm">
+                    <div className="text-sm text-gray-500 uppercase">Annual saving</div>
+                    <div className="mt-2 font-semibold text-lg text-emerald-600">£4k–£12k</div>
+                    <div className="text-xs text-gray-500 mt-1">Estimated</div>
+                  </div>
+
+                  <div className="p-4 bg-white rounded-xl border border-gray-100 text-center shadow-sm">
+                    <div className="text-sm text-gray-500 uppercase">Staff time freed</div>
+                    <div className="mt-2 font-semibold text-lg text-slate-700">150–500 hrs</div>
+                    <div className="text-xs text-gray-500 mt-1">per year (total)</div>
+                  </div>
+
+                  <div className="p-4 bg-white rounded-xl border border-gray-100 text-center shadow-sm">
+                    <div className="text-sm text-gray-500 uppercase">Equivalent weeks</div>
+                    <div className="mt-2 font-semibold text-lg text-slate-700">6–12 weeks</div>
+                    <div className="text-xs text-gray-500 mt-1">full-time admin time</div>
+                  </div>
+                </div>
+
+                <div className="mt-4 text-xs text-gray-500 flex items-center justify-between">
+                  <span>
+                    <strong className="text-gray-700">Notes:</strong> Figures are estimates — results vary by school size, processes automated and data quality.
+                  </span>
+
+                  <button
+                    onClick={() => alert('Short case study or methodology modal could open here.')}
+                    className="text-sm underline text-slate-600 hover:text-slate-800"
+                  >
+                    Why these numbers vary
+                  </button>
+                </div>
+              </div>
             </div>
-            <p className="text-4xl font-bold text-white mb-2">£4,000–£12,000/year saved</p>
-            <p className="text-xl text-green-100 mb-2">150–500 hours/year of staff time freed</p>
-            <p className="text-lg text-green-200 italic">
-              That's 6–12 weeks of full-time admin time — every year.
-            </p>
           </motion.div>
         </div>
       </section>
