@@ -68,7 +68,7 @@ function Header({
             <a
               key={link.href}
               href={link.href}
-              className="hover:text-blue-700 transition"
+              className="hover:text-blue-700 transition text-base font-medium"
               onClick={(e) => handleLinkClick(e, link.href)}
             >
               {link.label}
@@ -76,7 +76,7 @@ function Header({
           ))}
 
           {/* use the unified TalkCTA style here (small variant) */}
-          <TalkCTA label={ctaLabel} href={ctaHref} size="sm" className="talk-cta" />
+          <TalkCTA label={ctaLabel} href={ctaHref} size="md" className="talk-cta" />
         </nav>
       </div>
     </header>
