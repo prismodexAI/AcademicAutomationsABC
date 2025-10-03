@@ -659,7 +659,7 @@ export default function App() {
             <img 
               src="/AcademicAutomations.com_Logo.svg" 
               alt="Academic Automations Logo" 
-              className="w-16 h-16 mx-auto mb-6"
+              className="w-32 h-32 mx-auto mb-6"
             />
             <h3 className="text-4xl font-bold mb-6">Let's Automate Your School</h3>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
