@@ -51,7 +51,7 @@ function Header({
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 flex items-center justify-center">
             <img 
-              src="/src/assets/bitmap12.svg" 
+              src="/AcademicAutomations.com_Logo.svg" 
               alt="Academic Automations Logo" 
               className="w-10 h-10 object-contain"
             />
