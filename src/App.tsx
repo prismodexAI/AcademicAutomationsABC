@@ -49,11 +49,11 @@ function Header({
     <header className="sticky top-0 z-40 backdrop-blur bg-white/60 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 flex items-center justify-center">
+          <div className="w-20 h-20 flex items-center justify-center">
             <img 
               src="/AcademicAutomations.com_Logo.svg" 
               alt="Academic Automations Logo" 
-              className="w-10 h-10 object-contain"
+              className="w-16 h-16 object-contain"
             />
           </div>
           <div>
