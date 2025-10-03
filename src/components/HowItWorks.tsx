@@ -100,7 +100,11 @@ export default function BlogPage({ onBack }: BlogPageProps) {
 
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 shadow-sm">
-              <Brain className="h-8 w-8 text-blue-700" />
+              <img 
+                src="/AcademicAutomations.com_Logo.svg" 
+                alt="Academic Automations Logo" 
+                className="w-8 h-8 object-contain"
+              />
             </div>
             <div>
               {/* leave header titles as Jost by default; the user asked for specific content headings to be Poppins */}
