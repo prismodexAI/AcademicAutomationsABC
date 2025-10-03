@@ -103,7 +103,7 @@ export default function BlogPage({ onBack }: BlogPageProps) {
               <img 
                 src="/AcademicAutomations.com_Logo.svg" 
                 alt="Academic Automations Logo" 
-                className="w-8 h-8 object-contain"
+                className="w-12 h-12 object-contain"
               />
             </div>
             <div>
