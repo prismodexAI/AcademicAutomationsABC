@@ -271,7 +271,6 @@ function BigBlackFooter() {
             <div className="mt-8 text-sm text-gray-600 space-y-2 sm:space-y-0 sm:flex sm:items-center sm:justify-center sm:gap-6">
               <a href="/privacy" className="underline">Privacy Policy</a>
               <a href="/cookies" className="underline">Cookie preferences</a>
-              <span>© Copyright 2025, Academic Automations</span>
             </div>
           </div>
         </div>
@@ -672,11 +671,11 @@ export default function App() {
       {/* CTA */}
       <footer className="bg-gray-900 text-white py-8">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="flex items-center justify-center mb-4">
+          <div className="flex flex-col items-center justify-center mb-4">
             <img 
               src="/AcademicAutomations.com_Logo.svg" 
               alt="Academic Automations Logo" 
-              className="w-20 h-20 object-contain mr-2"
+              className="w-20 h-20 object-contain mb-2"
             />
             <p className="text-gray-300">© 2025 Academic Automations. All rights reserved. Built with care.</p>
           </div>
