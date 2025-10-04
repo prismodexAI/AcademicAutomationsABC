@@ -410,7 +410,7 @@ export default function BlogPage({ onBack }: BlogPageProps) {
           className="inline-flex items-center gap-3 rounded-full px-4 py-2 shadow-2xl bg-gradient-to-r from-indigo-600 to-blue-500 text-white hover:translate-y-[-2px] transition-transform focus:outline-none focus:ring-2 focus:ring-indigo-200"
         >
           <Clock className="h-4 w-4" />
-          <span className="font-medium">let's talk</span>
+          <span className="font-medium">How it works</span>
         </a>
       </div>
     </div>
