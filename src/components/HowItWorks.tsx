@@ -101,7 +101,7 @@ export default function BlogPage({ onBack }: BlogPageProps) {
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 shadow-sm">
               <img 
-                src="/AcademicAutomations.com_Logo.svg" 
+                src="/AcademicAutomations.com_Logo6.svg" 
                 alt="Academic Automations Logo" 
                 className="w-12 h-12 object-contain"
               />

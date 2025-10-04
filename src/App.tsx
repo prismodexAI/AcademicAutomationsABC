@@ -51,7 +51,7 @@ function Header({
         <div className="flex items-center gap-3">
           <div className="w-24 h-24 flex items-center justify-center">
             <img 
-              src="/AcademicAutomations.com_Logo.svg" 
+              src="/AcademicAutomations.com_Logo6.svg" 
               alt="Academic Automations Logo" 
               className="w-20 h-20 object-contain"
             />
@@ -242,7 +242,7 @@ function BigBlackFooter() {
         <div className="flex flex-col items-center gap-8">
           {/* Logo (not inverted on light background) */}
           <img
-            src="/AcademicAutomations.com_Logo.svg"
+            src="/AcademicAutomations.com_Logo6.svg"
             alt="Academic Automations"
             className="max-w-[560px] w-[clamp(180px,44vw,560px)] h-auto"
             style={{ display: 'block' }}
@@ -673,7 +673,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex flex-col items-center justify-center mb-4">
             <img 
-              src="/AcademicAutomations.com_Logo.svg" 
+              src="/AcademicAutomations.com_Logo6.svg" 
               alt="Academic Automations Logo" 
               className="w-20 h-20 object-contain mb-2"
             />
