@@ -555,7 +555,7 @@ export default function App() {
           <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center mb-4">
               <Users className="h-8 w-8 text-slate-600 mr-3" />
-              <h3 className="text-3xl font-semibold text-gray-900">What you might expect</h3>
+              <h3 className="text-3xl font-semibold text-gray-900">What you can expect</h3>
             </div>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Get an idea of what kind of automations we would deploy.
