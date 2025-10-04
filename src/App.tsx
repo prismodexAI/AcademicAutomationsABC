@@ -104,12 +104,6 @@ function TalkCTA({
 
   const { knobPx, text, padX, padY, pillHeight } = sizeMap[size];
 
-  /*
-    We'll animate the knob by moving its left CSS property from a small offset  
-    to `calc(100% - knobPx - 8px)` so the knob stops *inside* the pill.
-    The text will slide all the way left as the knob moves right. The anchor uses
-    `overflow-hidden` so the knob cannot visually escape the rounded pill.
-  */
   const knobVariants = {
     rest: { left: 6 },
     hover: (k: number) => ({ left: `calc(100% - ${k + 8}px)` }),
@@ -123,13 +117,11 @@ function TalkCTA({
   return (
     <motion.a
       href={href}
-      // group + overflow-hidden to allow Tailwind group-hover and to clip the knob
       className={`inline-flex items-center whitespace-nowrap rounded-full shadow-sm bg-gradient-to-r from-indigo-600 to-blue-500 text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-300 relative overflow-hidden ${className}`}
       aria-label={label}
       initial="rest"
       whileHover="hover"
       animate="rest"
-      // ensure we have enough left padding so the text doesn't overlap the knob, and set pill height
       style={{ 
         paddingLeft: padX + knobPx + 4, 
         paddingRight: padX,
@@ -138,9 +130,8 @@ function TalkCTA({
         height: pillHeight + (padY * 2)
       }}
     >
-      {/* knob positioned absolutely so it can travel across the pill but remain clipped */}
       <motion.span
-        className={`inline-flex items-center justify-center rounded-full flex-shrink-0 bg-white transition-colors duration-200`}
+        className={`inline-flex items-center justify-center rounded-full flex-shrink-0 bg-white transition-colors duration-200 knob`}
         style={{ width: knobPx, height: knobPx, position: 'absolute', top: '50%', transform: 'translateY(-50%)' }}
         variants={knobVariants}
         custom={knobPx}
@@ -152,7 +143,6 @@ function TalkCTA({
         />
       </motion.span>
 
-      {/* text content — will shift left on hover so the visual effect is the arrow moving right while text moves left */}
       <motion.span
         className={`font-medium lowercase tracking-tight ${text} select-none transition-transform duration-200`}
         variants={textVariants}
@@ -162,12 +152,7 @@ function TalkCTA({
         {label}
       </motion.span>
 
-      {/* Color inversion using group-hover via tailwind-like utility classes won't work directly
-          on the motion.a, so we emulate the same effect by adding CSS rules here using inline styles
-          combined with utility classes. We also use a tiny scriptless CSS block below in the main file
-          to add smooth color transitions if you want to further tune styles. */}
       <style>{`
-        /* Hover color inversion (blue -> white, white -> blue) */
         a[aria-label] :global(.ml-4) { }
       `}</style>
     </motion.a>
@@ -249,6 +234,55 @@ function FAQSection() {
   );
 }
 
+/* --- NEW: BigBlackFooter component (full-width, large logo, strong CTA) --- */
+function BigBlackFooter() {
+  return (
+    <section id="big-black-footer" className="bg-black text-white py-24 md:py-36 lg:py-48">
+      <div className="max-w-7xl mx-auto px-6 text-center">
+        <div className="flex flex-col items-center gap-8">
+          {/* Giant logo — scaled responsively */}
+          <img
+            src="/AcademicAutomations.com_Logo.svg"
+            alt="Academic Automations"
+            className="max-w-[720px] w-[clamp(220px,50vw,720px)] h-auto filter invert brightness-200"
+            style={{ display: 'block' }}
+          />
+
+          <div className="max-w-2xl">
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Work with us</h3>
+            <p className="text-lg md:text-xl text-gray-200 mb-6">
+              Start with a free, thirty minute growth mapping call.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="mailto:hello@schoolsautomate.com"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-black font-semibold shadow-lg hover:opacity-95 transition"
+              >
+                Let's talk
+              </a>
+
+              {/* second call to action (mirrored) — helpful for visual rhythm like leftclick.ai */}
+              <a
+                href="#pricing"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-white text-white font-semibold hover:bg-white hover:text-black transition"
+              >
+                Let's talk
+              </a>
+            </div>
+
+            <div className="mt-8 text-sm text-gray-400 space-y-2 sm:space-y-0 sm:flex sm:items-center sm:justify-center sm:gap-6">
+              <a href="/privacy" className="underline">Privacy Policy</a>
+              <a href="/cookies" className="underline">Cookie preferences</a>
+              <span>© Copyright 2025, Academic Automations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'blog'>('home');
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -324,24 +358,20 @@ export default function App() {
     <div className="min-h-screen bg-white selection:bg-indigo-200 selection:text-indigo-900 text-gray-900">
       {/* load fonts + animated gradient CSS */}
       <style>{` 
-        /* load both Poppins (brand/hero) and Jost (body) */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Jost:wght@300;400;500;600;700;800&display=swap');
 
         :root {
           --system-font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
         }
 
-        /* Default site font: Jost (keeps UI clean) */
         body, body * {
           font-family: 'Jost', var(--system-font);
         }
 
-        /* Brand and hero should use Poppins per your request */
         .brand, .hero-title, .hero-subtitle {
           font-family: 'Poppins', var(--system-font) !important;
         }
 
-        /* animated shifting blue-purple gradient used for title text */
         .gradient-realm {
           background-image: linear-gradient(90deg, #4f46e5 0%, #7c3aed 25%, #6366f1 50%, #7f5af0 75%, #5b21b6 100%);
           background-size: 200% 200%;
@@ -359,8 +389,6 @@ export default function App() {
 
         .title-wrap { position: relative; display: inline-block; line-height: 1; }
 
-        /* Color inversion rules using the 'group' approach. We keep these here so hover
-           swaps background/text/knob colors smoothly. */
         .talk-cta { transition: background-color 180ms, color 180ms; }
         .talk-cta .knob { transition: background-color 180ms, color 180ms; }
         .talk-cta:hover { background: white; color: #3730a3; }
@@ -379,18 +407,16 @@ export default function App() {
 
       <Header onBlogClick={() => setCurrentPage('blog')} />
 
-      {/* HERO (made relative so CTA inside it scrolls away with the section) */}
+      {/* HERO */}
       <section className="relative bg-gradient-to-br from-blue-50 to-indigo-50 min-h-[85vh] flex items-center justify-center overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="max-w-5xl mx-auto">
-            {/* Title area — both parts use smooth fades; brand uses Poppins */}
             <motion.h2
               className="text-6xl md:text-8xl font-bold text-gray-900 mb-8 leading-tight flex flex-col items-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
-              {/* AI Automation — uses Poppins and animated realm */}
               <div className="title-wrap">
                 <motion.span
                   className="gradient-realm hero-title"
@@ -403,7 +429,6 @@ export default function App() {
                 </motion.span>
               </div>
 
-              {/* "for UK schools" — now starts just after AI animation (slightly earlier than before) */}
               <motion.span
                 className="text-4xl md:text-5xl mt-3 md:mt-2 text-gray-900 hero-subtitle"
                 initial={{ opacity: 0, y: -20, scale: 0.98 }}
@@ -414,7 +439,6 @@ export default function App() {
               </motion.span>
             </motion.h2>
 
-            {/* subtitle (Jost body) — starts shortly after "for UK schools" */}
             <motion.p
               className="text-lg md:text-xl text-gray-700 mb-8 font-medium max-w-4xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 10, scale: 0.98 }}
@@ -426,10 +450,7 @@ export default function App() {
           </div>
         </div>
 
-        {/* Left landing CTA — placed inside hero so it scrolls away with the section (not fixed)
-            lowered the z-index so the sticky header / other always-on banners appear above it */}
         <div className="absolute left-6 bottom-6 z-0">
-          {/* add talk-cta class so our CSS inversion rules apply */}
           <TalkCTA label="let's talk" href="mailto:hello@schoolsautomate.com" size="lg" className="talk-cta" />
         </div>
       </section>
@@ -450,7 +471,6 @@ export default function App() {
               <h3 className="text-5xl font-bold text-gray-900">How can we help?</h3>
             </motion.div>
 
-            {/* moved hero bubble copy here (kept bold/blue words) */}
             <motion.p
               className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto mt-6"
               initial={{ opacity: 0 }}
@@ -565,7 +585,6 @@ export default function App() {
             ))}
           </div>
 
-          {/* Soft-card ROI summary */}
           <motion.div
             className="mx-auto max-w-4xl p-6 rounded-2xl bg-gradient-to-r from-slate-50 to-white border border-gray-100 shadow"
             initial={{ opacity: 0, y: 8 }}
@@ -633,7 +652,6 @@ export default function App() {
 
           <FAQSection />
 
-          {/* How it works button - positioned in bottom right, aligned with FAQ content */}
           <div className="absolute bottom-24 right-6 max-w-7xl mx-auto">
             <motion.button
               onClick={() => setCurrentPage('blog')}
@@ -652,6 +670,9 @@ export default function App() {
         </div>
       </section>
 
+      {/* NEW: Big black full-width CTA section inserted here */}
+      <BigBlackFooter />
+
       {/* CTA */}
       <section className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
@@ -668,7 +689,6 @@ export default function App() {
           </motion.div>
 
           <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
-            {/* replaced the big white button with the unified TalkCTA (md variant) */}
             <TalkCTA label="let's talk" href="mailto:hello@schoolsautomate.com" size="md" className="talk-cta" />
           </div>
         </div>
@@ -686,8 +706,6 @@ export default function App() {
           </div>
         </div>
       </footer>
-
-      {/* NOTE: Removed the always-on small blue fixed CTA that used to block the bolt symbol */}
 
     </div>
   );
