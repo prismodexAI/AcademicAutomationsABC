@@ -234,44 +234,41 @@ function FAQSection() {
   );
 }
 
-/* --- NEW: BigBlackFooter component (full-width, large logo, strong CTA) --- */
+/* --- UPDATED: Big footer now matches landing page (light blue) and uses TalkCTA --- */
 function BigBlackFooter() {
   return (
-    <section id="big-black-footer" className="bg-black text-white py-24 md:py-36 lg:py-48">
+    <section id="big-footer" className="bg-gradient-to-br from-blue-50 to-indigo-50 text-gray-900 py-24 md:py-36 lg:py-48">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <div className="flex flex-col items-center gap-8">
-          {/* Giant logo — scaled responsively */}
+          {/* Logo (not inverted on light background) */}
           <img
             src="/AcademicAutomations.com_Logo.svg"
             alt="Academic Automations"
-            className="max-w-[720px] w-[clamp(220px,50vw,720px)] h-auto filter invert brightness-200"
+            className="max-w-[560px] w-[clamp(180px,44vw,560px)] h-auto"
             style={{ display: 'block' }}
           />
 
           <div className="max-w-2xl">
+            <div className="text-sm text-gray-600 mb-2 uppercase font-semibold">Academic Automations</div>
             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Let's Automate Your School</h3>
-            <p className="text-lg md:text-xl text-gray-200 mb-6">
+            <p className="text-lg md:text-xl text-gray-700 mb-6">
               Start with a free, thirty minute growth mapping call.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="mailto:hello@schoolsautomate.com"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-black font-semibold shadow-lg hover:opacity-95 transition"
-              >
-                Let's talk
-              </a>
+              {/* primary animated CTA */}
+              <TalkCTA label="let's talk" href="mailto:hello@schoolsautomate.com" size="lg" className="talk-cta" />
 
-              {/* second call to action (mirrored) — helpful for visual rhythm like leftclick.ai */}
+              {/* secondary plain CTA for visual rhythm */}
               <a
                 href="#pricing"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-white text-white font-semibold hover:bg-white hover:text-black transition"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-gray-300 text-gray-800 font-semibold hover:bg-gray-100 transition"
               >
                 Let's talk
               </a>
             </div>
 
-            <div className="mt-8 text-sm text-gray-400 space-y-2 sm:space-y-0 sm:flex sm:items-center sm:justify-center sm:gap-6">
+            <div className="mt-8 text-sm text-gray-600 space-y-2 sm:space-y-0 sm:flex sm:items-center sm:justify-center sm:gap-6">
               <a href="/privacy" className="underline">Privacy Policy</a>
               <a href="/cookies" className="underline">Cookie preferences</a>
               <span>© Copyright 2025, Academic Automations</span>
@@ -282,7 +279,6 @@ function BigBlackFooter() {
     </section>
   );
 }
-
 export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'blog'>('home');
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -674,26 +670,6 @@ export default function App() {
       <BigBlackFooter />
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <motion.div initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <img 
-              src="/AcademicAutomations.com_Logo.svg" 
-              alt="Academic Automations Logo" 
-              className="w-32 h-32 mx-auto mb-6"
-            />
-            <h3 className="text-4xl font-bold mb-6">Let's Automate Your School</h3>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Start with one free automation deployed on your school's system. See the impact first, then scale when you're ready.
-            </p>
-          </motion.div>
-
-          <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
-            <TalkCTA label="let's talk" href="mailto:hello@schoolsautomate.com" size="md" className="talk-cta" />
-          </div>
-        </div>
-      </section>
-
       <footer className="bg-gray-900 text-white py-8">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex items-center justify-center mb-4">
