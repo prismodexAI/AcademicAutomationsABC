@@ -249,7 +249,7 @@ function BigBlackFooter() {
           />
 
           <div className="max-w-2xl">
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Work with us</h3>
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Let's Automate Your School</h3>
             <p className="text-lg md:text-xl text-gray-200 mb-6">
               Start with a free, thirty minute growth mapping call.
             </p>
