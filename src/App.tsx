@@ -479,9 +479,9 @@ export default function App() {
             </motion.p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 w-full mx-auto px-4">
             <motion.div
-              className="group bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="group bg-gradient-to-br from-orange-50 to-white p-8 rounded-2xl shadow-lg border border-orange-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -493,22 +493,34 @@ export default function App() {
                 </div>
                 <h4 className="text-2xl font-semibold text-gray-900">Current Admin burdens</h4>
               </div>
-              <ul className="space-y-3 text-gray-700">
+              <ul className="space-y-4 text-gray-700">
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Manual updates to student & staff absence forms</span>
+                  <div>
+                    <div className="font-semibold">Manual absence updates</div>
+                    <div className="text-sm mt-1 whitespace-nowrap">staff spend hours repeatedly entering absence information.</div>
+                  </div>
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Repetitive data entry for behaviour incidents</span>
+                  <div>
+                    <div className="font-semibold">Behaviour logging fatigue</div>
+                    <div className="text-sm mt-1">repetitive data entry for every incident slows staff down and adds frustration.</div>
+                  </div>
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Weekly admin burden creating reports for SLT meetings</span>
+                  <div>
+                    <div className="font-semibold">Repetitive Reports</div>
+                    <div className="text-sm mt-1">preparing weekly reports for SLT is time-consuming and repetitive.</div>
+                  </div>
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Staff overwhelmed by multiple disconnected systems</span>
+                  <div>
+                    <div className="font-semibold">Disconnected systems</div>
+                    <div className="text-sm mt-1 whitespace-nowrap">Fragmented systems make tasks harder than necessary.</div>
+                  </div>
                 </li>
               </ul>
             </motion.div>
@@ -524,24 +536,36 @@ export default function App() {
                 <div className="bg-green-100 p-3 rounded-full mr-4 group-hover:bg-green-200 transition-colors">
                   <TrendingUp className="h-6 w-6 text-green-600" />
                 </div>
-                <h4 className="text-2xl font-semibold text-gray-900">Time & Money Saved</h4>
+                <h4 className="text-2xl font-semibold text-gray-900">Benefits of Smarter Systems</h4>
               </div>
-              <ul className="space-y-3 text-gray-700">
+              <ul className="space-y-4 text-gray-700">
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>save time and money</strong> hours freed each week, redirecting staff effort to teaching and student support.</span>
+                  <div>
+                    <div className="font-semibold">Save time and money</div>
+                    <div className="text-sm mt-1">hours freed each week, redirecting staff effort to teaching and student support.</div>
+                  </div>
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>User friendly formats</strong> drag-and-drop uploads and quick, easy-to-complete forms.</span>
+                  <div>
+                    <div className="font-semibold">User friendly formats</div>
+                    <div className="text-sm mt-1">drag-and-drop uploads and quick, easy-to-complete forms.</div>
+                  </div>
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>Powerful insights</strong> spot specific trends across weeks, terms, and years to guide smarter decisions.</span>
+                  <div>
+                    <div className="font-semibold">Powerful insights</div>
+                    <div className="text-sm mt-1">spot specific trends across weeks, terms, and years to guide smarter decisions.</div>
+                  </div>
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>Proactive intervention</strong> early alerts flag issues before they escalate into costly problems.</span>
+                  <div>
+                    <div className="font-semibold">Proactive intervention</div>
+                    <div className="text-sm mt-1">early alerts flag issues before they escalate into costly problems.</div>
+                  </div>
                 </li>
               </ul>
             </motion.div>
