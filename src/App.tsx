@@ -430,7 +430,7 @@ export default function App() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: 0.45, duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
-                for UK Secondary schools
+                for UK schools
               </motion.span>
             </motion.h2>
 
