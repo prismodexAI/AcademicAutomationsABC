@@ -537,7 +537,7 @@ export default function App() {
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>3+ hours/week</strong> freed from report generation</span>
+                  <span><strong>Powerful insights</strong> freed from report generation</span>
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
