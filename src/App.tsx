@@ -529,7 +529,7 @@ export default function App() {
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>5+ hours/week</strong> saved on attendance management</span>
+                  <span><strong>save time and money</strong> -hours freed each week, redirecting staff effort to teaching and student support.</span>
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
