@@ -315,7 +315,7 @@ export default function App() {
     {
       icon: <Calendar className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Staff Absence + Cover',
-      sub: 'Auto-alerts, AI-suggested cover',
+      sub: 'auto-alerts with suggested cover options',
       value: '£1,500–£2,000/year',
       small: '2 hrs/week',
     },
