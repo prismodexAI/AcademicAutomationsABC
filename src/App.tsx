@@ -336,7 +336,7 @@ export default function App() {
     {
       icon: <Lightbulb className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Behaviour Escalation',
-      sub: 'Threshold alerts & weekly reports',
+      sub: 'threshold triggers & weekly summaries',
       value: '£1,500+/year',
       small: '2 hrs/week',
     },
