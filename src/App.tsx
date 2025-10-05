@@ -309,7 +309,7 @@ export default function App() {
     {
       icon: <Users className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Replace Satchel One',
-      sub: 'Use Teams + Forms instead',
+      sub: 'triggered by Teams + Forms submissions',
       value: '£1,400–£2,000/year saved',
     },
     {
