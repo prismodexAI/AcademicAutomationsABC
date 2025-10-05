@@ -529,19 +529,19 @@ export default function App() {
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>save time and money</strong> -hours freed each week, redirecting staff effort to teaching and student support.</span>
+                  <span><strong>save time and money</strong> hours freed each week, redirecting staff effort to teaching and student support.</span>
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>User friendly formats</strong> -drag-and-drop uploads and quick, easy-to-complete forms.</span>
+                  <span><strong>User friendly formats</strong> drag-and-drop uploads and quick, easy-to-complete forms.</span>
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>Powerful insights</strong> -spot specific trends across weeks, terms, and years to guide smarter decisions.</span>
+                  <span><strong>Powerful insights</strong> spot specific trends across weeks, terms, and years to guide smarter decisions.</span>
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>Proactive intervention</strong> -early alerts flag issues before they escalate into costly problems.</span>
+                  <span><strong>Proactive intervention</strong> early alerts flag issues before they escalate into costly problems.</span>
                 </li>
               </ul>
             </motion.div>
