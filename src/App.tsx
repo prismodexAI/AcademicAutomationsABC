@@ -309,43 +309,43 @@ export default function App() {
     {
       icon: <Users className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Replace Satchel One',
-      sub: 'Switch to Teams + Forms (where suitable)',
-      value: '£1,455–£25,000/year (licence dependent)'
+      sub: 'Use Teams + Forms instead',
+      value: '£1,400–£2,000/year saved',
     },
     {
       icon: <Calendar className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Staff Absence + Cover',
       sub: 'Auto-alerts, AI-suggested cover',
-      value: '£3,000–£15,000/year',
-      small: '5+ hrs/week saved',
+      value: '£1,500–£2,000/year',
+      small: '2 hrs/week',
     },
     {
       icon: <Brain className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'AI Weekly Reports',
-      sub: 'SLT-ready behaviour & attendance dashboards',
-      value: '150–400 hrs/year (time reclaimed)',
-      small: '3–5 hrs/week saved',
+      sub: 'SLT-ready behaviour/attendance data',
+      value: '£2,500–£4,000/year',
+      small: '3 hrs/week',
     },
     {
       icon: <Mail className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Parent Reminders',
-      sub: 'Auto-send detentions, events and absence notices',
-      value: '£500–£2,000/year',
-      small: '1–3 hrs/week saved',
+      sub: 'Auto-send detentions & events',
+      value: '£750–£1,250/year',
+      small: '1 hr/week',
     },
     {
       icon: <Lightbulb className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Behaviour Escalation',
-      sub: 'Threshold alerts & case bundles',
-      value: '£1,000–£5,000/year (fewer escalations)',
-      small: '2 hrs/week saved',
+      sub: 'Threshold alerts & weekly reports',
+      value: '£1,500+/year',
+      small: '2 hrs/week',
     },
     {
       icon: <Monitor className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Onboarding / Offboarding',
-      sub: 'Automated accounts, permissions & folders',
-      value: '£800–£2,000/year',
-      small: '1 hr saved / person',
+      sub: 'Accounts, access & folders',
+      value: '£800–£1,200/year',
+      small: '1 hr/person',
     },
   ];
 
@@ -491,38 +491,24 @@ export default function App() {
                 <div className="bg-red-100 p-3 rounded-full mr-4 group-hover:bg-red-200 transition-colors">
                   <Clock className="h-6 w-6 text-red-600" />
                 </div>
-                <h4 className="text-2xl font-semibold text-gray-900">Pain points → Automated solutions</h4>
+                <h4 className="text-2xl font-semibold text-gray-900">Time consuming tasks</h4>
               </div>
-
-              <ul className="space-y-4 text-gray-700">
-                <li className="">
-                  <div className="font-semibold">Manual email triage</div>
-                  <div className="text-sm text-gray-600">Implement centralised forms + automated routing to the correct team — saves ~5 hrs/week for a busy admin (typical: ~1 hr/day).</div>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Manual updates to student & staff absence forms</span>
                 </li>
-
-                <li>
-                  <div className="font-semibold">Attendance & absence tracking</div>
-                  <div className="text-sm text-gray-600">Automated absence forms, SMS alerts and staff-notify workflows — typically saves 5–8 hrs/week and reduces avoidable supply bookings.</div>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Repetitive data entry for behaviour incidents</span>
                 </li>
-
-                <li>
-                  <div className="font-semibold">Cover scheduling & supply</div>
-                  <div className="text-sm text-gray-600">AI-assisted cover matching + SMS/email push rules that remove agency guesswork — can reduce agency spend by thousands/year depending on current usage.</div>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Weekly admin burden creating reports for SLT meetings</span>
                 </li>
-
-                <li>
-                  <div className="font-semibold">Behaviour / incident logging</div>
-                  <div className="text-sm text-gray-600">One-touch incident capture that syncs across systems and auto-populates reports — halves duplicate entry and reduces errors that cost time downstream.</div>
-                </li>
-
-                <li>
-                  <div className="font-semibold">Weekly report generation</div>
-                  <div className="text-sm text-gray-600">Auto-generated SLT-ready dashboards and narrative summaries — reclaims 3–5 hrs/week from middle leaders and senior staff.</div>
-                </li>
-
-                <li>
-                  <div className="font-semibold">Onboarding / offboarding</div>
-                  <div className="text-sm text-gray-600">Automated account provisioning and permission changes — reduces set-up time to minutes (≈1 hr saved per new starter compared to manual).</div>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>Staff overwhelmed by multiple disconnected systems</span>
                 </li>
               </ul>
             </motion.div>
@@ -538,28 +524,24 @@ export default function App() {
                 <div className="bg-green-100 p-3 rounded-full mr-4 group-hover:bg-green-200 transition-colors">
                   <TrendingUp className="h-6 w-6 text-green-600" />
                 </div>
-                <h4 className="text-2xl font-semibold text-gray-900">Impact & conservative estimates</h4>
+                <h4 className="text-2xl font-semibold text-gray-900">Time & Money Saved</h4>
               </div>
-
-              <ul className="space-y-4 text-gray-700">
-                <li>
-                  <div className="font-semibold">Attendance management</div>
-                  <div className="text-sm text-gray-600">Conservative: 5–8 hrs/week saved across admin staff; improved punctuality & faster follow-up.</div>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span><strong>5+ hours/week</strong> saved on attendance management</span>
                 </li>
-
-                <li>
-                  <div className="font-semibold">Cover teacher spend</div>
-                  <div className="text-sm text-gray-600">Conservative annual saving range: £3k–£15k (dependent on current agency usage and reduction in emergency bookings).</div>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span><strong>£2,000+/year</strong> saved on cover teacher costs</span>
                 </li>
-
-                <li>
-                  <div className="font-semibold">Report generation</div>
-                  <div className="text-sm text-gray-600">Reclaims 3–5 hrs/week for SLT and middle leaders — typically 150–250 hrs/year.</div>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span><strong>3+ hours/week</strong> freed from report generation</span>
                 </li>
-
-                <li>
-                  <div className="font-semibold">Parent communications</div>
-                  <div className="text-sm text-gray-600">Automated reminders and broadcasts free up 1–3 hrs/week for admin staff and reduce missed actions.</div>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span><strong>Early intervention</strong> prevents costly escalations</span>
                 </li>
               </ul>
             </motion.div>
@@ -618,7 +600,7 @@ export default function App() {
                 <div className="mt-6 grid sm:grid-cols-3 gap-4">
                   <div className="p-4 bg-white rounded-xl border border-gray-100 text-center shadow-sm">
                     <div className="text-sm text-gray-500 uppercase">Annual saving</div>
-                    <div className="mt-2 font-semibold text-lg text-emerald-600">£4k–£20k</div>
+                    <div className="mt-2 font-semibold text-lg text-emerald-600">£4k–£12k</div>
                     <div className="text-xs text-gray-500 mt-1">Estimated</div>
                   </div>
 
