@@ -491,7 +491,7 @@ export default function App() {
                 <div className="bg-red-100 p-3 rounded-full mr-4 group-hover:bg-red-200 transition-colors">
                   <Clock className="h-6 w-6 text-red-600" />
                 </div>
-                <h4 className="text-2xl font-semibold text-gray-900">Time consuming tasks</h4>
+                <h4 className="text-2xl font-semibold text-gray-900">Current Admin burdens</h4>
               </div>
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start">
