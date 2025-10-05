@@ -264,7 +264,7 @@ function BigBlackFooter() {
                 href="#pricing"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-gray-300 text-gray-800 font-semibold hover:bg-gray-100 transition"
               >
-                Let's talk
+                Email
               </a>
             </div>
 
