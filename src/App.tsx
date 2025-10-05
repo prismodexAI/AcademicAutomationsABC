@@ -308,7 +308,7 @@ export default function App() {
   const cards = [
     {
       icon: <Users className="h-6 w-6 text-blue-600 mr-2" />,
-      title: 'Automatic alerts',
+      title: 'Automatic Alerts',
       sub: 'triggered by Teams + Forms submissions',
       value: '£1,400–£2,000/year saved',
     },
