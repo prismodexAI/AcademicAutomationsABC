@@ -278,6 +278,7 @@ function BigBlackFooter() {
     </section>
   );
 }
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'blog'>('home');
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -450,7 +451,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* What We Automate */}
+      {/* What We Automate (replaced with "Benefits of Smarter Systems" card from the new version) */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-20">
@@ -479,40 +480,7 @@ export default function App() {
             </motion.p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <motion.div
-              className="group bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={reveal}
-            >
-              <div className="flex items-center mb-6">
-                <div className="bg-red-100 p-3 rounded-full mr-4 group-hover:bg-red-200 transition-colors">
-                  <Clock className="h-6 w-6 text-red-600" />
-                </div>
-                <h4 className="text-2xl font-semibold text-gray-900">Time consuming tasks</h4>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Manual updates to student & staff absence forms</span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Repetitive data entry for behaviour incidents</span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Weekly admin burden creating reports for SLT meetings</span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Staff overwhelmed by multiple disconnected systems</span>
-                </li>
-              </ul>
-            </motion.div>
-
+          <div className="grid md:grid-cols-1 gap-12 max-w-6xl mx-auto">
             <motion.div
               className="group bg-gradient-to-br from-indigo-50 to-white p-8 rounded-2xl shadow-lg border border-indigo-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               initial="hidden"
@@ -524,24 +492,28 @@ export default function App() {
                 <div className="bg-green-100 p-3 rounded-full mr-4 group-hover:bg-green-200 transition-colors">
                   <TrendingUp className="h-6 w-6 text-green-600" />
                 </div>
-                <h4 className="text-2xl font-semibold text-gray-900">Time & Money Saved</h4>
+                <h4 className="text-2xl font-semibold text-gray-900">Benefits of Smarter Systems</h4>
               </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>5+ hours/week</strong> saved on attendance management</span>
+
+              <ul className="space-y-4 text-gray-700">
+                <li>
+                  <div className="font-semibold">Save time and money</div>
+                  <div className="text-sm text-gray-600">Hours freed each week, redirecting staff effort to teaching and student support.</div>
                 </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>£2,000+/year</strong> saved on cover teacher costs</span>
+
+                <li>
+                  <div className="font-semibold">User friendly formats</div>
+                  <div className="text-sm text-gray-600">Drag-and-drop uploads and quick, easy-to-complete forms reduce input errors and speed workflow.</div>
                 </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>3+ hours/week</strong> freed from report generation</span>
+
+                <li>
+                  <div className="font-semibold">Powerful insights</div>
+                  <div className="text-sm text-gray-600">Spot trends across weeks, terms and years to guide smarter operational decisions.</div>
                 </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>Early intervention</strong> prevents costly escalations</span>
+
+                <li>
+                  <div className="font-semibold">Proactive intervention</div>
+                  <div className="text-sm text-gray-600">Early alerts flag issues before they escalate into costly problems.</div>
                 </li>
               </ul>
             </motion.div>
@@ -600,7 +572,7 @@ export default function App() {
                 <div className="mt-6 grid sm:grid-cols-3 gap-4">
                   <div className="p-4 bg-white rounded-xl border border-gray-100 text-center shadow-sm">
                     <div className="text-sm text-gray-500 uppercase">Annual saving</div>
-                    <div className="mt-2 font-semibold text-lg text-emerald-600">£4k–£12k</div>
+                    <div className="mt-2 font-semibold text-lg text-emerald-600">£4k–£20k</div>
                     <div className="text-xs text-gray-500 mt-1">Estimated</div>
                   </div>
 
