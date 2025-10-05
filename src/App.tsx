@@ -533,7 +533,7 @@ export default function App() {
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>£2,000+/year</strong> saved on cover teacher costs</span>
+                  <span><strong>User friendly formats</strong> saved on cover teacher costs</span>
                 </li>
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
