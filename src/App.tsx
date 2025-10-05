@@ -329,7 +329,7 @@ export default function App() {
     {
       icon: <Mail className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Parent Reminders',
-      sub: 'Auto-send/draft detentions & events',
+      sub: 'Auto-send/draft detentions & event notifications',
       value: '£750–£1,250/year',
       small: '1 hr/week',
     },
