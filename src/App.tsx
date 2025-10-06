@@ -25,7 +25,7 @@ function Header({
   menuLinks = [
     { label: 'How can we help?', href: '#how' },
     { label: 'How it works', href: '#blog' },
-    { label: 'FAQ', href: '#Packages' },
+    { label: 'FAQ', href: '#pricing' },
   ],
   ctaLabel = "let's talk",
   ctaHref = 'mailto:hello@schoolsautomate.com',
