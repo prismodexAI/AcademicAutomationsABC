@@ -284,6 +284,10 @@ export default function App() {
   const [heroParallax, setHeroParallax] = useState(0);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
+  useEffect(() => {
     function onScroll() {
       const total = document.documentElement.scrollHeight - window.innerHeight;
       const current = window.scrollY;
