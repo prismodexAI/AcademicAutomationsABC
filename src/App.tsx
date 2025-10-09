@@ -23,7 +23,7 @@ function Header({
   title = 'Academic Automations',
   tagline = 'Smart AI + Workflow Automation • for UK Schools',
   menuLinks = [
-    { label: 'How can we help?', href: '#how' },
+    { label: 'email', href: '#how' },
     { label: 'How it works', href: '#blog' },
     { label: 'FAQ', href: '#pricing' },
   ],
