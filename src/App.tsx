@@ -698,7 +698,7 @@ export default function App() {
                 </div>
 
                 <div className="mt-6 text-sm text-gray-500">
-                  <strong className="text-gray-700">Notes:</strong> Figures are estimates — results vary by school size, processes automated and data quality.
+                  Figures are estimates — results vary by school size, processes automated and data quality.
                 </div>
               </div>
             </div>
