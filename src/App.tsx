@@ -314,41 +314,42 @@ export default function App() {
       icon: <Users className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Automatic Alerts',
       sub: 'triggered by Teams + Forms submissions',
-      value: '£1,400–£2,000/year saved',
+      value: '£4,000–£6,000/year',
+      small: '2–4 hrs/week',
     },
     {
       icon: <Calendar className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Staff Absence + Cover',
       sub: 'auto-alerts with suggested cover options',
-      value: '£1,500–£2,000/year',
+      value: '£6,000–£10,000/year',
       small: '2 hrs/week',
     },
     {
       icon: <Brain className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'AI Weekly Reports',
       sub: 'SLT-ready behaviour/attendance data',
-      value: '£2,500–£4,000/year',
+      value: '£7,500–£12,000/year',
       small: '3 hrs/week',
     },
     {
       icon: <Mail className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Parent Reminders',
       sub: 'Auto-send/draft detentions & event notifications',
-      value: '£750–£1,250/year',
+      value: '£2,500–£4,000/year',
       small: '1 hr/week',
     },
     {
       icon: <Lightbulb className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Behaviour Escalation',
       sub: 'threshold triggers & weekly summaries',
-      value: '£1,500+/year',
+      value: '£5,000–£8,000/year',
       small: '2 hrs/week',
     },
     {
       icon: <Monitor className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Onboarding / Offboarding',
       sub: 'Accounts, access & folders',
-      value: '£800–£1,200/year',
+      value: '£3,500–£6,000/year',
       small: '1 hr/person',
     },
   ];
@@ -586,7 +587,7 @@ export default function App() {
               <h3 className="text-3xl font-semibold text-gray-900">What you can expect</h3>
             </div>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Get an idea of what kind of automations we would deploy.
+              A typical 1,000-pupil secondary school spends £550k–£660k/year on admin. High-yield automations can save 30–50% of these costs.
             </p>
           </motion.div>
 
@@ -609,7 +610,7 @@ export default function App() {
           </div>
 
           <motion.div
-            className="mx-auto max-w-4xl p-6 rounded-2xl bg-gradient-to-r from-slate-50 to-white border border-gray-100 shadow"
+            className="mx-auto max-w-6xl p-10 rounded-2xl bg-gradient-to-r from-slate-50 to-white border border-gray-100 shadow"
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -620,42 +621,84 @@ export default function App() {
               </div>
 
               <div className="flex-1">
-                <h4 className="text-lg font-semibold text-gray-900">Estimated school savings</h4>
-                <p className="text-sm text-gray-600 mt-1 max-w-xl">
-                  Conservative estimate for an average secondary school after deploying 3–5 targeted automations.
+                <h4 className="text-2xl font-semibold text-gray-900">Estimated school savings</h4>
+                <p className="text-base text-gray-600 mt-2 max-w-3xl">
+                  Conservative estimates for an average secondary school based on number of automations deployed.
                 </p>
 
-                <div className="mt-6 grid sm:grid-cols-3 gap-4">
-                  <div className="p-4 bg-white rounded-xl border border-gray-100 text-center shadow-sm">
-                    <div className="text-sm text-gray-500 uppercase">Annual saving</div>
-                    <div className="mt-2 font-semibold text-lg text-emerald-600">£4k–£12k</div>
-                    <div className="text-xs text-gray-500 mt-1">Estimated</div>
+                <div className="mt-8 space-y-5">
+                  {/* Tier 1: 1-2 Automations */}
+                  <div className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="grid sm:grid-cols-4 gap-6 items-center">
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
+                        <div className="font-semibold text-2xl text-slate-700">1–2</div>
+                        <div className="text-sm text-gray-500 mt-1">5–10% savings</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£25k–£65k</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
+                        <div className="font-semibold text-xl text-slate-700">~100–500 hrs</div>
+                        <div className="text-sm text-gray-500">(~3–13 weeks)</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-600 italic">Automates isolated tasks (alerts, reminders).</div>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="p-4 bg-white rounded-xl border border-gray-100 text-center shadow-sm">
-                    <div className="text-sm text-gray-500 uppercase">Staff time freed</div>
-                    <div className="mt-2 font-semibold text-lg text-slate-700">150–500 hrs</div>
-                    <div className="text-xs text-gray-500 mt-1">per year (total)</div>
+                  {/* Tier 2: 3-5 Automations */}
+                  <div className="p-6 bg-white rounded-xl border border-emerald-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="grid sm:grid-cols-4 gap-6 items-center">
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
+                        <div className="font-semibold text-2xl text-slate-700">3–5</div>
+                        <div className="text-sm text-gray-500 mt-1">15–25% savings</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£80k–£165k</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
+                        <div className="font-semibold text-xl text-slate-700">~300–1,250 hrs</div>
+                        <div className="text-sm text-gray-500">(~8–33 weeks)</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-600 italic">Core processes automated (absence, reporting, onboarding).</div>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="p-4 bg-white rounded-xl border border-gray-100 text-center shadow-sm">
-                    <div className="text-sm text-gray-500 uppercase">Equivalent weeks</div>
-                    <div className="mt-2 font-semibold text-lg text-slate-700">6–12 weeks</div>
-                    <div className="text-xs text-gray-500 mt-1">full-time admin time</div>
+                  {/* Tier 3: 8-10+ Automations */}
+                  <div className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="grid sm:grid-cols-4 gap-6 items-center">
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
+                        <div className="font-semibold text-2xl text-slate-700">8–10+</div>
+                        <div className="text-sm text-gray-500 mt-1">30–50% savings</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£165k–£330k</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
+                        <div className="font-semibold text-xl text-slate-700">~800–2,500 hrs</div>
+                        <div className="text-sm text-gray-500">(~20–65 weeks)</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-600 italic">Broad high-yield deployment across admin functions.</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div className="mt-4 text-xs text-gray-500 flex items-center justify-between">
-                  <span>
-                    <strong className="text-gray-700">Notes:</strong> Figures are estimates — results vary by school size, processes automated and data quality.
-                  </span>
-
-                  <button
-                    onClick={() => alert('Short case study or methodology modal could open here.')}
-                    className="text-sm underline text-slate-600 hover:text-slate-800"
-                  >
-                    Why these numbers vary
-                  </button>
+                <div className="mt-6 text-sm text-gray-500">
+                  <strong className="text-gray-700">Notes:</strong> Figures are estimates — results vary by school size, processes automated and data quality.
                 </div>
               </div>
             </div>
