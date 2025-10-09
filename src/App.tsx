@@ -623,7 +623,7 @@ export default function App() {
               <div className="flex-1">
                 <h4 className="text-2xl font-semibold text-gray-900">Estimated school savings</h4>
                 <p className="text-base text-gray-600 mt-2 max-w-3xl">
-                  Conservative estimates for an average secondary school based on number of automations deployed.
+                  Typical savings for an average secondary school based on number of automations deployed.
                 </p>
 
                 <div className="mt-8 space-y-5">
