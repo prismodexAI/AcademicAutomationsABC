@@ -628,7 +628,13 @@ export default function App() {
 
                 <div className="mt-8 space-y-5">
                   {/* Tier 1: 1-2 Automations */}
-                  <div className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                  <motion.div
+                    className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                  >
                     <div className="grid sm:grid-cols-4 gap-6 items-center">
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
@@ -648,10 +654,16 @@ export default function App() {
                         <div className="text-sm text-gray-600 italic">Automates isolated tasks (alerts, reminders).</div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Tier 2: 3-5 Automations */}
-                  <div className="p-6 bg-white rounded-xl border border-emerald-200 shadow-sm hover:shadow-md transition-shadow">
+                  <motion.div
+                    className="p-6 bg-white rounded-xl border border-emerald-200 shadow-sm hover:shadow-md transition-shadow"
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                  >
                     <div className="grid sm:grid-cols-4 gap-6 items-center">
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
@@ -671,10 +683,16 @@ export default function App() {
                         <div className="text-sm text-gray-600 italic">Core processes automated (absence, reporting, onboarding).</div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Tier 3: 8-10+ Automations */}
-                  <div className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                  <motion.div
+                    className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                  >
                     <div className="grid sm:grid-cols-4 gap-6 items-center">
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
@@ -694,7 +712,7 @@ export default function App() {
                         <div className="text-sm text-gray-600 italic">Broad high-yield deployment across admin functions.</div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
 
                 <div className="mt-6 text-sm text-gray-500">
