@@ -385,9 +385,9 @@ export default function BlogPage({ onBack }: BlogPageProps) {
                 </nav>
 
                 <div className="mt-4 border-t pt-4">
-                  {/* changed to mailto and lowercase "let's talk" */}
+                  {/* updated to booking URL and opens in the same tab */}
                   <a
-                    href="mailto:hello@schoolsautomate.com"
+                    href="https://cal.com/academicautomations/discovery"
                     className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-200 text-sm"
                   >
                     let's talk
@@ -402,17 +402,6 @@ export default function BlogPage({ onBack }: BlogPageProps) {
         </article>
       </main>
 
-      {/* Floating CTA */}
-      <div className="fixed right-6 bottom-6 z-40">
-        {/* changed to mailto and lowercase "let's talk" */}
-        <a
-          href="mailto:hello@schoolsautomate.com"
-          className="inline-flex items-center gap-3 rounded-full px-4 py-2 shadow-2xl bg-gradient-to-r from-indigo-600 to-blue-500 text-white hover:translate-y-[-2px] transition-transform focus:outline-none focus:ring-2 focus:ring-indigo-200"
-        >
-          <Clock className="h-4 w-4" />
-          <span className="font-medium">Let's Talk</span>
-        </a>
-      </div>
     </div>
   );
 }
