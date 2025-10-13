@@ -23,12 +23,12 @@ function Header({
   title = 'Academic Automations',
   tagline = 'Smart AI + Workflow Automation • for UK Schools',
   menuLinks = [
-    { label: 'Email', href: '#how' },
+    { label: 'Email', href: 'mailto:contact@academicautomations.com' },
     { label: 'How it works', href: '#blog' },
     { label: 'FAQ', href: '#pricing' },
   ],
   ctaLabel = "let's talk",
-  ctaHref = 'mailto:hello@schoolsautomate.com',
+  ctaHref = 'https://cal.com/academicautomations/discovery',
   onBlogClick,
 }: {
   title?: string;
@@ -86,7 +86,7 @@ function Header({
 /* Reusable Talk CTA — improved animation, color invert on hover, clipped inside pill */
 function TalkCTA({
   label = "let's talk",
-  href = 'mailto:hello@schoolsautomate.com',
+  href = 'https://cal.com/academicautomations/discovery',
   size = 'md',
   className = '',
 }: {
@@ -257,11 +257,11 @@ function BigBlackFooter() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* primary animated CTA */}
-              <TalkCTA label="let's talk" href="mailto:hello@schoolsautomate.com" size="lg" className="talk-cta" />
+              <TalkCTA label="let's talk" href="https://cal.com/academicautomations/discovery" size="lg" className="talk-cta" />
 
               {/* secondary plain CTA for visual rhythm */}
               <a
-                href="#pricing"
+                href="mailto:contact@academicautomations.com"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-gray-300 text-gray-800 font-semibold hover:bg-gray-100 transition"
               >
                 Email
@@ -451,7 +451,7 @@ export default function App() {
         </div>
 
         <div className="absolute left-6 bottom-6 z-0">
-          <TalkCTA label="let's talk" href="mailto:hello@schoolsautomate.com" size="lg" className="talk-cta" />
+          <TalkCTA label="let's talk" href="https://cal.com/academicautomations/discovery" size="lg" className="talk-cta" />
         </div>
       </section>
 
