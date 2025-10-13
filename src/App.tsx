@@ -635,23 +635,19 @@ export default function App() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
                   >
-                    <div className="grid sm:grid-cols-4 gap-6 items-center">
+                    <div className="grid sm:grid-cols-3 gap-6 items-center">
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
                         <div className="font-semibold text-2xl text-slate-700">1–2</div>
-                        <div className="text-sm text-gray-500 mt-1">5–10% savings</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£25k–£65k</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£10k–£25k</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~100–500 hrs</div>
-                        <div className="text-sm text-gray-500">(~3–13 weeks)</div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-600 italic">Automates isolated tasks (alerts, reminders).</div>
+                        <div className="font-semibold text-xl text-slate-700">~50–200 hrs</div>
+                        <div className="text-sm text-gray-500">(1–5 weeks)</div>
                       </div>
                     </div>
                   </motion.div>
@@ -664,23 +660,19 @@ export default function App() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
                   >
-                    <div className="grid sm:grid-cols-4 gap-6 items-center">
+                    <div className="grid sm:grid-cols-3 gap-6 items-center">
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
                         <div className="font-semibold text-2xl text-slate-700">3–5</div>
-                        <div className="text-sm text-gray-500 mt-1">15–25% savings</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£80k–£165k</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£40k–£90k</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~300–1,250 hrs</div>
-                        <div className="text-sm text-gray-500">(~8–33 weeks)</div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-600 italic">Core processes automated (absence, reporting, onboarding).</div>
+                        <div className="font-semibold text-xl text-slate-700">~150–600 hrs</div>
+                        <div className="text-sm text-gray-500">(4–15 weeks)</div>
                       </div>
                     </div>
                   </motion.div>
@@ -693,23 +685,19 @@ export default function App() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
                   >
-                    <div className="grid sm:grid-cols-4 gap-6 items-center">
+                    <div className="grid sm:grid-cols-3 gap-6 items-center">
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
                         <div className="font-semibold text-2xl text-slate-700">8–10+</div>
-                        <div className="text-sm text-gray-500 mt-1">30–50% savings</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£165k–£330k</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£90k–£165k</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~800–2,500 hrs</div>
-                        <div className="text-sm text-gray-500">(~20–65 weeks)</div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-600 italic">Broad high-yield deployment across admin functions.</div>
+                        <div className="font-semibold text-xl text-slate-700">~400–1,200 hrs</div>
+                        <div className="text-sm text-gray-500">(10–30 weeks)</div>
                       </div>
                     </div>
                   </motion.div>
