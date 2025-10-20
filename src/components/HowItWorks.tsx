@@ -130,24 +130,14 @@ export default function BlogPage({ onBack }: BlogPageProps) {
               How we protect sensitive data
             </motion.h1>
 
-            {/* Requested formatting: subtitle on new line and grey, prefixed with a dash */}
+            {/* Subheading underneath in grey matching site style (same text) */}
             <motion.p
-              className="text-sm text-gray-500 mb-4 flex items-center gap-2"
+              className="text-sm text-gray-500 mb-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.12 }}
             >
-              <span aria-hidden className="text-gray-400 mr-1">—</span>
-              GDPR &amp; security
-            </motion.p>
-
-            <motion.p
-              className="text-xl text-gray-600 leading-relaxed mt-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-            >
-              Understanding our commitment to data protection and security for UK schools — practical, transparent steps you can trust.
+              How we protect sensitive data
             </motion.p>
 
             {/* Quick summary badges */}
