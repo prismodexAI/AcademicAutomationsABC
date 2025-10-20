@@ -759,6 +759,23 @@ export default function App() {
         </div>
       </footer>
 
+      {/* Location badge: fixed bottom-right — added per request */}
+      <div className="fixed right-6 bottom-6 z-50">
+        <div
+          className="flex items-center gap-2 bg-white/95 text-gray-900 px-3 py-2 rounded-full shadow-lg border border-gray-200"
+          role="status"
+          aria-label="Location: Cheshire East England"
+        >
+          {/* simple map-pin SVG to avoid adding imports */}
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M12 21s7-4.5 7-10.5A7 7 0 0 0 5 10.5C5 16.5 12 21 12 21z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+
+          <span className="text-sm font-medium select-none">Cheshire East England</span>
+        </div>
+      </div>
+
     </div>
   );
 }
