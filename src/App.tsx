@@ -165,7 +165,7 @@ function FAQSection() {
   const faqs = [
     {
       question: "How much does this cost?",
-      answer: "Prices vary by scope, starting at £5,000. We guarantee ROI by prioritising savings and efficiency."
+      answer: "Prices vary by scope, starting at £2,000. We guarantee ROI by prioritising savings and efficiency."
     },
     {
       question: "How long does it take?",
