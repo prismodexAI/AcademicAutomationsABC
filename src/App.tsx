@@ -23,12 +23,12 @@ function Header({
   title = 'Academic Automations',
   tagline = 'Smart AI + Workflow Automation • for UK Schools',
   menuLinks = [
-    { label: 'Email', href: 'mailto:contact@academicautomations.com' },
+    { label: 'Email', href: '#how' },
     { label: 'How it works', href: '#blog' },
     { label: 'FAQ', href: '#pricing' },
   ],
   ctaLabel = "let's talk",
-  ctaHref = 'https://cal.com/academicautomations/discovery',
+  ctaHref = 'contact@academicautomations',
   onBlogClick,
 }: {
   title?: string;
@@ -86,7 +86,7 @@ function Header({
 /* Reusable Talk CTA — improved animation, color invert on hover, clipped inside pill */
 function TalkCTA({
   label = "let's talk",
-  href = 'https://cal.com/academicautomations/discovery',
+  href = 'contact@academicautomations.com',
   size = 'md',
   className = '',
 }: {
@@ -257,11 +257,11 @@ function BigBlackFooter() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* primary animated CTA */}
-              <TalkCTA label="let's talk" href="https://cal.com/academicautomations/discovery" size="lg" className="talk-cta" />
+              <TalkCTA label="let's talk" href="contact@academicautomations.com" size="lg" className="talk-cta" />
 
               {/* secondary plain CTA for visual rhythm */}
               <a
-                href="mailto:contact@academicautomations.com"
+                href="#pricing"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-gray-300 text-gray-800 font-semibold hover:bg-gray-100 transition"
               >
                 Email
@@ -451,7 +451,7 @@ export default function App() {
         </div>
 
         <div className="absolute left-6 bottom-6 z-0">
-          <TalkCTA label="let's talk" href="https://cal.com/academicautomations/discovery" size="lg" className="talk-cta" />
+          <TalkCTA label="let's talk" href="contact@academicautomations.com" size="lg" className="talk-cta" />
         </div>
       </section>
 
@@ -635,19 +635,23 @@ export default function App() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
                   >
-                    <div className="grid sm:grid-cols-3 gap-6 items-center">
+                    <div className="grid sm:grid-cols-4 gap-6 items-center">
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
                         <div className="font-semibold text-2xl text-slate-700">1–2</div>
+                        <div className="text-sm text-gray-500 mt-1">5–10% savings</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£10k–£25k</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£25k–£65k</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~50–200 hrs</div>
-                        <div className="text-sm text-gray-500">(1–5 weeks)</div>
+                        <div className="font-semibold text-xl text-slate-700">~100–500 hrs</div>
+                        <div className="text-sm text-gray-500">(~3–13 weeks)</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-600 italic">Automates isolated tasks (alerts, reminders).</div>
                       </div>
                     </div>
                   </motion.div>
@@ -660,19 +664,23 @@ export default function App() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
                   >
-                    <div className="grid sm:grid-cols-3 gap-6 items-center">
+                    <div className="grid sm:grid-cols-4 gap-6 items-center">
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
                         <div className="font-semibold text-2xl text-slate-700">3–5</div>
+                        <div className="text-sm text-gray-500 mt-1">15–25% savings</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£40k–£90k</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£80k–£165k</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~150–600 hrs</div>
-                        <div className="text-sm text-gray-500">(4–15 weeks)</div>
+                        <div className="font-semibold text-xl text-slate-700">~300–1,250 hrs</div>
+                        <div className="text-sm text-gray-500">(~8–33 weeks)</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-600 italic">Core processes automated (absence, reporting, onboarding).</div>
                       </div>
                     </div>
                   </motion.div>
@@ -685,19 +693,23 @@ export default function App() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
                   >
-                    <div className="grid sm:grid-cols-3 gap-6 items-center">
+                    <div className="grid sm:grid-cols-4 gap-6 items-center">
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
                         <div className="font-semibold text-2xl text-slate-700">8–10+</div>
+                        <div className="text-sm text-gray-500 mt-1">30–50% savings</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£90k–£165k</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£165k–£330k</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~400–1,200 hrs</div>
-                        <div className="text-sm text-gray-500">(10–30 weeks)</div>
+                        <div className="font-semibold text-xl text-slate-700">~800–2,500 hrs</div>
+                        <div className="text-sm text-gray-500">(~20–65 weeks)</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-600 italic">Broad high-yield deployment across admin functions.</div>
                       </div>
                     </div>
                   </motion.div>
@@ -758,30 +770,6 @@ export default function App() {
           </div>
         </div>
       </footer>
-
-      {/* Location badge: appears only when scrolled near bottom, bottom-left */}
-      {scrollProgress >= 99 && (
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.25 }}
-          className="fixed left-6 bottom-6 z-50"
-        >
-          <div
-            className="flex items-center gap-2 bg-white/95 text-gray-900 px-3 py-2 rounded-full shadow-lg border border-gray-200"
-            role="status"
-            aria-label="Location: Cheshire East England"
-          >
-            {/* simple map-pin SVG to avoid adding imports */}
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-              <path d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M12 21s7-4.5 7-10.5A7 7 0 0 0 5 10.5C5 16.5 12 21 12 21z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-
-            <span className="text-sm font-medium select-none">Cheshre East England</span>
-          </div>
-        </motion.div>
-      )}
 
     </div>
   );
