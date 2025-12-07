@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-  Check,
-  Brain,
   Users,
-  Calendar,
-  Mail,
-  Lightbulb,
-  Monitor,
   BarChart3,
   ArrowRight,
-  BookOpen,
-  Target,
   Clock,
   TrendingUp,
   ChevronDown,
@@ -28,7 +20,7 @@ function Header({
     { label: 'FAQ', href: '#pricing' },
   ],
   ctaLabel = "let's talk",
-  ctaHref = 'hello@schoolsautomate.com',
+  ctaHref = 'mailto:hello@schoolsautomate.com',
   onBlogClick,
 }: {
   title?: string;
@@ -86,7 +78,7 @@ function Header({
 /* Reusable Talk CTA — improved animation, color invert on hover, clipped inside pill */
 function TalkCTA({
   label = "let's talk",
-  href = 'hello@schoolsautomate.com',
+  href = 'mailto:hello@schoolsautomate.com',
   size = 'md',
   className = '',
 }: {
@@ -165,7 +157,7 @@ function FAQSection() {
   const faqs = [
     {
       question: "How much does this cost?",
-      answer: "Prices vary by scope, starting at £2,000. We guarantee ROI by prioritising savings and efficiency."
+      answer: "Prices vary by scope, starting at £5,000. We guarantee ROI by prioritising savings and efficiency."
     },
     {
       question: "How long does it take?",
@@ -214,7 +206,7 @@ function FAQSection() {
               </motion.div>
             </div>
           </button>
-          
+
           <motion.div
             initial={false}
             animate={{
@@ -234,7 +226,7 @@ function FAQSection() {
   );
 }
 
-/* --- UPDATED: Big footer now matches landing page (light blue) and uses TalkCTA --- */
+/* --- Big footer section --- */
 function BigBlackFooter() {
   return (
     <section id="big-footer" className="bg-gradient-to-br from-blue-50 to-indigo-50 text-gray-900 py-24 md:py-36 lg:py-48">
@@ -257,7 +249,7 @@ function BigBlackFooter() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* primary animated CTA */}
-              <TalkCTA label="let's talk" href="hello@schoolsautomate.com" size="lg" className="talk-cta" />
+              <TalkCTA label="let's talk" href="mailto:hello@schoolsautomate.com" size="lg" className="talk-cta" />
 
               {/* secondary plain CTA for visual rhythm */}
               <a
@@ -269,8 +261,8 @@ function BigBlackFooter() {
             </div>
 
             <div className="mt-8 text-sm text-gray-600 space-y-2 sm:space-y-0 sm:flex sm:items-center sm:justify-center sm:gap-6">
-              <a href="/privacy" className="underline">Privacy Policy</a>
-              <a href="/cookies" className="underline">Cookie preferences</a>
+              <span className="text-gray-600">Privacy Policy</span>
+              <span className="text-gray-600">Cookie preferences</span>
             </div>
           </div>
         </div>
@@ -278,14 +270,48 @@ function BigBlackFooter() {
     </section>
   );
 }
+
+/* --- New: Generic preview modal that sits on top of the existing page --- */
+function PreviewModal({
+  visible,
+  title,
+  onClose,
+  children,
+}: {
+  visible: boolean;
+  title: string;
+  onClose: () => void;
+  children: React.ReactNode;
+}) {
+  if (!visible) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-[200] bg-black/30 backdrop-blur-sm flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white w-full max-w-6xl max-h-[90vh] rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-gray-200"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Modal header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b bg-white">
+          <h2 className="text-lg md:text-xl font-semibold text-gray-900">{title}</h2>
+        </div>
+
+        {/* Scrollable content */}
+        <div className="flex-1 overflow-y-auto p-6 bg-gray-50">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'blog'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'blog' | 'slt-report' | 'attendance-report'>('home');
   const [scrollProgress, setScrollProgress] = useState(0);
   const [heroParallax, setHeroParallax] = useState(0);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [currentPage]);
 
   useEffect(() => {
     function onScroll() {
@@ -293,7 +319,7 @@ export default function App() {
       const current = window.scrollY;
       const pct = total > 0 ? Math.min(100, (current / total) * 100) : 0;
       setScrollProgress(pct);
-      setHeroParallax(Math.min(120, current * 0.12)); // gentle parallax
+      setHeroParallax(Math.min(120, current * 0.12)); // gentle parallax (if you want to use it)
     }
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -318,35 +344,35 @@ export default function App() {
       small: '2–4 hrs/week',
     },
     {
-      icon: <Calendar className="h-6 w-6 text-blue-600 mr-2" />,
+      icon: <Clock className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Staff Absence + Cover',
       sub: 'auto-alerts with suggested cover options',
       value: '£6,000–£10,000/year',
       small: '2 hrs/week',
     },
     {
-      icon: <Brain className="h-6 w-6 text-blue-600 mr-2" />,
+      icon: <BarChart3 className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'AI Weekly Reports',
       sub: 'SLT-ready behaviour/attendance data',
       value: '£7,500–£12,000/year',
       small: '3 hrs/week',
     },
     {
-      icon: <Mail className="h-6 w-6 text-blue-600 mr-2" />,
+      icon: <ArrowRight className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Parent Reminders',
       sub: 'Auto-send/draft detentions & event notifications',
       value: '£2,500–£4,000/year',
       small: '1 hr/week',
     },
     {
-      icon: <Lightbulb className="h-6 w-6 text-blue-600 mr-2" />,
+      icon: <TrendingUp className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Behaviour Escalation',
       sub: 'threshold triggers & weekly summaries',
       value: '£5,000–£8,000/year',
       small: '2 hrs/week',
     },
     {
-      icon: <Monitor className="h-6 w-6 text-blue-600 mr-2" />,
+      icon: <Clock className="h-6 w-6 text-blue-600 mr-2" />,
       title: 'Onboarding / Offboarding',
       sub: 'Accounts, access & folders',
       value: '£3,500–£6,000/year',
@@ -456,7 +482,7 @@ export default function App() {
       </section>
 
       {/* What We Automate */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white" id="how">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-20">
             <motion.div
@@ -586,27 +612,39 @@ export default function App() {
               <Users className="h-8 w-8 text-slate-600 mr-3" />
               <h3 className="text-3xl font-semibold text-gray-900">Impact focussed Automations</h3>
             </div>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              A typical 1,000-pupil secondary school spends £550k–£660k/year on admin. High-yield automations can save 30–50% of these costs.
-            </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {cards.map((c, i) => (
-              <motion.div
-                key={i}
-                className="bg-white text-gray-900 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-10% 0px' }}
-                transition={{ delay: 0.08 * i }}
-              >
-                <div className="flex items-center mb-4">{c.icon}<h4 className="font-semibold text-lg ml-2">{c.title}</h4></div>
-                <p className="text-sm text-gray-600 mb-3">{c.sub}</p>
-                {c.small && <p className="font-semibold text-sm text-green-700">{c.small}</p>}
-                <p className="font-semibold text-xl text-emerald-600">{c.value}</p>
-              </motion.div>
-            ))}
+          <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
+            <motion.button
+              onClick={() => setCurrentPage('slt-report')}
+              className="group bg-white text-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-left border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-10% 0px' }}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h4 className="font-semibold text-lg text-gray-900">SLT Performance Report</h4>
+                <ArrowRight className="h-5 w-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
+              </div>
+              <p className="text-sm text-gray-600">Academic Automations – SLT Performance Report</p>
+              <p className="text-xs text-gray-500 mt-4">Click to preview</p>
+            </motion.button>
+
+            <motion.button
+              onClick={() => setCurrentPage('attendance-report')}
+              className="group bg-white text-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-left border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-10% 0px' }}
+              transition={{ delay: 0.1 }}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h4 className="font-semibold text-lg text-gray-900">Attendance KPI Report</h4>
+                <ArrowRight className="h-5 w-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
+              </div>
+              <p className="text-sm text-gray-600">Academic Automations – Attendance KPI Report</p>
+              <p className="text-xs text-gray-500 mt-4">Click to preview</p>
+            </motion.button>
           </div>
 
           <motion.div
@@ -635,23 +673,19 @@ export default function App() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
                   >
-                    <div className="grid sm:grid-cols-4 gap-6 items-center">
+                    <div className="grid sm:grid-cols-3 gap-6 items-center">
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
                         <div className="font-semibold text-2xl text-slate-700">1–2</div>
-                        <div className="text-sm text-gray-500 mt-1">5–10% savings</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£25k–£65k</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£10k–£25k</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~100–500 hrs</div>
-                        <div className="text-sm text-gray-500">(~3–13 weeks)</div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-600 italic">Automates isolated tasks (alerts, reminders).</div>
+                        <div className="font-semibold text-xl text-slate-700">~50–200 hrs</div>
+                        <div className="text-sm text-gray-500">(1–5 weeks)</div>
                       </div>
                     </div>
                   </motion.div>
@@ -664,23 +698,19 @@ export default function App() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
                   >
-                    <div className="grid sm:grid-cols-4 gap-6 items-center">
+                    <div className="grid sm:grid-cols-3 gap-6 items-center">
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
                         <div className="font-semibold text-2xl text-slate-700">3–5</div>
-                        <div className="text-sm text-gray-500 mt-1">15–25% savings</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£80k–£165k</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£40k–£90k</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~300–1,250 hrs</div>
-                        <div className="text-sm text-gray-500">(~8–33 weeks)</div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-600 italic">Core processes automated (absence, reporting, onboarding).</div>
+                        <div className="font-semibold text-xl text-slate-700">~150–600 hrs</div>
+                        <div className="text-sm text-gray-500">(4–15 weeks)</div>
                       </div>
                     </div>
                   </motion.div>
@@ -693,23 +723,19 @@ export default function App() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
                   >
-                    <div className="grid sm:grid-cols-4 gap-6 items-center">
+                    <div className="grid sm:grid-cols-3 gap-6 items-center">
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
                         <div className="font-semibold text-2xl text-slate-700">8–10+</div>
-                        <div className="text-sm text-gray-500 mt-1">30–50% savings</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£165k–£330k</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£90k–£165k</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~800–2,500 hrs</div>
-                        <div className="text-sm text-gray-500">(~20–65 weeks)</div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-600 italic">Broad high-yield deployment across admin functions.</div>
+                        <div className="font-semibold text-xl text-slate-700">~400–1,200 hrs</div>
+                        <div className="text-sm text-gray-500">(10–30 weeks)</div>
                       </div>
                     </div>
                   </motion.div>
@@ -754,10 +780,10 @@ export default function App() {
         </div>
       </section>
 
-      {/* NEW: Big black full-width CTA section inserted here */}
+      {/* Big CTA Section */}
       <BigBlackFooter />
 
-      {/* CTA */}
+      {/* CTA Footer */}
       <footer className="bg-gray-900 text-white py-8">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex flex-col items-center justify-center mb-4">
@@ -771,6 +797,42 @@ export default function App() {
         </div>
       </footer>
 
+      {/* MODALS: SLT + Attendance — overlay on top of the existing page */}
+      <PreviewModal
+        visible={currentPage === 'slt-report'}
+        title="Academic Automations – SLT Performance Report"
+        onClose={() => setCurrentPage('home')}
+      >
+        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Academic Automations – SLT Performance Report
+          </h1>
+          <p className="text-gray-600 text-base md:text-lg mb-8">
+            Report preview will be populated with your custom HTML.
+          </p>
+          <div className="bg-white rounded-xl p-8 border border-gray-200 min-h-[400px] flex items-center justify-center">
+            <p className="text-gray-400 text-center">SLT Report content will render here</p>
+          </div>
+        </div>
+      </PreviewModal>
+
+      <PreviewModal
+        visible={currentPage === 'attendance-report'}
+        title="Academic Automations – Attendance KPI Report"
+        onClose={() => setCurrentPage('home')}
+      >
+        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Academic Automations – Attendance KPI Report
+          </h1>
+          <p className="text-gray-600 text-base md:text-lg mb-8">
+            Report preview will be populated with your custom HTML.
+          </p>
+          <div className="bg-white rounded-xl p-8 border border-gray-200 min-h-[400px] flex items-center justify-center">
+            <p className="text-gray-400 text-center">Attendance Report content will render here</p>
+          </div>
+        </div>
+      </PreviewModal>
     </div>
   );
 }
