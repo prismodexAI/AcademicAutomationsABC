@@ -28,7 +28,7 @@ function Header({
     { label: 'FAQ', href: '#pricing' },
   ],
   ctaLabel = "let's talk",
-  ctaHref = 'contact@academicautomations',
+  ctaHref = 'hello@schoolsautomate.com',
   onBlogClick,
 }: {
   title?: string;
@@ -86,7 +86,7 @@ function Header({
 /* Reusable Talk CTA — improved animation, color invert on hover, clipped inside pill */
 function TalkCTA({
   label = "let's talk",
-  href = 'contact@academicautomations.com',
+  href = 'hello@schoolsautomate.com',
   size = 'md',
   className = '',
 }: {
@@ -257,7 +257,7 @@ function BigBlackFooter() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* primary animated CTA */}
-              <TalkCTA label="let's talk" href="contact@academicautomations.com" size="lg" className="talk-cta" />
+              <TalkCTA label="let's talk" href="hello@schoolsautomate.com" size="lg" className="talk-cta" />
 
               {/* secondary plain CTA for visual rhythm */}
               <a
@@ -451,7 +451,7 @@ export default function App() {
         </div>
 
         <div className="absolute left-6 bottom-6 z-0">
-          <TalkCTA label="let's talk" href="contact@academicautomations.com" size="lg" className="talk-cta" />
+          <TalkCTA label="let's talk" href="hello@schoolsautomate.com" size="lg" className="talk-cta" />
         </div>
       </section>
 
