@@ -1,409 +1,776 @@
-import React from 'react';
-import { 
-  Check, 
-  Recycle, 
-  Brain, 
-  Users, 
-  Calendar, 
-  Mail, 
-  Lightbulb, 
-  Monitor, 
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import {
+  Check,
+  Brain,
+  Users,
+  Calendar,
+  Mail,
+  Lightbulb,
+  Monitor,
   BarChart3,
   ArrowRight,
   BookOpen,
   Target,
   Clock,
-  TrendingUp
+  TrendingUp,
+  ChevronDown,
+  HelpCircle,
 } from 'lucide-react';
+import BlogPage from './components/HowItWorks';
 
-/* --- New Header component (inserted) --- */
 function Header({
   title = 'Academic Automations',
   tagline = 'Smart AI + Workflow Automation • for UK Schools',
   menuLinks = [
-    { label: 'How can we help?', href: '#how' },
-    { label: 'ROI', href: '#roi' },
-    { label: 'Packages', href: '#pricing' },
+    { label: 'Email', href: '#how' },
+    { label: 'How it works', href: '#blog' },
+    { label: 'FAQ', href: '#pricing' },
   ],
-  ctaLabel = 'Contact us',
-  ctaHref = 'mailto:hello@schoolsautomate.com',
+  ctaLabel = "let's talk",
+  ctaHref = 'contact@academicautomations',
+  onBlogClick,
+}: {
+  title?: string;
+  tagline?: string;
+  menuLinks?: { label: string; href: string }[];
+  ctaLabel?: string;
+  ctaHref?: string;
+  onBlogClick?: () => void;
 }) {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href === '#blog' && onBlogClick) {
+      e.preventDefault();
+      onBlogClick();
+    }
+  };
+
   return (
     <header className="sticky top-0 z-40 backdrop-blur bg-white/60 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50">
-            <BookOpen className="h-8 w-8 text-blue-700" />
+          <div className="w-24 h-24 flex items-center justify-center">
+            <img 
+              src="/AcademicAutomations.com_Logo6.svg" 
+              alt="Academic Automations Logo" 
+              className="w-20 h-20 object-contain"
+            />
           </div>
-
           <div>
-            <h1 className="text-xl md:text-2xl font-extrabold leading-tight">{title}</h1>
+            {/* brand uses Poppins */}
+            <h1 className="text-xl md:text-2xl font-extrabold leading-tight brand">{title}</h1>
             <p className="text-xs md:text-sm text-gray-500">{tagline}</p>
           </div>
         </div>
 
         <nav className="hidden md:flex items-center gap-6 text-sm">
           {menuLinks.map((link) => (
-            <a key={link.href} href={link.href} className="hover:text-blue-700 transition">
+            <a
+              key={link.href}
+              href={link.href}
+              className="hover:text-blue-700 transition text-base font-medium"
+              onClick={(e) => handleLinkClick(e, link.href)}
+            >
               {link.label}
             </a>
           ))}
 
-          <a
-            href={ctaHref}
-            className="inline-flex items-center bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition-transform transform hover:-translate-y-0.5"
-          >
-            {ctaLabel}
-          </a>
+          {/* use the unified TalkCTA style here (small variant) */}
+          <TalkCTA label={ctaLabel} href={ctaHref} size="md" className="talk-cta" />
         </nav>
       </div>
     </header>
   );
 }
-/* --- End Header component --- */
 
-function App() {
+/* Reusable Talk CTA — improved animation, color invert on hover, clipped inside pill */
+function TalkCTA({
+  label = "let's talk",
+  href = 'contact@academicautomations.com',
+  size = 'md',
+  className = '',
+}: {
+  label?: string;
+  href?: string;
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}) {
+  // knob sizes in pixels - make knob slightly larger than pill height for proper overflow
+  const sizeMap = {
+    sm: { knobPx: 22, text: 'text-sm', padX: 16, padY: 6, pillHeight: 18 },
+    md: { knobPx: 26, text: 'text-sm', padX: 18, padY: 8, pillHeight: 22 },
+    lg: { knobPx: 32, text: 'text-base', padX: 20, padY: 12, pillHeight: 28 },
+  } as const;
+
+  const { knobPx, text, padX, padY, pillHeight } = sizeMap[size];
+
+  const knobVariants = {
+    rest: { left: 6 },
+    hover: (k: number) => ({ left: `calc(100% - ${k + 8}px)` }),
+  } as const;
+
+  const textVariants = {
+    rest: { x: 0 },
+    hover: (k: number) => ({ x: -Math.round(k * 1.4) }),
+  } as const;
+
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <Header />
+    <motion.a
+      href={href}
+      className={`inline-flex items-center whitespace-nowrap rounded-full shadow-sm bg-gradient-to-r from-indigo-600 to-blue-500 text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-300 relative overflow-hidden ${className}`}
+      aria-label={label}
+      initial="rest"
+      whileHover="hover"
+      animate="rest"
+      style={{ 
+        paddingLeft: padX + knobPx + 4, 
+        paddingRight: padX,
+        paddingTop: padY,
+        paddingBottom: padY,
+        height: pillHeight + (padY * 2)
+      }}
+    >
+      <motion.span
+        className={`inline-flex items-center justify-center rounded-full flex-shrink-0 bg-white transition-colors duration-200 knob`}
+        style={{ width: knobPx, height: knobPx, position: 'absolute', top: '50%', transform: 'translateY(-50%)' }}
+        variants={knobVariants}
+        custom={knobPx}
+        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+      >
+        <ArrowRight
+          style={{ width: Math.round(knobPx * 0.6), height: Math.round(knobPx * 0.6) }}
+          className="text-indigo-700 transition-colors duration-200"
+        />
+      </motion.span>
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-50 py-20">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Smart School 
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"> Automation</span>
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-700 mb-6 font-medium">
-               Empowering your school to leverage the use of AI automation, bridging the digital divide by connecting old systems to new solutions.
-            </p>
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100 max-w-4xl mx-auto">
-              <p className="text-lg text-gray-600 leading-relaxed">
-               Our goal is to reduce overhead costs by deploying systems that automate monotonous
-                tasks, allowing your staff to delegate their time towards more Important matters. 
-<br />
-<strong className="text-blue-700">Teaching and genuine human interaction.</strong>
-                
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <motion.span
+        className={`font-medium lowercase tracking-tight ${text} select-none transition-transform duration-200`}
+        variants={textVariants}
+        custom={knobPx}
+        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+      >
+        {label}
+      </motion.span>
 
-      {/* What We Automate */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center mb-4">
-              <div className="bg-orange-100 p-2 rounded-full mr-3">
-                <span className="text-2xl font-bold text-orange-600">!</span>
-              </div>
-              <h3 className="text-4xl font-bold text-gray-900">How can we help?</h3>
+      <style>{`
+        a[aria-label] :global(.ml-4) { }
+      `}</style>
+    </motion.a>
+  );
+}
+
+function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "How much does this cost?",
+      answer: "Prices vary by scope, starting at £2,000. We guarantee ROI by prioritising savings and efficiency."
+    },
+    {
+      question: "How long does it take?",
+      answer: "Once agreements are signed, the full bespoke build and installation are delivered in under 4 weeks."
+    },
+    {
+      question: "Will there be support when things go wrong?",
+      answer: "Yes. With an annual agreement, we provide 24-hour support for urgent fixes and future-proofing, plus 72-hour responses for email requests. This ensures systems never lose functionality or purpose."
+    },
+    {
+      question: "Is there any risk?",
+      answer: "We work with full transparency. All deliverables are clearly scoped and agreed upon before work begins."
+    },
+    {
+      question: "How do we start?",
+      answer: "Book a free discovery call. In the first call, we consult with your staff to identify the highest-value admin tasks. After review, we provide a targeted plan and focused solution."
+    },
+    {
+      question: "How do we work?",
+      answer: "We work one-to-one with your team through a 5 step framework: consult, review, prototype, implement, and formal handover - with ongoing support available."
+    }
+  ];
+
+  return (
+    <div className="max-w-4xl mx-auto">
+      {faqs.map((faq, index) => (
+        <motion.div
+          key={index}
+          className="mb-4"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 * index }}
+        >
+          <button
+            onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            className="w-full bg-white p-6 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 text-left focus:outline-none focus:ring-2 focus:ring-blue-200"
+          >
+            <div className="flex items-center justify-between">
+              <h4 className="text-xl font-semibold text-gray-900 pr-4">{faq.question}</h4>
+              <motion.div
+                animate={{ rotate: openIndex === index ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ChevronDown className="h-6 w-6 text-blue-600 flex-shrink-0" />
+              </motion.div>
             </div>
-            <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-              We focus on your ROI by prioritising high impact solutions above all else. Providing up to <strong className="text-blue-700">10X</strong> value on time and money saved.
-            </p>
-          </div>
+          </button>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Pain Points */}
-            <div className="group bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center mb-6">
-                <div className="bg-red-100 p-3 rounded-full mr-4 group-hover:bg-red-200 transition-colors">
-                  <Clock className="h-6 w-6 text-red-600" />
-                </div>
-                <h4 className="text-2xl font-semibold text-gray-900">Time consuming tasks</h4>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Manual updates to student & staff absence forms</span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Repetitive data entry for behaviour incidents</span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Repetitive data entry for behaviour incidents</span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Weekly admin burden creating reports for SLT meetings</span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>Staff overwhelmed by multiple disconnected systems</span>
-                </li>
-              </ul>
+          <motion.div
+            initial={false}
+            animate={{
+              height: openIndex === index ? "auto" : 0,
+              opacity: openIndex === index ? 1 : 0
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <div className="bg-gray-50 mx-4 p-6 rounded-xl mt-2 border-l-4 border-blue-500">
+              <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
             </div>
-
-            {/* Benefits & Strengths */}
-            <div className="group bg-gradient-to-br from-indigo-50 to-white p-8 rounded-2xl shadow-lg border border-indigo-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center mb-6">
-                <div className="bg-green-100 p-3 rounded-full mr-4 group-hover:bg-green-200 transition-colors">
-                  <TrendingUp className="h-6 w-6 text-green-600" />
-                </div>
-                <h4 className="text-2xl font-semibold text-gray-900">Time & Money Saved</h4>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>5+ hours/week</strong> saved on attendance management</span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>£2,000+/year</strong> saved on cover teacher costs</span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>3+ hours/week</strong> freed from report generation</span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>Early intervention</strong> prevents costly escalations</span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span><strong>Staff wellbeing</strong> improved through reduced workload</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ROI Highlights */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center mb-4">
-              <Users className="h-8 w-8 text-blue-200 mr-3" />
-              <h3 className="text-4xl font-bold">What can you expect?</h3>
-            </div>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Here's how much UK schools typically save with just a few smart workflows.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {/* ROI Cards */}
-            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center mb-4">
-                <Users className="h-6 w-6 text-blue-600 mr-2" />
-                <h4 className="font-bold text-xl">Replace Satchel One</h4>
-              </div>
-              <p className="text-gray-600 mb-3 text-sm">Use Teams + Forms instead</p>
-              <p className="font-bold text-2xl text-green-600">£1,400–£2,000/year saved</p>
-            </div>
-
-            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center mb-4">
-                <Calendar className="h-6 w-6 text-blue-600 mr-2" />
-                <h4 className="font-bold text-xl">Staff Absence + Cover</h4>
-              </div>
-              <p className="text-gray-600 mb-3 text-sm">Auto-alerts, AI-suggested cover</p>
-              <p className="font-bold text-lg text-green-600">2 hrs/week</p>
-              <p className="font-bold text-2xl text-green-600">£1,500–£2,000/year</p>
-            </div>
-
-            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center mb-4">
-                <Brain className="h-6 w-6 text-blue-600 mr-2" />
-                <h4 className="font-bold text-xl">AI Weekly Reports</h4>
-              </div>
-              <p className="text-gray-600 mb-3 text-sm">SLT-ready behaviour/attendance data</p>
-              <p className="font-bold text-lg text-green-600">3 hrs/week</p>
-              <p className="font-bold text-2xl text-green-600">£2,500–£4,000/year</p>
-            </div>
-
-            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center mb-4">
-                <Mail className="h-6 w-6 text-blue-600 mr-2" />
-                <h4 className="font-bold text-xl">Parent Reminders</h4>
-              </div>
-              <p className="text-gray-600 mb-3 text-sm">Auto-send detentions & events</p>
-              <p className="font-bold text-lg text-green-600">1 hr/week</p>
-              <p className="font-bold text-2xl text-green-600">£750–£1,250/year</p>
-            </div>
-
-            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center mb-4">
-                <Lightbulb className="h-6 w-6 text-blue-600 mr-2" />
-                <h4 className="font-bold text-xl">Behaviour Escalation</h4>
-              </div>
-              <p className="text-gray-600 mb-3 text-sm">Threshold alerts & weekly reports</p>
-              <p className="font-bold text-lg text-green-600">2 hrs/week</p>
-              <p className="font-bold text-2xl text-green-600">£1,500+/year</p>
-            </div>
-
-            <div className="bg-white text-blue-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center mb-4">
-                <Monitor className="h-6 w-6 text-blue-600 mr-2" />
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">Onboarding / Offboarding</h4>
-              </div>
-              <p className="text-gray-600 mb-3 text-sm">Accounts, access & folders</p>
-              <p className="font-bold text-lg text-green-600">1 hr/person</p>
-              <p className="font-bold text-2xl text-green-600">£800–£1,200/year</p>
-            </div>
-          </div>
-
-          {/* Total ROI Summary */}
-          <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-8 rounded-2xl shadow-2xl text-center max-w-4xl mx-auto">
-            <div className="flex items-center justify-center mb-4">
-              <BarChart3 className="h-8 w-8 text-white mr-3" />
-              <h4 className="text-3xl font-bold text-white">Typical School ROI</h4>
-            </div>
-            <p className="text-4xl font-bold text-white mb-2">£4,000–£12,000/year saved</p>
-            <p className="text-xl text-green-100 mb-2">150–500 hours/year of staff time freed</p>
-            <p className="text-lg text-green-200 italic">
-              That's 6–12 weeks of full-time admin time — every year.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section className="bg-gray-50 py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center mb-4">
-              <Target className="h-8 w-8 text-blue-600 mr-3" />
-              <h3 className="text-4xl font-bold text-gray-900">Packages & Pricing</h3>
-            </div>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Starter Package */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
-              <div className="text-center mb-6">
-                <Clock className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">Starter</h4>
-                <p className="text-gray-600 mb-4">3 workflows + 1-hour monthly support</p>
-                <p className="text-3xl font-bold text-blue-600">£1,500<span className="text-lg text-gray-500">/year</span></p>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>3 automation workflows</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>1-hour monthly support</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Email support</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Pro Package - Featured */}
-            <div className="bg-white p-8 rounded-2xl shadow-xl border-2 border-blue-500 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">Most Popular</span>
-              </div>
-              <div className="text-center mb-6">
-                <TrendingUp className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">Pro</h4>
-                <p className="text-gray-600 mb-4">10 workflows + AI summaries + integrations</p>
-                <p className="text-3xl font-bold text-blue-600">£4,000<span className="text-lg text-gray-500">/year</span></p>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>10 automation workflows</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>AI-powered insights</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Full integrations</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Priority support</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Custom Package */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
-              <div className="text-center mb-6">
-                <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">Custom</h4>
-                <p className="text-gray-600 mb-4">Full automation + training + support</p>
-                <p className="text-3xl font-bold text-blue-600">£8,000–£10,000<span className="text-lg text-gray-500">/year</span></p>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Unlimited workflows</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Staff training included</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>Custom integrations</span>
-                </li>
-                <li className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>24/7 support</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="text-center mt-12">
-            <p className="text-gray-600 text-lg">
-              <strong>Try one workflow free</strong> — then upgrade as you grow.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="mb-8">
-            <BookOpen className="h-16 w-16 text-blue-200 mx-auto mb-6" />
-            <h3 className="text-4xl font-bold mb-6">Let's Automate Your School</h3>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              We'll build your first workflow free. No contracts. Just value.
-            </p>
-          </div>
-          
-          <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
-            <a 
-              href="mailto:hello@schoolsautomate.com" 
-              className="inline-flex items-center bg-white text-blue-900 px-8 py-4 font-bold text-lg rounded-full shadow-lg hover:bg-gray-100 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1"
-            >
-              Contact Us
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="flex items-center justify-center mb-4">
-            <BookOpen className="h-6 w-6 text-blue-400 mr-2" />
-            <p className="text-gray-300">
-              © 2025 Schools Automate. Built with care for UK schools.
-            </p>
-          </div>
-        </div>
-      </footer>
+          </motion.div>
+        </motion.div>
+      ))}
     </div>
   );
 }
 
-export default App;
+/* --- UPDATED: Big footer now matches landing page (light blue) and uses TalkCTA --- */
+function BigBlackFooter() {
+  return (
+    <section id="big-footer" className="bg-gradient-to-br from-blue-50 to-indigo-50 text-gray-900 py-24 md:py-36 lg:py-48">
+      <div className="max-w-7xl mx-auto px-6 text-center">
+        <div className="flex flex-col items-center gap-8">
+          {/* Logo (not inverted on light background) */}
+          <img
+            src="/AcademicAutomations.com_Logo6.svg"
+            alt="Academic Automations"
+            className="max-w-[560px] w-[clamp(180px,44vw,560px)] h-auto"
+            style={{ display: 'block' }}
+          />
+
+          <div className="max-w-2xl">
+            <div className="text-sm text-gray-600 mb-2 uppercase font-semibold">Academic Automations</div>
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Let's Automate Your School</h3>
+            <p className="text-lg md:text-xl text-gray-700 mb-6">
+              Start with a free, thirty minute growth mapping call.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              {/* primary animated CTA */}
+              <TalkCTA label="let's talk" href="contact@academicautomations.com" size="lg" className="talk-cta" />
+
+              {/* secondary plain CTA for visual rhythm */}
+              <a
+                href="#pricing"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-gray-300 text-gray-800 font-semibold hover:bg-gray-100 transition"
+              >
+                Email
+              </a>
+            </div>
+
+            <div className="mt-8 text-sm text-gray-600 space-y-2 sm:space-y-0 sm:flex sm:items-center sm:justify-center sm:gap-6">
+              <a href="/privacy" className="underline">Privacy Policy</a>
+              <a href="/cookies" className="underline">Cookie preferences</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+export default function App() {
+  const [currentPage, setCurrentPage] = useState<'home' | 'blog'>('home');
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [heroParallax, setHeroParallax] = useState(0);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
+  useEffect(() => {
+    function onScroll() {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const current = window.scrollY;
+      const pct = total > 0 ? Math.min(100, (current / total) * 100) : 0;
+      setScrollProgress(pct);
+      setHeroParallax(Math.min(120, current * 0.12)); // gentle parallax
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  if (currentPage === 'blog') {
+    return <BlogPage onBack={() => setCurrentPage('home')} />;
+  }
+
+  const reveal = {
+    hidden: { opacity: 0, y: 16 },
+    visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: 0.06 * i, ease: 'easeOut' } }),
+  };
+
+  const cards = [
+    {
+      icon: <Users className="h-6 w-6 text-blue-600 mr-2" />,
+      title: 'Automatic Alerts',
+      sub: 'triggered by Teams + Forms submissions',
+      value: '£4,000–£6,000/year',
+      small: '2–4 hrs/week',
+    },
+    {
+      icon: <Calendar className="h-6 w-6 text-blue-600 mr-2" />,
+      title: 'Staff Absence + Cover',
+      sub: 'auto-alerts with suggested cover options',
+      value: '£6,000–£10,000/year',
+      small: '2 hrs/week',
+    },
+    {
+      icon: <Brain className="h-6 w-6 text-blue-600 mr-2" />,
+      title: 'AI Weekly Reports',
+      sub: 'SLT-ready behaviour/attendance data',
+      value: '£7,500–£12,000/year',
+      small: '3 hrs/week',
+    },
+    {
+      icon: <Mail className="h-6 w-6 text-blue-600 mr-2" />,
+      title: 'Parent Reminders',
+      sub: 'Auto-send/draft detentions & event notifications',
+      value: '£2,500–£4,000/year',
+      small: '1 hr/week',
+    },
+    {
+      icon: <Lightbulb className="h-6 w-6 text-blue-600 mr-2" />,
+      title: 'Behaviour Escalation',
+      sub: 'threshold triggers & weekly summaries',
+      value: '£5,000–£8,000/year',
+      small: '2 hrs/week',
+    },
+    {
+      icon: <Monitor className="h-6 w-6 text-blue-600 mr-2" />,
+      title: 'Onboarding / Offboarding',
+      sub: 'Accounts, access & folders',
+      value: '£3,500–£6,000/year',
+      small: '1 hr/person',
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-white selection:bg-indigo-200 selection:text-indigo-900 text-gray-900">
+      {/* load fonts + animated gradient CSS */}
+      <style>{` 
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Jost:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+          --system-font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        body, body * {
+          font-family: 'Jost', var(--system-font);
+        }
+
+        .brand, .hero-title, .hero-subtitle {
+          font-family: 'Poppins', var(--system-font) !important;
+        }
+
+        .gradient-realm {
+          background-image: linear-gradient(90deg, #4f46e5 0%, #7c3aed 25%, #6366f1 50%, #7f5af0 75%, #5b21b6 100%);
+          background-size: 200% 200%;
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          animation: gradientShift 6s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
+        .title-wrap { position: relative; display: inline-block; line-height: 1; }
+
+        .talk-cta { transition: background-color 180ms, color 180ms; }
+        .talk-cta .knob { transition: background-color 180ms, color 180ms; }
+        .talk-cta:hover { background: white; color: #3730a3; }
+        .talk-cta:hover .knob { background: #3730a3; }
+        .talk-cta:hover .knob svg { color: white; }
+      `}</style>
+
+      {/* reading progress bar */}
+      <div className="fixed left-0 right-0 top-0 h-1 z-50 bg-transparent">
+        <div
+          aria-hidden
+          className="h-1 bg-gradient-to-r from-indigo-500 to-emerald-400 shadow-sm"
+          style={{ width: `${scrollProgress}%`, transition: 'width 120ms linear' }}
+        />
+      </div>
+
+      <Header onBlogClick={() => setCurrentPage('blog')} />
+
+      {/* HERO */}
+      <section className="relative bg-gradient-to-br from-blue-50 to-indigo-50 min-h-[85vh] flex items-center justify-center overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <div className="max-w-5xl mx-auto">
+            <motion.h2
+              className="text-6xl md:text-8xl font-bold text-gray-900 mb-8 leading-tight flex flex-col items-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+            >
+              <div className="title-wrap">
+                <motion.span
+                  className="gradient-realm hero-title"
+                  style={{ display: 'inline-block' }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 6 }}
+                  transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                >
+                  AI Automation
+                </motion.span>
+              </div>
+
+              <motion.span
+                className="text-4xl md:text-5xl mt-3 md:mt-2 text-gray-900 hero-subtitle"
+                initial={{ opacity: 0, y: -20, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 0.45, duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                for UK schools
+              </motion.span>
+            </motion.h2>
+
+            <motion.p
+              className="text-lg md:text-xl text-gray-700 mb-8 font-medium max-w-4xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 10, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 0.6, duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              Empowering your school to leverage the use of AI automation, bridging the digital divide by connecting <strong>old</strong> systems to <strong>new</strong> solutions.
+            </motion.p>
+          </div>
+        </div>
+
+        <div className="absolute left-6 bottom-6 z-0">
+          <TalkCTA label="let's talk" href="contact@academicautomations.com" size="lg" className="talk-cta" />
+        </div>
+      </section>
+
+      {/* What We Automate */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-20">
+            <motion.div
+              className="flex items-center justify-center mb-4"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-orange-100 p-2 rounded-full mr-3">
+                <span className="text-2xl font-bold text-orange-600">!</span>
+              </div>
+              <h3 className="text-5xl font-bold text-gray-900">How can we help?</h3>
+            </motion.div>
+
+            <motion.p
+              className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto mt-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.06 }}
+            >
+              Our goal is to reduce overhead costs by deploying systems that automate monotonous tasks, allowing your staff to delegate their time towards more important matters.
+              <br />
+              <strong className="text-blue-700">Teaching and genuine human interaction.</strong>
+            </motion.p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 w-full mx-auto px-4">
+            <motion.div
+              className="group bg-gradient-to-br from-orange-50 to-white p-8 rounded-2xl shadow-lg border border-orange-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={reveal}
+            >
+              <div className="flex items-center mb-6">
+                <div className="bg-red-100 p-3 rounded-full mr-4 group-hover:bg-red-200 transition-colors">
+                  <Clock className="h-6 w-6 text-red-600" />
+                </div>
+                <h4 className="text-2xl font-semibold text-gray-900">Current Admin burdens</h4>
+              </div>
+              <ul className="space-y-4 text-gray-700">
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <div className="font-semibold">Manual absence updates</div>
+                    <div className="text-sm mt-1 whitespace-nowrap">staff spend hours repeatedly entering absence information.</div>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <div className="font-semibold">Behaviour logging fatigue</div>
+                    <div className="text-sm mt-1">repetitive data entry for every incident slows staff down and adds frustration.</div>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <div className="font-semibold">Repetitive Reports</div>
+                    <div className="text-sm mt-1">preparing weekly reports for SLT is time-consuming and repetitive.</div>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <div className="font-semibold">Disconnected systems</div>
+                    <div className="text-sm mt-1 whitespace-nowrap">Fragmented systems make tasks harder than necessary.</div>
+                  </div>
+                </li>
+              </ul>
+            </motion.div>
+
+            <motion.div
+              className="group bg-gradient-to-br from-indigo-50 to-white p-8 rounded-2xl shadow-lg border border-indigo-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={reveal}
+            >
+              <div className="flex items-center mb-6">
+                <div className="bg-green-100 p-3 rounded-full mr-4 group-hover:bg-green-200 transition-colors">
+                  <TrendingUp className="h-6 w-6 text-green-600" />
+                </div>
+                <h4 className="text-2xl font-semibold text-gray-900">Benefits of Smarter Systems</h4>
+              </div>
+              <ul className="space-y-4 text-gray-700">
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <div className="font-semibold">Save time and money</div>
+                    <div className="text-sm mt-1">hours freed each week, redirecting staff effort to teaching and student support.</div>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <div className="font-semibold">User friendly formats</div>
+                    <div className="text-sm mt-1">drag-and-drop uploads and quick, easy-to-complete forms.</div>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <div className="font-semibold">Powerful insights</div>
+                    <div className="text-sm mt-1">spot specific trends across weeks, terms, and years to guide smarter decisions.</div>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <ArrowRight className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <div className="font-semibold">Proactive intervention</div>
+                    <div className="text-sm mt-1">early alerts flag issues before they escalate into costly problems.</div>
+                  </div>
+                </li>
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ROI Highlights - toned down, context-first variant */}
+      <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <div className="flex items-center justify-center mb-4">
+              <Users className="h-8 w-8 text-slate-600 mr-3" />
+              <h3 className="text-3xl font-semibold text-gray-900">Impact focussed Automations</h3>
+            </div>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              A typical 1,000-pupil secondary school spends £550k–£660k/year on admin. High-yield automations can save 30–50% of these costs.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {cards.map((c, i) => (
+              <motion.div
+                key={i}
+                className="bg-white text-gray-900 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-10% 0px' }}
+                transition={{ delay: 0.08 * i }}
+              >
+                <div className="flex items-center mb-4">{c.icon}<h4 className="font-semibold text-lg ml-2">{c.title}</h4></div>
+                <p className="text-sm text-gray-600 mb-3">{c.sub}</p>
+                {c.small && <p className="font-semibold text-sm text-green-700">{c.small}</p>}
+                <p className="font-semibold text-xl text-emerald-600">{c.value}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            className="mx-auto max-w-6xl p-10 rounded-2xl bg-gradient-to-r from-slate-50 to-white border border-gray-100 shadow"
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-start gap-6">
+              <div className="flex-shrink-0">
+                <BarChart3 className="h-10 w-10 text-slate-500" />
+              </div>
+
+              <div className="flex-1">
+                <h4 className="text-2xl font-semibold text-gray-900">Estimated school savings</h4>
+                <p className="text-base text-gray-600 mt-2 max-w-3xl">
+                  Typical savings for an average secondary school based on number of automations deployed.
+                </p>
+
+                <div className="mt-8 space-y-5">
+                  {/* Tier 1: 1-2 Automations */}
+                  <motion.div
+                    className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                  >
+                    <div className="grid sm:grid-cols-4 gap-6 items-center">
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
+                        <div className="font-semibold text-2xl text-slate-700">1–2</div>
+                        <div className="text-sm text-gray-500 mt-1">5–10% savings</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£25k–£65k</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
+                        <div className="font-semibold text-xl text-slate-700">~100–500 hrs</div>
+                        <div className="text-sm text-gray-500">(~3–13 weeks)</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-600 italic">Automates isolated tasks (alerts, reminders).</div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Tier 2: 3-5 Automations */}
+                  <motion.div
+                    className="p-6 bg-white rounded-xl border border-emerald-200 shadow-sm hover:shadow-md transition-shadow"
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <div className="grid sm:grid-cols-4 gap-6 items-center">
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
+                        <div className="font-semibold text-2xl text-slate-700">3–5</div>
+                        <div className="text-sm text-gray-500 mt-1">15–25% savings</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£80k–£165k</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
+                        <div className="font-semibold text-xl text-slate-700">~300–1,250 hrs</div>
+                        <div className="text-sm text-gray-500">(~8–33 weeks)</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-600 italic">Core processes automated (absence, reporting, onboarding).</div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Tier 3: 8-10+ Automations */}
+                  <motion.div
+                    className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <div className="grid sm:grid-cols-4 gap-6 items-center">
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations</div>
+                        <div className="font-semibold text-2xl text-slate-700">8–10+</div>
+                        <div className="text-sm text-gray-500 mt-1">30–50% savings</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Saving</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£165k–£330k</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
+                        <div className="font-semibold text-xl text-slate-700">~800–2,500 hrs</div>
+                        <div className="text-sm text-gray-500">(~20–65 weeks)</div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-600 italic">Broad high-yield deployment across admin functions.</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+
+                <div className="mt-6 text-sm text-gray-500">
+                  Figures are estimates — results vary by school size, processes automated and data quality.
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="pricing" className="bg-gray-50 py-20 relative">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <div className="flex items-center justify-center mb-4">
+              <HelpCircle className="h-8 w-8 text-blue-600 mr-3" />
+              <h3 className="text-4xl font-bold text-gray-900">Frequently Asked Questions</h3>
+            </div>
+          </motion.div>
+
+          <FAQSection />
+
+          <div className="absolute bottom-24 right-6 max-w-7xl mx-auto">
+            <motion.button
+              onClick={() => setCurrentPage('blog')}
+              className="inline-flex items-center gap-2 px-3 py-2 bg-gray-100 text-gray-700 rounded-xl shadow-lg hover:bg-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-gray-300 text-sm"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <span className="font-medium">learn more about how it works</span>
+              <ArrowRight className="h-4 w-4" />
+            </motion.button>
+          </div>
+        </div>
+      </section>
+
+      {/* NEW: Big black full-width CTA section inserted here */}
+      <BigBlackFooter />
+
+      {/* CTA */}
+      <footer className="bg-gray-900 text-white py-8">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <div className="flex flex-col items-center justify-center mb-4">
+            <img 
+              src="/AcademicAutomations.com_Logo6.svg" 
+              alt="Academic Automations Logo" 
+              className="w-20 h-20 object-contain mb-2"
+            />
+            <p className="text-gray-300">© 2025 Academic Automations. All rights reserved. Built with care.</p>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  );
+}
