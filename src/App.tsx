@@ -13,7 +13,7 @@ import BlogPage from './components/HowItWorks';
 
 function Header({
   title = 'Academic Automations',
-  tagline = 'Smart AI + Workflow Automation • for UK Schools',
+  tagline = 'Automated Reports for UK Secondary Schools',
   menuLinks = [
     { label: 'Email', href: '#how' },
     { label: 'How it works', href: '#blog' },
