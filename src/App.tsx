@@ -5721,14 +5721,25 @@ export default function App() {
       <PreviewModal
         visible={currentPage === 'attendance-report'}
         title="Academic Automations – Attendance KPI Report"
-        onClose={() =>
-        <iframe
-          title="Academic Automations – Attendance KPI Report"
-          srcDoc={attendanceReportHTML}
-          className="w-full rounded-xl border border-gray-200 bg-white"
-          style={{ minHeight: '85vh' }}
-        />
-</PreviewModal>
+        onClose={() => setCurrentPage('home')}
+      >
+        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Academic Automations – Attendance KPI Report
+          </h1>
+          <p className="text-gray-600 text-base md:text-lg mb-8">
+            Report preview will be populated with your custom HTML.
+          </p>
+
+          <iframe
+            title="Academic Automations – Attendance KPI Report"
+            src="/Academic_Automation_Attendance_Report_SINGLEFILE.html"
+            srcDoc={attendanceReportHTML && attendanceReportHTML.trim().length > 0 ? attendanceReportHTML : undefined}
+            className="w-full rounded-xl border border-gray-200 bg-white"
+            style={{ minHeight: '85vh' }}
+          />
+        </div>
+      </PreviewModal>
     </div>
   );
 }
