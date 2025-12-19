@@ -5211,7 +5211,7 @@ function PreviewModal({
 }
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'blog' | 'slt-report' | 'attendance-report'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'blog' | 'slt-report' | 'attendance-report' | 'merits-report' | 'behaviour-report'>('home');
   const [scrollProgress, setScrollProgress] = useState(0);
   const [heroParallax, setHeroParallax] = useState(0);
 
@@ -5512,11 +5512,11 @@ export default function App() {
           <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center mb-4">
               <Users className="h-8 w-8 text-slate-600 mr-3" />
-              <h3 className="text-3xl font-semibold text-gray-900">Impact focussed Automations</h3>
+              <h3 className="text-3xl font-semibold text-gray-900">Automated Reports</h3>
             </div>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-6xl mx-auto">
             <motion.button
               onClick={() => setCurrentPage('slt-report')}
               className="group bg-white text-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-left border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -5525,7 +5525,7 @@ export default function App() {
               viewport={{ once: true, margin: '-10% 0px' }}
             >
               <div className="flex items-center justify-between mb-4">
-                <h4 className="font-semibold text-lg text-gray-900">SLT Performance Report</h4>
+                <h4 className="font-semibold text-lg text-gray-900">SLT Performance</h4>
                 <ArrowRight className="h-5 w-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
               </div>
               <p className="text-sm text-gray-600">Academic Automations – SLT Performance Report</p>
@@ -5541,10 +5541,42 @@ export default function App() {
               transition={{ delay: 0.1 }}
             >
               <div className="flex items-center justify-between mb-4">
-                <h4 className="font-semibold text-lg text-gray-900">Attendance KPI Report</h4>
+                <h4 className="font-semibold text-lg text-gray-900">Attendance KPI</h4>
                 <ArrowRight className="h-5 w-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
               </div>
               <p className="text-sm text-gray-600">Academic Automations – Attendance KPI Report</p>
+              <p className="text-xs text-gray-500 mt-4">Click to preview</p>
+            </motion.button>
+
+            <motion.button
+              onClick={() => setCurrentPage('merits-report')}
+              className="group bg-white text-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-left border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-10% 0px' }}
+              transition={{ delay: 0.2 }}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h4 className="font-semibold text-lg text-gray-900">Merits</h4>
+                <ArrowRight className="h-5 w-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
+              </div>
+              <p className="text-sm text-gray-600">Academic Automations – Merits Report</p>
+              <p className="text-xs text-gray-500 mt-4">Click to preview</p>
+            </motion.button>
+
+            <motion.button
+              onClick={() => setCurrentPage('behaviour-report')}
+              className="group bg-white text-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-left border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-10% 0px' }}
+              transition={{ delay: 0.3 }}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h4 className="font-semibold text-lg text-gray-900">Behaviour</h4>
+                <ArrowRight className="h-5 w-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
+              </div>
+              <p className="text-sm text-gray-600">Academic Automations – Behaviour Report</p>
               <p className="text-xs text-gray-500 mt-4">Click to preview</p>
             </motion.button>
           </div>
@@ -5728,7 +5760,7 @@ export default function App() {
             Academic Automations – Attendance KPI Report
           </h1>
           <p className="text-gray-600 text-base md:text-lg mb-8">
-            
+
           </p>
 
           <iframe
@@ -5738,6 +5770,47 @@ export default function App() {
             className="w-full rounded-xl border border-gray-200 bg-white"
             style={{ minHeight: '85vh' }}
           />
+        </div>
+      </PreviewModal>
+
+      <PreviewModal
+        visible={currentPage === 'merits-report'}
+        title="Academic Automations – Merits Report"
+        onClose={() => setCurrentPage('home')}
+      >
+        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Academic Automations – Merits Report
+          </h1>
+          <p className="text-gray-600 text-base md:text-lg mb-8">
+            Report preview will be populated with your custom HTML.
+          </p>
+          <div className="bg-white rounded-xl p-8 border border-gray-200 min-h-[400px] flex items-center justify-center">
+            <iframe
+            title="Academic Automations – Merits Report"
+            src="/Academic_Automation_Merit_Report_LOGO_FIXED_INLINE.html"
+            className="w-full rounded-xl border border-gray-200 bg-white"
+            style={{ minHeight: '85vh' }}
+          />
+          </div>
+        </div>
+      </PreviewModal>
+
+      <PreviewModal
+        visible={currentPage === 'behaviour-report'}
+        title="Academic Automations – Behaviour Report"
+        onClose={() => setCurrentPage('home')}
+      >
+        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Academic Automations – Behaviour Report
+          </h1>
+          <p className="text-gray-600 text-base md:text-lg mb-8">
+            Report preview will be populated with your custom HTML.
+          </p>
+          <div className="bg-white rounded-xl p-8 border border-gray-200 min-h-[400px] flex items-center justify-center">
+            <p className="text-gray-400 text-center">Behaviour Report content will render here</p>
+          </div>
         </div>
       </PreviewModal>
     </div>
