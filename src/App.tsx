@@ -5541,7 +5541,7 @@ export default function App() {
               transition={{ delay: 0.1 }}
             >
               <div className="flex items-center justify-between mb-4">
-                <h4 className="font-semibold text-lg text-gray-900">Attendance KPI</h4>
+                <h4 className="font-semibold text-lg text-gray-900">Attendance KPI Report</h4>
                 <ArrowRight className="h-5 w-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
               </div>
               <p className="text-sm text-gray-600">Academic Automations – Attendance KPI Report</p>
