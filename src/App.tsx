@@ -5773,7 +5773,8 @@ export default function App() {
         </div>
       </PreviewModal>
 
-      <PreviewModal
+      
+<PreviewModal
         visible={currentPage === 'merits-report'}
         title="Academic Automations – Merits Report"
         onClose={() => setCurrentPage('home')}
@@ -5782,19 +5783,17 @@ export default function App() {
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Academic Automations – Merits Report
           </h1>
-          <p className="text-gray-600 text-base md:text-lg mb-8">
-            Report preview will be populated with your custom HTML.
-          </p>
-          <div className="bg-white rounded-xl p-8 border border-gray-200 min-h-[400px] flex items-center justify-center">
+          <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
             <iframe
-            title="Academic Automations – Merits Report"
-            srcDoc={meritsReportHTML && meritsReportHTML.trim().length > 0 ? meritsReportHTML : undefined}
-            className="w-full rounded-xl border border-gray-200 bg-white"
-            style={{ minHeight: '85vh' }}
-          />
+              title="Academic Automations – Merits Report"
+              srcDoc={meritsReportHTML}
+              className="w-full"
+              style={{ minHeight: '85vh', border: 'none' }}
+            />
           </div>
         </div>
       </PreviewModal>
+
 
       <PreviewModal
         visible={currentPage === 'behaviour-report'}
