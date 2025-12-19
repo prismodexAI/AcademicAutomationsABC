@@ -5786,12 +5786,7 @@ export default function App() {
             Report preview will be populated with your custom HTML.
           </p>
           <div className="bg-white rounded-xl p-8 border border-gray-200 min-h-[400px] flex items-center justify-center">
-            <iframe
-            title="Academic Automations – Merits Report"
-            srcDoc={meritsReportHTML && meritsReportHTML.trim().length > 0 ? meritsReportHTML : undefined}
-            className="w-full rounded-xl border border-gray-200 bg-white"
-            style={{ minHeight: '85vh' }}
-          />
+            <p className="text-gray-400 text-center">Merits Report content will render here</p>
           </div>
         </div>
       </PreviewModal>
