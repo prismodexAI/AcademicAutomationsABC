@@ -37,7 +37,7 @@ function Header({
   title = 'Academic Automations',
   tagline = 'Automated Reports for UK Secondary Schools',
   menuLinks = [
-    { label: 'Email', href: '#how' },
+    { label: 'Email', href: 'mailto:contact@academicautomations.com' },
     { label: 'How it works', href: '#blog' },
     { label: 'FAQ', href: '#pricing' },
   ],
@@ -100,7 +100,7 @@ function Header({
 /* Reusable Talk CTA — improved animation, color invert on hover, clipped inside pill */
 function TalkCTA({
   label = "let's talk",
-  href = 'mailto:hello@schoolsautomate.com',
+  href = 'mailto:contact@academicautomations.com',
   size = 'md',
   className = '',
 }: {
@@ -275,7 +275,7 @@ function BigBlackFooter() {
 
               {/* secondary plain CTA for visual rhythm */}
               <a
-                href="#pricing"
+                href="mailto:contact@academicautomations.com"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-gray-300 text-gray-800 font-semibold hover:bg-gray-100 transition"
               >
                 Email
