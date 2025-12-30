@@ -317,23 +317,25 @@ function PreviewModal({
 }) {
   const [isLoading, setIsLoading] = useState(true);
 
-useEffect(() => {
-  if (visible) setIsLoading(true);
-}, [visible]);
+  useEffect(() => {
+    if (visible) setIsLoading(true);
+  }, [visible]);
 
-useEffect(() => {
-  if (visible) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = '';
-  }
+  
 
-  return () => {
-    document.body.style.overflow = '';
-  };
-}, [visible]);
+  // Lock background scroll while the modal is open
+  useEffect(() => {
+    if (visible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
 
-  if (!visible) return null;
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [visible]);
+if (!visible) return null;
 
   return (
     <div
@@ -348,13 +350,17 @@ useEffect(() => {
           <h2 className="text-lg md:text-xl font-semibold text-gray-900">{title}</h2>
         </div>
 
-        <div className="flex-1 overflow-hidden p-6 bg-gray-50">
-          {isLoading && <LoadingSpinner />}
+        <div className="flex-1 overflow-hidden p-6 bg-gray-50 relative">
+          <div
+            className={`absolute inset-0 flex items-center justify-center bg-gray-50 transition-opacity duration-300 ${isLoading ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+          >
+            <LoadingSpinner />
+          </div>
 
           <iframe
             title={title}
             src={iframeSrc}
-            className={`w-full rounded-xl border border-gray-200 bg-white ${isLoading ? "hidden" : ""}`}
+            className={`w-full rounded-xl border border-gray-200 bg-white transition-opacity duration-300 ${isLoading ? "opacity-0" : "opacity-100"}` }
             style={{ minHeight: "85vh" }}
             onLoad={() => setIsLoading(false)}
           />
