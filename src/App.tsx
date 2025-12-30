@@ -293,18 +293,34 @@ function BigBlackFooter() {
   );
 }
 
-/* --- New: Generic preview modal that sits on top of the existing page --- */
+
+/* === Loading spinner === */
+function LoadingSpinner() {
+  return (
+    <div className="flex items-center justify-center py-20">
+      <div className="h-12 w-12 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600" />
+    </div>
+  );
+}
+
+/* --- Preview modal with loading spinner (iframe-aware) --- */
 function PreviewModal({
   visible,
   title,
   onClose,
-  children,
+  iframeSrc,
 }: {
   visible: boolean;
   title: string;
   onClose: () => void;
-  children: React.ReactNode;
+  iframeSrc: string;
 }) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (visible) setIsLoading(true);
+  }, [visible]);
+
   if (!visible) return null;
 
   return (
@@ -316,19 +332,26 @@ function PreviewModal({
         className="bg-white w-full max-w-6xl max-h-[90vh] rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-gray-200"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal header */}
         <div className="flex items-center justify-between px-6 py-4 border-b bg-white">
           <h2 className="text-lg md:text-xl font-semibold text-gray-900">{title}</h2>
         </div>
 
-        {/* Scrollable content */}
         <div className="flex-1 overflow-y-auto p-6 bg-gray-50">
-          {children}
+          {isLoading && <LoadingSpinner />}
+
+          <iframe
+            title={title}
+            src={iframeSrc}
+            className={`w-full rounded-xl border border-gray-200 bg-white ${isLoading ? "hidden" : ""}`}
+            style={{ minHeight: "85vh" }}
+            onLoad={() => setIsLoading(false)}
+          />
         </div>
       </div>
     </div>
   );
 }
+
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'blog' | 'slt-report' | 'attendance-report' | 'merits-report' | 'behaviour-report'>('home');
@@ -854,6 +877,7 @@ export default function App() {
       {/* MODALS: SLT + Attendance — overlay on top of the existing page */}
       <PreviewModal
         visible={currentPage === 'slt-report'}
+        iframeSrc={SLT_REPORT_SRC}
         title="Academic Automations – SLT Performance Report"
         onClose={() => setCurrentPage('home')}
       >
@@ -875,6 +899,7 @@ export default function App() {
 
       <PreviewModal
         visible={currentPage === 'attendance-report'}
+        iframeSrc={ATTENDANCE_REPORT_SRC}
         title="Academic Automations – Attendance KPI Report"
         onClose={() => setCurrentPage('home')}
       >
@@ -897,6 +922,7 @@ export default function App() {
 
       <PreviewModal
         visible={currentPage === 'merits-report'}
+        iframeSrc={MERITS_REPORT_SRC}
         title="Academic Automations – Merits Report"
         onClose={() => setCurrentPage('home')}
       >
@@ -918,6 +944,7 @@ export default function App() {
 
       <PreviewModal
         visible={currentPage === 'behaviour-report'}
+        iframeSrc={BEHAVIOUR_REPORT_SRC}
         title="Academic Automations – Behaviour Report"
         onClose={() => setCurrentPage('home')}
       >
