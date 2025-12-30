@@ -516,7 +516,7 @@ export default function App() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              Empowering your school to leverage the use of automation, bridging the digital divide by connecting <strong>old</strong> systems to <strong>new</strong> solutions.
+              Empowering schools to leverage the use of automation, bridging the digital divide by connecting <strong>old</strong> systems to <strong>new</strong> solutions.
             </motion.p>
           </div>
         </div>
