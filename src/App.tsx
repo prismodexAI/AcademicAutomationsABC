@@ -179,7 +179,7 @@ function FAQSection() {
   const faqs = [
     {
       question: "How much does this cost?",
-      answer: "Prices vary by scope, starting at £2,000. We guarantee ROI by prioritising savings and efficiency."
+      answer: "Reports start from £2,000 per year. Pricing is based on value. If a report saves significantly more in staff time and costs, it represents a clear return."
     },
     {
       question: "How long does it take?",
@@ -655,7 +655,7 @@ export default function App() {
           <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center mb-4">
               <BarChart3 className="h-8 w-8 text-slate-600 mr-3" />
-              <h3 className="text-5xl font-semibold text-gray-900">Automated Reports</h3>
+              <h3 className="text-5xl font-semibold text-gray-900">Leadership-Ready Reports</h3>
             </div>
           </motion.div>
 
