@@ -317,9 +317,21 @@ function PreviewModal({
 }) {
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    if (visible) setIsLoading(true);
-  }, [visible]);
+useEffect(() => {
+  if (visible) setIsLoading(true);
+}, [visible]);
+
+useEffect(() => {
+  if (visible) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
+
+  return () => {
+    document.body.style.overflow = '';
+  };
+}, [visible]);
 
   if (!visible) return null;
 
@@ -336,7 +348,7 @@ function PreviewModal({
           <h2 className="text-lg md:text-xl font-semibold text-gray-900">{title}</h2>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 bg-gray-50">
+        <div className="flex-1 overflow-hidden p-6 bg-gray-50">
           {isLoading && <LoadingSpinner />}
 
           <iframe
