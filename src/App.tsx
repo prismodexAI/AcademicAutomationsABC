@@ -654,8 +654,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4">
           <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center mb-4">
-              <Users className="h-8 w-8 text-slate-600 mr-3" />
-              <h3 className="text-3xl font-semibold text-gray-900">Automated Reports</h3>
+              <BarChart3 className="h-8 w-8 text-slate-600 mr-3" />
+              <h3 className="text-5xl font-semibold text-gray-900">Automated Reports</h3>
             </div>
           </motion.div>
 
@@ -732,7 +732,7 @@ export default function App() {
           >
             <div className="flex items-start gap-6">
               <div className="flex-shrink-0">
-                <BarChart3 className="h-10 w-10 text-slate-500" />
+                <TrendingUp className="h-10 w-10 text-slate-500" />
               </div>
 
               <div className="flex-1">
