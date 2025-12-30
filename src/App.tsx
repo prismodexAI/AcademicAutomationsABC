@@ -360,7 +360,7 @@ if (!visible) return null;
           <iframe
             title={title}
             src={iframeSrc}
-            className={`w-full rounded-xl border border-gray-200 bg-white transition-opacity duration-300 ${isLoading ? "opacity-0" : "opacity-100"}` }
+            className={`w-full rounded-xl border border-gray-200 bg-white transition-opacity duration-300 ${isLoading ? "opacity-0 invisible" : "opacity-100 visible"}` }
             style={{ minHeight: "85vh" }}
             onLoad={() => setIsLoading(false)}
           />
