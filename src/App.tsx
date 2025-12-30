@@ -496,7 +496,7 @@ export default function App() {
                   animate={{ opacity: 1, x: 6 }}
                   transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                  AI Automation
+                  Automated Reports
                 </motion.span>
               </div>
 
