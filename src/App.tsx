@@ -483,7 +483,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="max-w-5xl mx-auto">
             <motion.h2
-              className="text-6xl md:text-8xl font-bold text-gray-900 mb-8 leading-tight flex flex-col items-center"
+              className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight flex flex-col items-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -501,12 +501,12 @@ export default function App() {
               </div>
 
               <motion.span
-                className="text-4xl md:text-5xl mt-3 md:mt-2 text-gray-900 hero-subtitle"
+                className="text-3xl md:text-4xl mt-3 md:mt-2 text-gray-900 hero-subtitle"
                 initial={{ opacity: 0, y: -20, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: 0.45, duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
-                for UK schools
+                for UK secondary schools
               </motion.span>
             </motion.h2>
 
