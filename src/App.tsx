@@ -82,7 +82,7 @@ function Header({
             <a
               key={link.href}
               href={link.href}
-              className="hover:text-blue-700 transition text-base font-medium"
+              className="hover:text-[#09446C] transition text-base font-medium"
               onClick={(e) => handleLinkClick(e, link.href)}
             >
               {link.label}
@@ -131,7 +131,7 @@ function TalkCTA({
   return (
     <motion.a
       href={href}
-      className={`inline-flex items-center whitespace-nowrap rounded-full shadow-sm bg-gradient-to-r from-indigo-600 to-blue-500 text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-300 relative overflow-hidden ${className}`}
+      className={`inline-flex items-center whitespace-nowrap rounded-full shadow-sm bg-gradient-to-r from-[#09446C] to-[#23A3D4] text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#23A3D4]/40 relative overflow-hidden ${className}`}
       aria-label={label}
       initial="rest"
       whileHover="hover"
@@ -153,7 +153,7 @@ function TalkCTA({
       >
         <ArrowRight
           style={{ width: Math.round(knobPx * 0.6), height: Math.round(knobPx * 0.6) }}
-          className="text-indigo-700 transition-colors duration-200"
+          className="text-[#09446C] transition-colors duration-200"
         />
       </motion.span>
 
@@ -216,7 +216,7 @@ function FAQSection() {
         >
           <button
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
-            className="w-full bg-white p-6 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 text-left focus:outline-none focus:ring-2 focus:ring-blue-200"
+            className="w-full bg-white p-6 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 text-left focus:outline-none focus:ring-2 focus:ring-[#23A3D4]/30"
           >
             <div className="flex items-center justify-between">
               <h4 className="text-xl font-semibold text-gray-900 pr-4">{faq.question}</h4>
@@ -224,7 +224,7 @@ function FAQSection() {
                 animate={{ rotate: openIndex === index ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <ChevronDown className="h-6 w-6 text-blue-600 flex-shrink-0" />
+                <ChevronDown className="h-6 w-6 text-[#23A3D4] flex-shrink-0" />
               </motion.div>
             </div>
           </button>
@@ -238,7 +238,7 @@ function FAQSection() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className="bg-gray-50 mx-4 p-6 rounded-xl mt-2 border-l-4 border-blue-500">
+            <div className="bg-gray-50 mx-4 p-6 rounded-xl mt-2 border-l-4 border-[#23A3D4]">
               <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
             </div>
           </motion.div>
@@ -251,7 +251,7 @@ function FAQSection() {
 /* --- Big footer section --- */
 function BigBlackFooter() {
   return (
-    <section id="big-footer" className="bg-gradient-to-br from-blue-50 to-indigo-50 text-gray-900 py-24 md:py-36 lg:py-48">
+    <section id="big-footer" className="bg-gradient-to-br from-[#09446C]/5 to-[#23A3D4]/5 text-gray-900 py-24 md:py-36 lg:py-48">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <div className="flex flex-col items-center gap-8">
           {/* Logo (not inverted on light background) */}
@@ -298,7 +298,7 @@ function BigBlackFooter() {
 function LoadingSpinner() {
   return (
     <div className="flex items-center justify-center py-20">
-      <div className="h-12 w-12 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600" />
+      <div className="h-12 w-12 animate-spin rounded-full border-4 border-gray-300 border-t-[#23A3D4]" />
     </div>
   );
 }
@@ -400,42 +400,42 @@ export default function App() {
 
   const cards = [
     {
-      icon: <Users className="h-6 w-6 text-blue-600 mr-2" />,
+      icon: <Users className="h-6 w-6 text-[#23A3D4] mr-2" />,
       title: 'Automatic Alerts',
       sub: 'triggered by Teams + Forms submissions',
       value: '£4,000–£6,000/year',
       small: '2–4 hrs/week',
     },
     {
-      icon: <Clock className="h-6 w-6 text-blue-600 mr-2" />,
+      icon: <Clock className="h-6 w-6 text-[#23A3D4] mr-2" />,
       title: 'Staff Absence + Cover',
       sub: 'auto-alerts with suggested cover options',
       value: '£6,000–£10,000/year',
       small: '2 hrs/week',
     },
     {
-      icon: <BarChart3 className="h-6 w-6 text-blue-600 mr-2" />,
+      icon: <BarChart3 className="h-6 w-6 text-[#23A3D4] mr-2" />,
       title: 'AI Weekly Reports',
       sub: 'SLT-ready behaviour/attendance data',
       value: '£7,500–£12,000/year',
       small: '3 hrs/week',
     },
     {
-      icon: <ArrowRight className="h-6 w-6 text-blue-600 mr-2" />,
+      icon: <ArrowRight className="h-6 w-6 text-[#23A3D4] mr-2" />,
       title: 'Parent Reminders',
       sub: 'Auto-send/draft detentions & event notifications',
       value: '£2,500–£4,000/year',
       small: '1 hr/week',
     },
     {
-      icon: <TrendingUp className="h-6 w-6 text-blue-600 mr-2" />,
+      icon: <TrendingUp className="h-6 w-6 text-[#23A3D4] mr-2" />,
       title: 'Behaviour Escalation',
       sub: 'threshold triggers & weekly summaries',
       value: '£5,000–£8,000/year',
       small: '2 hrs/week',
     },
     {
-      icon: <Clock className="h-6 w-6 text-blue-600 mr-2" />,
+      icon: <Clock className="h-6 w-6 text-[#23A3D4] mr-2" />,
       title: 'Onboarding / Offboarding',
       sub: 'Accounts, access & folders',
       value: '£3,500–£6,000/year',
@@ -444,7 +444,7 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-white selection:bg-indigo-200 selection:text-indigo-900 text-gray-900">
+    <div className="min-h-screen bg-white selection:bg-[#23A3D4]/35 selection:text-[#09446C] text-gray-900">
       {/* load fonts + animated gradient CSS */}
       <style>{` 
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Jost:wght@300;400;500;600;700;800&display=swap');
@@ -462,7 +462,7 @@ export default function App() {
         }
 
         .gradient-realm {
-          background-image: linear-gradient(90deg, #4f46e5 0%, #7c3aed 25%, #6366f1 50%, #7f5af0 75%, #5b21b6 100%);
+          background-image: linear-gradient(90deg, #09446C 0%, #23A3D4 100%);
           background-size: 200% 200%;
           -webkit-background-clip: text;
           background-clip: text;
@@ -480,8 +480,8 @@ export default function App() {
 
         .talk-cta { transition: background-color 180ms, color 180ms; }
         .talk-cta .knob { transition: background-color 180ms, color 180ms; }
-        .talk-cta:hover { background: white; color: #3730a3; }
-        .talk-cta:hover .knob { background: #3730a3; }
+        .talk-cta:hover { background: white; color: #09446C; }
+        .talk-cta:hover .knob { background: #09446C; }
         .talk-cta:hover .knob svg { color: white; }
       `}</style>
 
@@ -489,7 +489,7 @@ export default function App() {
       <div className="fixed left-0 right-0 top-0 h-1 z-50 bg-transparent">
         <div
           aria-hidden
-          className="h-1 bg-gradient-to-r from-indigo-500 to-emerald-400 shadow-sm"
+          className="h-1 bg-gradient-to-r from-[#09446C] to-[#23A3D4] shadow-sm"
           style={{ width: `${scrollProgress}%`, transition: 'width 120ms linear' }}
         />
       </div>
@@ -497,7 +497,7 @@ export default function App() {
       <Header onBlogClick={() => setCurrentPage('blog')} />
 
       {/* HERO */}
-      <section className="relative bg-gradient-to-br from-blue-50 to-indigo-50 min-h-[85vh] flex items-center justify-center overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#09446C]/5 to-[#23A3D4]/5 min-h-[85vh] flex items-center justify-center overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="max-w-5xl mx-auto">
             <motion.h2
@@ -569,7 +569,7 @@ export default function App() {
             >
               Our goal is to reduce overhead costs by deploying systems that automate monotonous tasks, allowing your staff to delegate their time towards more important matters.
               <br />
-              <strong className="text-blue-700">Teaching and genuine human interaction.</strong>
+              <strong className="text-[#09446C]">Teaching and genuine human interaction.</strong>
             </motion.p>
           </div>
 
@@ -620,7 +620,7 @@ export default function App() {
             </motion.div>
 
             <motion.div
-              className="group bg-gradient-to-br from-indigo-50 to-white p-8 rounded-2xl shadow-lg border border-indigo-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="group bg-gradient-to-br from-[#09446C]/5 to-white p-8 rounded-2xl shadow-lg border border-[#23A3D4]/25 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -668,7 +668,7 @@ export default function App() {
       </section>
 
       {/* ROI Highlights - toned down, context-first variant */}
-      <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <section className="py-16 bg-gradient-to-br from-[#09446C]/5 to-[#23A3D4]/5">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center mb-4">
@@ -680,14 +680,14 @@ export default function App() {
           <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-6xl mx-auto">
             <motion.button
               onClick={() => setCurrentPage('slt-report')}
-              className="group bg-white text-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-left border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="group bg-white text-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-left border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#23A3D4]/45"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-10% 0px' }}
             >
               <div className="flex items-center justify-between mb-4">
                 <h4 className="font-semibold text-lg text-gray-900">Subject Performance Review</h4>
-                <ArrowRight className="h-5 w-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="h-5 w-5 text-[#23A3D4] group-hover:translate-x-1 transition-transform" />
               </div>
               <p className="text-sm text-gray-600">Academic Automations – Subject Performance Review</p>
               <p className="text-xs text-gray-500 mt-4">Click to preview</p>
@@ -695,7 +695,7 @@ export default function App() {
 
             <motion.button
               onClick={() => setCurrentPage('attendance-report')}
-              className="group bg-white text-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-left border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="group bg-white text-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-left border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#23A3D4]/45"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-10% 0px' }}
@@ -703,7 +703,7 @@ export default function App() {
             >
               <div className="flex items-center justify-between mb-4">
                 <h4 className="font-semibold text-lg text-gray-900">Attendance KPI</h4>
-                <ArrowRight className="h-5 w-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="h-5 w-5 text-[#23A3D4] group-hover:translate-x-1 transition-transform" />
               </div>
               <p className="text-sm text-gray-600">Academic Automations – Attendance KPI Report</p>
               <p className="text-xs text-gray-500 mt-4">Click to preview</p>
@@ -711,7 +711,7 @@ export default function App() {
 
             <motion.button
               onClick={() => setCurrentPage('merits-report')}
-              className="group bg-white text-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-left border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="group bg-white text-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-left border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#23A3D4]/45"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-10% 0px' }}
@@ -719,7 +719,7 @@ export default function App() {
             >
               <div className="flex items-center justify-between mb-4">
                 <h4 className="font-semibold text-lg text-gray-900">Merits</h4>
-                <ArrowRight className="h-5 w-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="h-5 w-5 text-[#23A3D4] group-hover:translate-x-1 transition-transform" />
               </div>
               <p className="text-sm text-gray-600">Academic Automations – Merits Report</p>
               <p className="text-xs text-gray-500 mt-4">Click to preview</p>
@@ -727,7 +727,7 @@ export default function App() {
 
             <motion.button
               onClick={() => setCurrentPage('behaviour-report')}
-              className="group bg-white text-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-left border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="group bg-white text-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-left border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#23A3D4]/45"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-10% 0px' }}
@@ -735,7 +735,7 @@ export default function App() {
             >
               <div className="flex items-center justify-between mb-4">
                 <h4 className="font-semibold text-lg text-gray-900">Behaviour</h4>
-                <ArrowRight className="h-5 w-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="h-5 w-5 text-[#23A3D4] group-hover:translate-x-1 transition-transform" />
               </div>
               <p className="text-sm text-gray-600">Academic Automations – Behaviour Report</p>
               <p className="text-xs text-gray-500 mt-4">Click to preview</p>
@@ -850,7 +850,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4">
           <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center mb-4">
-              <HelpCircle className="h-8 w-8 text-blue-600 mr-3" />
+              <HelpCircle className="h-8 w-8 text-[#23A3D4] mr-3" />
               <h3 className="text-4xl font-bold text-gray-900">Frequently Asked Questions</h3>
             </div>
           </motion.div>
