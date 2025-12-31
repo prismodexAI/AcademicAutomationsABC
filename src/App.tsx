@@ -686,10 +686,10 @@ export default function App() {
               viewport={{ once: true, margin: '-10% 0px' }}
             >
               <div className="flex items-center justify-between mb-4">
-                <h4 className="font-semibold text-lg text-gray-900">SLT Performance</h4>
+                <h4 className="font-semibold text-lg text-gray-900">Subject Performance Review</h4>
                 <ArrowRight className="h-5 w-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
               </div>
-              <p className="text-sm text-gray-600">Academic Automations – SLT Performance Report</p>
+              <p className="text-sm text-gray-600">Academic Automations – Subject Performance Review</p>
               <p className="text-xs text-gray-500 mt-4">Click to preview</p>
             </motion.button>
 
@@ -896,12 +896,12 @@ export default function App() {
       <PreviewModal
         visible={currentPage === 'slt-report'}
         iframeSrc={SLT_REPORT_SRC}
-        title="Academic Automations – SLT Performance Report"
+        title="Academic Automations – Subject Performance Review"
         onClose={() => setCurrentPage('home')}
       >
         <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Academic Automations – SLT Performance Report
+            Academic Automations – Subject Performance Review
           </h1>
           <p className="text-gray-600 text-base md:text-lg mb-8">
             
