@@ -41,7 +41,7 @@ function Header({
     { label: 'How it works', href: '#blog' },
     { label: 'FAQ', href: '#pricing' },
   ],
-  ctaLabel = "Quick Chat",
+  ctaLabel = "book a call",
   ctaHref = 'https://cal.com/academicautomations/discovery',
   onBlogClick,
 }: {
@@ -99,7 +99,7 @@ function Header({
 
 /* Reusable Talk CTA — improved animation, color invert on hover, clipped inside pill */
 function TalkCTA({
-  label = "Quick Chat",
+  label = "book a call",
   href = 'mailto:contact@academicautomations.com',
   size = 'md',
   className = '',
@@ -266,12 +266,12 @@ function BigBlackFooter() {
             <div className="text-sm text-gray-600 mb-2 uppercase font-semibold">Academic Automations</div>
             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Let's Automate Your School</h3>
             <p className="text-lg md:text-xl text-gray-700 mb-6">
-              Start with a free, thirty minute growth mapping call.
+              Start with a free, thirty minute call.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* primary animated CTA */}
-              <TalkCTA label="Quick Chat" href="https://cal.com/academicautomations/discovery" size="lg" className="talk-cta" />
+              <TalkCTA label="book a call" href="https://cal.com/academicautomations/discovery" size="lg" className="talk-cta" />
 
               {/* secondary plain CTA for visual rhythm */}
               <a
@@ -540,7 +540,7 @@ export default function App() {
         </div>
 
         <div className="absolute left-6 bottom-6 z-0">
-          <TalkCTA label="Quick Chat" href="https://cal.com/academicautomations/discovery" size="lg" className="talk-cta" />
+          <TalkCTA label="book a call" href="https://cal.com/academicautomations/discovery" size="lg" className="talk-cta" />
         </div>
       </section>
 
