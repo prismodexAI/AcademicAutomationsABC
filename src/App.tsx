@@ -542,6 +542,11 @@ export default function App() {
         <div className="absolute left-6 bottom-6 z-0">
           <TalkCTA label="book a call" href="https://cal.com/academicautomations/discovery" size="lg" className="talk-cta" />
         </div>
+
+        {/* guarantee */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-center pointer-events-none">
+          <span className="text-sm text-gray-400">Try a report free for 30 days. Cancel anytime.</span>
+        </div>
       </section>
 
       {/* What We Automate */}
