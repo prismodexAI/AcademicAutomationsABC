@@ -41,7 +41,7 @@ function Header({
     { label: 'How it works', href: '#blog' },
     { label: 'FAQ', href: '#pricing' },
   ],
-  ctaLabel = "let's talk",
+  ctaLabel = "Quick Chat",
   ctaHref = 'https://cal.com/academicautomations/discovery',
   onBlogClick,
 }: {
@@ -99,7 +99,7 @@ function Header({
 
 /* Reusable Talk CTA — improved animation, color invert on hover, clipped inside pill */
 function TalkCTA({
-  label = "let's talk",
+  label = "Quick Chat",
   href = 'mailto:contact@academicautomations.com',
   size = 'md',
   className = '',
@@ -271,7 +271,7 @@ function BigBlackFooter() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* primary animated CTA */}
-              <TalkCTA label="let's talk" href="https://cal.com/academicautomations/discovery" size="lg" className="talk-cta" />
+              <TalkCTA label="Quick Chat" href="https://cal.com/academicautomations/discovery" size="lg" className="talk-cta" />
 
               {/* secondary plain CTA for visual rhythm */}
               <a
@@ -540,7 +540,7 @@ export default function App() {
         </div>
 
         <div className="absolute left-6 bottom-6 z-0">
-          <TalkCTA label="let's talk" href="https://cal.com/academicautomations/discovery" size="lg" className="talk-cta" />
+          <TalkCTA label="Quick Chat" href="https://cal.com/academicautomations/discovery" size="lg" className="talk-cta" />
         </div>
       </section>
 
@@ -756,11 +756,11 @@ export default function App() {
               <div className="flex-1">
                 <h4 className="text-2xl font-semibold text-gray-900">Estimated school savings</h4>
                 <p className="text-base text-gray-600 mt-2 max-w-3xl">
-                  Typical savings for an average secondary school based on number of automations deployed.
+                  Conservative saving estimates for an average secondary school based on number of automations deployed.
                 </p>
 
                 <div className="mt-8 space-y-5">
-                  {/* Tier 1: 1-2 Automations */}
+                  {/* Tier 1: 1 Automation */}
                   <motion.div
                     className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
                     initial={{ opacity: 0, y: 8 }}
@@ -771,21 +771,21 @@ export default function App() {
                     <div className="grid sm:grid-cols-3 gap-6 items-center">
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
-                        <div className="font-semibold text-2xl text-slate-700">1–2</div>
+                        <div className="font-semibold text-2xl text-slate-700">1</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£10k–£25k</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£2k–£4k</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~50–200 hrs</div>
-                        <div className="text-sm text-gray-500">(1–5 weeks)</div>
+                        <div className="font-semibold text-xl text-slate-700">~60–110 hrs</div>
+                        <div className="text-sm text-gray-500">(1.5–3 weeks)</div>
                       </div>
                     </div>
                   </motion.div>
 
-                  {/* Tier 2: 3-5 Automations */}
+                  {/* Tier 2: 2-3 Automations */}
                   <motion.div
                     className="p-6 bg-white rounded-xl border border-emerald-200 shadow-sm hover:shadow-md transition-shadow"
                     initial={{ opacity: 0, y: 8 }}
@@ -796,21 +796,21 @@ export default function App() {
                     <div className="grid sm:grid-cols-3 gap-6 items-center">
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
-                        <div className="font-semibold text-2xl text-slate-700">3–5</div>
+                        <div className="font-semibold text-2xl text-slate-700">2–3</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£40k–£90k</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£4k–£12k</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~150–600 hrs</div>
-                        <div className="text-sm text-gray-500">(4–15 weeks)</div>
+                        <div className="font-semibold text-xl text-slate-700">~120–350 hrs</div>
+                        <div className="text-sm text-gray-500">(3–9 weeks)</div>
                       </div>
                     </div>
                   </motion.div>
 
-                  {/* Tier 3: 8-10+ Automations */}
+                  {/* Tier 3: 4 (Full Suite) */}
                   <motion.div
                     className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
                     initial={{ opacity: 0, y: 8 }}
@@ -821,23 +821,23 @@ export default function App() {
                     <div className="grid sm:grid-cols-3 gap-6 items-center">
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
-                        <div className="font-semibold text-2xl text-slate-700">8–10+</div>
+                        <div className="font-semibold text-2xl text-slate-700">All 4</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£90k–£165k</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£10k–£16k</div>
                       </div>
                       <div>
                         <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~400–1,200 hrs</div>
-                        <div className="text-sm text-gray-500">(10–30 weeks)</div>
+                        <div className="font-semibold text-xl text-slate-700">~350–450 hrs</div>
+                        <div className="text-sm text-gray-500">(9–12 weeks)</div>
                       </div>
                     </div>
                   </motion.div>
                 </div>
 
                 <div className="mt-6 text-sm text-gray-500">
-                  Figures are estimates — results vary by school size, processes automated and data quality.
+                  Figures are estimated based on recurring reporting, analysis, and preparation workloads. Results vary by school size, processes automated, and data quality.
                 </div>
               </div>
             </div>
