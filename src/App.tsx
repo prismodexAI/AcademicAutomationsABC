@@ -761,7 +761,7 @@ export default function App() {
               <div className="flex-1">
                 <h4 className="text-2xl font-semibold text-gray-900">Estimated school savings</h4>
                 <p className="text-base text-gray-600 mt-2 max-w-3xl">
-                  Conservative saving estimates for an average secondary school based on number of automations deployed.
+                  Evidence-led estimates for a typical secondary school based on recurring weekly reporting, analysis, and meeting-pack preparation across data/admin teams, middle leaders and SLT. Direct budget savings depend on staffing model; many schools reinvest the freed time into student support.
                 </p>
 
                 <div className="mt-8 space-y-5">
@@ -775,17 +775,17 @@ export default function App() {
                   >
                     <div className="grid sm:grid-cols-3 gap-6 items-center">
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations deployed</div>
                         <div className="font-semibold text-2xl text-slate-700">1</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£2k–£4k</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual time freed</div>
+                        <div className="font-semibold text-xl text-slate-700">~90–180 hours</div>
+                        <div className="text-sm text-gray-500">(~2–5 weeks)</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~60–110 hrs</div>
-                        <div className="text-sm text-gray-500">(1.5–3 weeks)</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual value equivalent</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£3k–£7k</div>
                       </div>
                     </div>
                   </motion.div>
@@ -800,17 +800,17 @@ export default function App() {
                   >
                     <div className="grid sm:grid-cols-3 gap-6 items-center">
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations deployed</div>
                         <div className="font-semibold text-2xl text-slate-700">2–3</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£4k–£12k</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual time freed</div>
+                        <div className="font-semibold text-xl text-slate-700">~220–540 hours</div>
+                        <div className="text-sm text-gray-500">(~6–14 weeks)</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~120–350 hrs</div>
-                        <div className="text-sm text-gray-500">(3–9 weeks)</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual value equivalent</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£8k–£22k</div>
                       </div>
                     </div>
                   </motion.div>
@@ -825,24 +825,24 @@ export default function App() {
                   >
                     <div className="grid sm:grid-cols-3 gap-6 items-center">
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations Deployed</div>
-                        <div className="font-semibold text-2xl text-slate-700">All 4</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Automations deployed</div>
+                        <div className="font-semibold text-2xl text-slate-700">all 4</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual Savings</div>
-                        <div className="font-semibold text-2xl text-emerald-600">£10k–£16k</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual time freed</div>
+                        <div className="font-semibold text-xl text-slate-700">~450–900 hours</div>
+                        <div className="text-sm text-gray-500">(~12–24 weeks)</div>
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Staff Time Freed</div>
-                        <div className="font-semibold text-xl text-slate-700">~350–450 hrs</div>
-                        <div className="text-sm text-gray-500">(9–12 weeks)</div>
+                        <div className="text-sm text-gray-500 uppercase mb-2 font-medium">Annual value equivalent</div>
+                        <div className="font-semibold text-2xl text-emerald-600">£15k–£35k</div>
                       </div>
                     </div>
                   </motion.div>
                 </div>
 
                 <div className="mt-6 text-sm text-gray-500">
-                  Figures are estimated based on recurring reporting, analysis, and preparation workloads. Results vary by school size, processes automated, and data quality.
+                  Figures are estimates based on recurring reporting workflows; results vary by school size, reporting expectations, and data quality.
                 </div>
               </div>
             </div>
